@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use this software or the accompanying letter, please cite it as below."
+type: software
+title: "HEAT Letter: A zero-parameter derivation of the late-type galaxy size exponent and normalisation from a0(z) = c H(z) / (2 pi)"
+abstract: >-
+  Companion code and LaTeX source for the HEAT (Hubble-Emergent
+  Acceleration Theory) letter.  HEAT is a zero-parameter phenomenological
+  model in which the MOND acceleration scale is identified with the
+  surface gravity of the FRW apparent cosmological horizon,
+  a0(z) = c H(z) / (2 pi).  This release reproduces the four figures of
+  the letter: the zero-parameter size-evolution normalisation R(z)/R_0
+  and its matter-era asymptote Om_m^{-1/4}, the stellar-mass-normalised
+  compactification R_obs/R_0 versus redshift, the ALMA z~4.5 joint
+  kinematic test (N=4), and the SPARC 171-galaxy local-anchor chi^2
+  comparison with constant-a0 MOND.
+authors:
+  - family-names: "Enciu"
+    given-names: "Bogdan Cosmin"
+    affiliation: "Independent Researcher"
+    email: "bogdanenciu.author@gmail.com"
+    orcid: "https://orcid.org/0009-0008-7329-7200"
+version: "v1.0.0"
+date-released: "2026-04-15"
+license: MIT
+url: "https://github.com/bogdanenciu/HEAT-paper"
+repository-code: "https://github.com/bogdanenciu/HEAT-paper"
+# Fill in after Zenodo publishes the record:
+# doi: "10.5281/zenodo.XXXXXXX"
+# identifiers:
+#   - type: doi
+#     value: "10.5281/zenodo.XXXXXXX"
+keywords:
+  - modified gravity
+  - MOND
+  - cosmology
+  - galaxy size evolution
+  - JWST
+  - horizon thermodynamics
+  - dark matter alternatives

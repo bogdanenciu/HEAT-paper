@@ -1,0 +1,5 @@
+# Core dependencies for HEAT (Hubble-Emergent Acceleration Theory) letter.
+# Install: pip install -r requirements.txt
+numpy>=1.24,<3
+scipy>=1.9,<2
+matplotlib>=3.7,<4
