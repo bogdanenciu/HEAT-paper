@@ -1,4 +1,4 @@
-# HEAT Letter ? Hubble-Emergent Acceleration Theory
+# HEAT Letter  Hubble-Emergent Acceleration Theory
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Paper: CC BY 4.0](https://img.shields.io/badge/Paper-CC%20BY%204.0-lightgrey.svg)](LICENSE-PAPER)
