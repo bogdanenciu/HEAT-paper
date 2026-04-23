@@ -52,7 +52,7 @@ python run_all_heat_tests.py all --agg     # all three pipelines
 python run_all_heat_tests.py list          # show available keys
 
 # Individual analyses:
-python run_all_heat_tests.py jwst          # Figures 3c (kinematic) and 5 (size-mass)
+python run_all_heat_tests.py jwst          # Figures 3c (kinematic), 5 (size-mass), 7 (BTFR)
 python run_all_heat_tests.py sparc-pub     # Figure 4 (SPARC chi^2 histograms)
 python run_all_heat_tests.py fig-norm      # Figure 6 (R(z)/R_0 normalisation)
 ```
@@ -68,8 +68,8 @@ Output is written to `heat_output/` subfolders.
 - **`theory/heat_field.py`** — Optional local field correction $\phi(r)$;
   used by the SPARC analysis, not by the letter's headline predictions.
 - **`publication/jwst_early_galaxies.py`** — ALMA $z \sim 4.5$ joint
-  velocity–size test (Fig. 3c) and stellar-mass-normalised
-  compactification (Fig. 5).
+  velocity–size test (Fig. 3c), stellar-mass-normalised
+  compactification (Fig. 5), and BTFR zero-point evolution (Fig. 7).
 - **`publication/sparc_publication_quality.py`** — SPARC 171-galaxy
   local-anchor $\chi^2$ comparison (Fig. 4).
 - **`publication/fig_normalization.py`** — Zero-parameter

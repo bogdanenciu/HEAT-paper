@@ -45,7 +45,7 @@ single three-step chain---horizon thermodynamics fixes the
 acceleration scale, the deep-MOND kernel fixes the
 radius--acceleration exponent, and Planck-fixed cosmology fixes
 the redshift mapping.  The full prediction factorises as
-$R_{\heat}(z)/R_0=(1+z)^{-3/4}\times[\Omega_{m}(z)/\Omega_{m}(0)]^{1/4}$.
+$R_{\heat}(z)/R_{0}=(1+z)^{-3/4}\times[\Omega_{m}(z)/\Omega_{m}(0)]^{1/4}$.
 (i)~The first factor is the matter-era asymptote, matching the
 empirical late-type size--redshift exponent measured in thousands
 of galaxies by \citet{vanderWel2014} and confirmed at higher
@@ -64,7 +64,7 @@ history.  As supporting evidence, the same zero-parameter
 $\azero(z)$ is jointly consistent with the sample-mean
 flat-rotation velocity
 ($\langle v_{\heat}/v_{\rm obs}\rangle=1.00\pm0.08$) and size
-compactification ($\langle R_{\rm obs}/R_0\rangle=0.38$ observed
+compactification ($\langle R_{\rm obs}/R_{0}\rangle=0.38$ observed
 vs.\ HEAT prediction $0.37$) of four ALMA disks at
 $z\!\sim\!4.5$, and reduces to standard MOND at $z=0$ with SPARC
 $\chi^2$ statistically indistinguishable from constant-$\azero$
@@ -644,7 +644,7 @@ Mean (excl.\ SPT)& ---  & ---  & 0.38 & 0.37 \\
   $[\azero(z)/\azero(0)]^{-1/2}$.  SPT0418-47 is a lensed
   ongoing minor merger with companion SPT0418B at $4.42$\,kpc
   projected separation \citep{Cathey2024}; the size is the
-  de-lensed intrinsic [C\,II] half-light radius of
+  \mbox{de-lensed} intrinsic [C\,II] half-light radius of
   \citet{Rizzo2020} and the system is excluded from the
   size-ratio mean because disk-equilibrium scaling is not
   expected to hold during an interaction.  The kinematic axis
@@ -662,6 +662,72 @@ Mean (excl.\ SPT)& ---  & ---  & 0.38 & 0.37 \\
     sample-mean to within the $N{=}4$ envelope; MOND
     under-predicts by a factor $1/0.63\approx 1.6$.
     \label{fig:kin}}
+\end{figure}
+
+\subsection{BTFR zero-point: consistency with the predicted
+  trend}\label{sec:btfr}
+
+Combining the deep-MOND baryonic Tully--Fisher relation
+$V_{\rm flat}^{4}=GM_{b}\,\azero$
+\citep{Milgrom1983,FamaeyMcGaugh2012} with the
+HEAT ansatz Eq.~\ref{eq:a0} implies a zero-parameter shift of
+the BTFR zero-point at fixed rotation velocity,
+\begin{equation}
+  \Delta\log_{10}M_{b}(z)=-\log_{10}\!\left[\frac{H(z)}{H_{0}}\right],
+  \label{eq:btfr-evo}
+\end{equation}
+while constant-$\azero$ MOND predicts
+$\Delta\log_{10}M_{b}(z)=0$ independently of redshift.  As with
+the size ratio $\mathcal{R}(z)$ of \S\ref{sec:exp}, we use the
+presently available heterogeneous sample only to check whether
+the direction and amplitude of the predicted trend are
+consistent with the data; a decisive quantitative test awaits a
+homogeneous cosmic-noon rotation-curve sample.  Projecting the
+four $z>4$ ALMA kinematic sources of Table~\ref{tab:alma} onto
+the axis Eq.~\ref{eq:btfr-evo} (Figure~\ref{fig:btfr}) yields
+$\Delta_{\rm obs}$ values of $-0.87$ dex (CRISTAL-22, $z=4.53$),
+$-0.33$ dex (DC-881725, $z=4.56$), and $-1.03$ and $-1.36$ dex
+for the caveated SPT0418-47 and SGP38326 systems, against a
+HEAT prediction of $\simeq-0.86$ dex at $z\!\sim\!4.5$.  The SPARC
+$z=0$ anchor (171 galaxies, \citealt{Lelli2016}) sits on the
+HEAT curve within the \citet{Lelli2019} intrinsic scatter of
+$\sim 0.10$ dex, by construction of the horizon-thermodynamic
+anchor; CRISTAL-22 --- the most rotation-dominated
+equilibrium system in the high-$z$ sample --- sits on the
+zero-parameter HEAT curve to within the per-galaxy
+systematics.  The remaining points scatter above and below
+the curve at amplitudes consistent with the known
+merger/lensed/clumpy-disk systematics, and the overall trend
+is in the direction predicted by Eq.~\ref{eq:btfr-evo} and
+opposite to the constant-$\azero$ MOND null.  A homogeneous
+cosmic-noon ($z\sim 1$--$2.5$) sample of $\sim 10$
+rotation-dominated disks with individual $\lesssim 15\%$
+velocity precision would convert this trend consistency into a
+quantitative discrimination between HEAT, CEG, and
+constant-$\azero$ MOND at $>3\sigma$ at fixed baryonic mass.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{../heat_output/jwst_early_galaxies/fig7_btfr_evolution.pdf}
+  \caption{BTFR zero-point offset
+    $\Delta\log_{10}M_{b}$ at fixed $V_{\rm flat}$ versus
+    redshift.  Solid blue: zero-parameter HEAT prediction
+    $-\log_{10}[H(z)/H_{0}]$ (Eq.~\ref{eq:btfr-evo}); surrounding
+    shaded band is the $\pm 0.10$ dex intrinsic BTFR scatter
+    from \citet{Lelli2019}.  Dashed grey: constant-$\azero$ MOND
+    null.  Black square: SPARC $z=0$ median with 16/84
+    percentile uncertainty ($N{=}171$, \citealt{Lelli2016}).
+    Orange triangles: cosmic-noon binned BTFR offsets from
+    \citet{Ubler2017} at $z\!\sim\!0.9$ and $z\!\sim\!2.3$.
+    Green circles: equilibrium ALMA disks at $z\!\sim\!4.5$;
+    purple diamonds: merger/lensed/dual systems retained for
+    completeness.  Error bars on the ALMA points combine the
+    SED-based $\sigma_{\log M_{\star}}$ with a $10\%$ systematic
+    on $V_{\rm flat}$ (i.e.\ $\sim 0.17$ dex on
+    $\log V^{4}$).  The predicted trend direction is consistent
+    with the observed data and opposite to the constant-$\azero$
+    MOND null; a quantitative test awaits a homogeneous
+    cosmic-noon sample.\label{fig:btfr}}
 \end{figure}
 
 \subsection{Local anchor: consistency with SPARC at
@@ -846,6 +912,9 @@ checkout with
   Labb\'e, I., et al.\ 2023, Nature, 616, 266
 \bibitem[Lelli et al.(2016)]{Lelli2016}
   Lelli, F., McGaugh, S.~S., \& Schombert, J.~M. 2016, AJ, 152, 157
+\bibitem[Lelli et al.(2019)]{Lelli2019}
+  Lelli, F., McGaugh, S.~S., Schombert, J.~M., Desmond, H., \&
+  Katz, H. 2019, MNRAS, 484, 3267
 \bibitem[Li et al.(2018)]{Li2018}
   Li, P., Lelli, F., McGaugh, S.~S., \& Schombert, J.~M. 2018, A\&A,
   615, A3
@@ -871,6 +940,9 @@ checkout with
   Skordis, C., \& Z{\l}o\'snik, T. 2021, PRL, 127, 161302
 \bibitem[Somerville et al.(2018)]{Somerville2018}
   Somerville, R.~S., et al.\ 2018, MNRAS, 473, 2714
+\bibitem[{\"U}bler et al.(2017)]{Ubler2017}
+  {\"U}bler, H., F\"orster Schreiber, N.~M., Genzel, R., et al.\
+  2017, ApJ, 842, 121
 \bibitem[Unruh(1976)]{Unruh1976}
   Unruh, W.~G. 1976, PRD, 14, 870
 \bibitem[van der Wel et al.(2014)]{vanderWel2014}
