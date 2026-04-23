@@ -1,4 +1,4 @@
-﻿# HEAT — Formal specification (letter release)
+# HEAT — Formal specification (letter release)
 
 This document is the condensed theory specification accompanying
 `publication/paper_heat_letter.tex` and the zero-parameter HEAT release.
@@ -10,7 +10,7 @@ with the surface gravity of the FRW apparent cosmological horizon,
 divided by $2\pi$:
 
 $$
-a_0(z) \;=\; \frac{\kappa_A(z)}{2\pi} \;=\; \frac{c\,H(z)}{2\pi}.
+a_0(z) = \frac{\kappa_A(z)}{2\pi} = \frac{c\,H(z)}{2\pi}.
 $$
 
 No free parameter. The factor $2\pi$ is the Euclidean period of the
@@ -23,14 +23,12 @@ de Sitter horizon temperature.
 
 ## 2. Background cosmology
 
-HEAT's background is held strictly degenerate with ΛCDM. In factorised
+HEAT's background is held strictly degenerate with $\Lambda$CDM. In factorised
 form,
 
 $$
-E_{\rm HEAT}(z)^2
-  \;=\; \Omega_b\,F_0\,(1+z)^3 \;+\; \Omega_\Lambda,
-  \qquad F_0 \equiv \frac{1-\Omega_\Lambda}{\Omega_b}
-                \;=\; \frac{\Omega_m}{\Omega_b},
+E_{\rm HEAT}(z)^2 = \Omega_b\,F_0\,(1+z)^3 + \Omega_\Lambda,
+\qquad F_0 \equiv \frac{1-\Omega_\Lambda}{\Omega_b} = \frac{\Omega_m}{\Omega_b},
 $$
 
 so that $E_{\rm HEAT}(z) \equiv E_{\Lambda\rm CDM}(z)$ and
@@ -53,9 +51,8 @@ In deep-MOND equilibrium $R\propto(GM_b/a_0)^{1/2}$. Combined with
 $a_0(z)=cH(z)/(2\pi)$ at fixed baryonic mass,
 
 $$
-\frac{R(z)}{R_0} \;=\; \left[\frac{H(z)}{H_0}\right]^{-1/2}
-\;=\; (1+z)^{-3/4}
-      \,\left[\frac{\Omega_m(z)}{\Omega_m(0)}\right]^{1/4},
+\frac{R(z)}{R_0} = \left[\frac{H(z)}{H_0}\right]^{-1/2}
+= (1+z)^{-3/4}\,\left[\frac{\Omega_m(z)}{\Omega_m(0)}\right]^{1/4},
 $$
 
 with matter-era exponent $-3/4$ (matching

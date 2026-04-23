@@ -1,4 +1,4 @@
-# HEAT Letter ? Hubble-Emergent Acceleration Theory
+# HEAT Letter — Hubble-Emergent Acceleration Theory
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Paper: CC BY 4.0](https://img.shields.io/badge/Paper-CC%20BY%204.0-lightgrey.svg)](LICENSE-PAPER)
@@ -12,14 +12,14 @@ HEAT identifies the MOND acceleration scale with the surface gravity of the
 FRW apparent cosmological horizon, $\kappa_A(z) = c\,H(z)$, promoted to all
 redshifts:
 
-$$a_0(z) \;=\; \frac{\kappa_A(z)}{2\pi} \;=\; \frac{c\,H(z)}{2\pi}.$$
+$$a_0(z) = \frac{\kappa_A(z)}{2\pi} = \frac{c\,H(z)}{2\pi}.$$
 
-This is a **zero-parameter** model ? no $\beta$, no amplitude fit, no
+This is a **zero-parameter** model — no $\beta$, no amplitude fit, no
 interpolation. It recovers the empirical MOND value at $z=0$ to within
 $\approx 13\%$ and, combined with the deep-MOND kernel $R\propto a_0^{-1/2}$,
-forces the late-type size?redshift relation
+forces the late-type size–redshift relation
 
-$$\frac{R_{\rm HEAT}(z)}{R_0} \;=\; (1+z)^{-3/4}\;\times\;
+$$\frac{R_{\rm HEAT}(z)}{R_0} = (1+z)^{-3/4}\,
 \left[\frac{\Omega_m(z)}{\Omega_m(0)}\right]^{1/4}$$
 
 with a matter-era asymptote $\Omega_m^{-1/4}\approx 1.34$ and no free
@@ -61,18 +61,18 @@ Output is written to `heat_output/` subfolders.
 
 ## Key modules
 
-- **`theory/heat_cosmology.py`** ? Planck 2018 parameters, HEAT Friedmann
+- **`theory/heat_cosmology.py`** — Planck 2018 parameters, HEAT Friedmann
   equation, zero-parameter $a_0(z) = cH(z)/(2\pi)$.
-- **`theory/heat_physics.py`** ? MOND-family interpolating function and
+- **`theory/heat_physics.py`** — MOND-family interpolating function and
   deep-MOND velocity/radius helpers.
-- **`theory/heat_field.py`** ? Optional local field correction $\phi(r)$;
+- **`theory/heat_field.py`** — Optional local field correction $\phi(r)$;
   used by the SPARC analysis, not by the letter's headline predictions.
-- **`publication/jwst_early_galaxies.py`** ? ALMA $z\!\sim\!4.5$ joint
-  velocity?size test (Fig. 3c) and stellar-mass-normalised
+- **`publication/jwst_early_galaxies.py`** — ALMA $z\!\sim\!4.5$ joint
+  velocity–size test (Fig. 3c) and stellar-mass-normalised
   compactification (Fig. 5).
-- **`publication/sparc_publication_quality.py`** ? SPARC 171-galaxy
+- **`publication/sparc_publication_quality.py`** — SPARC 171-galaxy
   local-anchor $\chi^2$ comparison (Fig. 4).
-- **`publication/fig_normalization.py`** ? Zero-parameter
+- **`publication/fig_normalization.py`** — Zero-parameter
   $R(z)/R_0$ normalisation figure with matter-era asymptote (Fig. 6).
 
 ## The letter
@@ -103,11 +103,11 @@ The DOI will be minted on Zenodo and inserted above before release.
 ## License
 
 - **Code** (`*.py`, `requirements*.txt`, `run_all_heat_tests.py`,
-  shell helpers): MIT ? see [`LICENSE`](LICENSE).
+  shell helpers): MIT — see [`LICENSE`](LICENSE).
 - **Paper, figures, and documentation** (`publication/*.tex`,
-  `heat_output/**`, `HEAT_THEORY.md`, `README.md`): CC BY 4.0 ?
+  `heat_output/**`, `HEAT_THEORY.md`, `README.md`): CC BY 4.0 —
   see [`LICENSE-PAPER`](LICENSE-PAPER).
 
 ## Authors
 
-- **Bogdan Cosmin Enciu** ? Independent Researcher ? [bogdanenciu.author@gmail.com](mailto:bogdanenciu.author@gmail.com) ? [ORCID: 0009-0008-7329-7200](https://orcid.org/0009-0008-7329-7200)
+- **Bogdan Cosmin Enciu** — Independent Researcher — [bogdanenciu.author@gmail.com](mailto:bogdanenciu.author@gmail.com) — [ORCID: 0009-0008-7329-7200](https://orcid.org/0009-0008-7329-7200)
