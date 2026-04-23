@@ -6,23 +6,22 @@
 
 Companion code and LaTeX source for the letter
 *"A zero-parameter derivation of the late-type galaxy size exponent and
-normalisation from $a_0(z) = c\,H(z)/(2\pi)$"*.
+normalisation from $a_0(z) = c H(z)/(2\pi)$"*.
 
 HEAT identifies the MOND acceleration scale with the surface gravity of the
-FRW apparent cosmological horizon, $\kappa_A(z) = c\,H(z)$, promoted to all
+FRW apparent cosmological horizon, $\kappa_A(z) = c H(z)$, promoted to all
 redshifts:
 
-$$a_0(z) = \frac{\kappa_A(z)}{2\pi} = \frac{c\,H(z)}{2\pi}.$$
+$$a_0(z) = \frac{\kappa_A(z)}{2\pi} = \frac{c H(z)}{2\pi}.$$
 
 This is a **zero-parameter** model — no $\beta$, no amplitude fit, no
 interpolation. It recovers the empirical MOND value at $z=0$ to within
-$\approx 13\%$ and, combined with the deep-MOND kernel $R\propto a_0^{-1/2}$,
-forces the late-type size–redshift relation
+roughly 13% and, combined with the deep-MOND kernel
+$R \propto a_0^{-1/2}$, forces the late-type size–redshift relation
 
-$$\frac{R_{\rm HEAT}(z)}{R_0} = (1+z)^{-3/4}\,
-\left[\frac{\Omega_m(z)}{\Omega_m(0)}\right]^{1/4}$$
+$$\frac{R_{\mathrm{HEAT}}(z)}{R_0} = (1+z)^{-3/4} \left[\frac{\Omega_m(z)}{\Omega_m(0)}\right]^{1/4}$$
 
-with a matter-era asymptote $\Omega_m^{-1/4}\approx 1.34$ and no free
+with a matter-era asymptote $\Omega_m^{-1/4} \approx 1.34$ and no free
 parameter at any step.
 
 ## Repository structure
@@ -67,7 +66,7 @@ Output is written to `heat_output/` subfolders.
   deep-MOND velocity/radius helpers.
 - **`theory/heat_field.py`** — Optional local field correction $\phi(r)$;
   used by the SPARC analysis, not by the letter's headline predictions.
-- **`publication/jwst_early_galaxies.py`** — ALMA $z\!\sim\!4.5$ joint
+- **`publication/jwst_early_galaxies.py`** — ALMA $z \sim 4.5$ joint
   velocity–size test (Fig. 3c) and stellar-mass-normalised
   compactification (Fig. 5).
 - **`publication/sparc_publication_quality.py`** — SPARC 171-galaxy
@@ -88,8 +87,7 @@ If you use this code or the letter, please cite:
 ```bibtex
 @misc{heat2026letter,
   title        = {A zero-parameter derivation of the late-type galaxy
-                  size exponent and normalisation from
-                  $a_0(z) = c\,H(z)/(2\pi)$},
+                  size exponent and normalisation from a_0(z) = cH(z)/(2 pi)},
   author       = {Bogdan Cosmin Enciu},
   year         = {2026},
   howpublished = {Zenodo},
