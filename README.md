@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Paper: CC BY 4.0](https://img.shields.io/badge/Paper-CC%20BY%204.0-lightgrey.svg)](LICENSE-PAPER)
-<!-- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX) -->
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19709780.svg)](https://doi.org/10.5281/zenodo.19709780)
 
 Companion code and LaTeX source for the letter:
 
@@ -92,12 +92,10 @@ If you use this code or the letter, please cite:
   author       = {Bogdan Cosmin Enciu},
   year         = {2026},
   howpublished = {Zenodo},
-  doi          = {10.5281/zenodo.XXXXXXX},
-  url          = {https://doi.org/10.5281/zenodo.XXXXXXX}
+  doi          = {10.5281/zenodo.19709780},
+  url          = {https://doi.org/10.5281/zenodo.19709780}
 }
 ```
-
-The DOI will be minted on Zenodo and inserted above before release.
 
 ## License
 

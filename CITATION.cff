@@ -25,11 +25,10 @@ date-released: "2026-04-15"
 license: MIT
 url: "https://github.com/bogdanenciu/HEAT-paper"
 repository-code: "https://github.com/bogdanenciu/HEAT-paper"
-# Fill in after Zenodo publishes the record:
-# doi: "10.5281/zenodo.XXXXXXX"
-# identifiers:
-#   - type: doi
-#     value: "10.5281/zenodo.XXXXXXX"
+doi: "10.5281/zenodo.19709780"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.19709780"
 keywords:
   - modified gravity
   - MOND
