@@ -4,9 +4,10 @@
 [![Paper: CC BY 4.0](https://img.shields.io/badge/Paper-CC%20BY%204.0-lightgrey.svg)](LICENSE-PAPER)
 <!-- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX) -->
 
-Companion code and LaTeX source for the letter
-*"A zero-parameter derivation of the late-type galaxy size exponent and
-normalisation from $a_0(z) = c H(z)/(2\pi)$"*.
+Companion code and LaTeX source for the letter:
+
+> A zero-parameter derivation of the late-type galaxy size exponent and
+> normalisation from `a_0(z) = c H(z) / (2 pi)`.
 
 HEAT identifies the MOND acceleration scale with the surface gravity of the
 FRW apparent cosmological horizon, $\kappa_A(z) = c H(z)$, promoted to all
@@ -15,7 +16,7 @@ redshifts:
 $$a_0(z) = \frac{\kappa_A(z)}{2\pi} = \frac{c H(z)}{2\pi}.$$
 
 This is a **zero-parameter** model — no $\beta$, no amplitude fit, no
-interpolation. It recovers the empirical MOND value at $z=0$ to within
+interpolation. It recovers the empirical MOND value at $z = 0$ to within
 roughly 13% and, combined with the deep-MOND kernel
 $R \propto a_0^{-1/2}$, forces the late-type size–redshift relation
 
@@ -61,7 +62,7 @@ Output is written to `heat_output/` subfolders.
 ## Key modules
 
 - **`theory/heat_cosmology.py`** — Planck 2018 parameters, HEAT Friedmann
-  equation, zero-parameter $a_0(z) = cH(z)/(2\pi)$.
+  equation, zero-parameter $a_0(z) = c H(z) / (2\pi)$.
 - **`theory/heat_physics.py`** — MOND-family interpolating function and
   deep-MOND velocity/radius helpers.
 - **`theory/heat_field.py`** — Optional local field correction $\phi(r)$;
@@ -72,7 +73,7 @@ Output is written to `heat_output/` subfolders.
 - **`publication/sparc_publication_quality.py`** — SPARC 171-galaxy
   local-anchor $\chi^2$ comparison (Fig. 4).
 - **`publication/fig_normalization.py`** — Zero-parameter
-  $R(z)/R_0$ normalisation figure with matter-era asymptote (Fig. 6).
+  $R(z) / R_0$ normalisation figure with matter-era asymptote (Fig. 6).
 
 ## The letter
 
@@ -87,7 +88,7 @@ If you use this code or the letter, please cite:
 ```bibtex
 @misc{heat2026letter,
   title        = {A zero-parameter derivation of the late-type galaxy
-                  size exponent and normalisation from a_0(z) = cH(z)/(2 pi)},
+                  size exponent and normalisation from a_0(z) = c H(z) / (2 pi)},
   author       = {Bogdan Cosmin Enciu},
   year         = {2026},
   howpublished = {Zenodo},

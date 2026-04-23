@@ -14,7 +14,7 @@ a_0(z) = \frac{\kappa_A(z)}{2\pi} = \frac{c H(z)}{2\pi}.
 $$
 
 No free parameter. The factor $2\pi$ is the Euclidean period of the
-horizon (Hawking–Unruh / Gibbons–Hawking). The static $z=0$ limit
+horizon (Hawking–Unruh / Gibbons–Hawking). The static $z = 0$ limit
 reproduces Milgrom (1999)'s identification of the MOND scale with the
 de Sitter horizon temperature.
 
@@ -23,7 +23,7 @@ de Sitter horizon temperature.
 
 ## 2. Background cosmology
 
-HEAT's background is held strictly degenerate with $\Lambda$CDM. In
+HEAT's background is held strictly degenerate with LambdaCDM. In
 factorised form,
 
 $$
@@ -31,7 +31,7 @@ E_{\mathrm{HEAT}}(z)^2 = \Omega_b F_0 (1+z)^3 + \Omega_\Lambda,
 \qquad F_0 \equiv \frac{1 - \Omega_\Lambda}{\Omega_b} = \frac{\Omega_m}{\Omega_b},
 $$
 
-so that $E_{\mathrm{HEAT}}(z) \equiv E_{\Lambda\mathrm{CDM}}(z)$ and
+so that $E_{\mathrm{HEAT}}(z) \equiv E_{\mathrm{LCDM}}(z)$ and
 $E_{\mathrm{HEAT}}(0) = 1$ by construction. $F_0$ is a derived
 normalisation identity, **not** a fit parameter.
 
