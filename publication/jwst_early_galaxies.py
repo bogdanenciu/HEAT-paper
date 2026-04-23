@@ -104,10 +104,17 @@ JWST_GALAXIES = [
          SFR=None, caveat=None,
          ref="Bunker+2023; Tacchella+2023"),
     # -- High-z kinematic detections (ALMA) --
-    # SPT0418-47: M_star from Rizzo+2020; f_gas = 0.53 -> M_gas ~ 1.35e10
+    # SPT0418-47: M_star from Rizzo+2020; f_gas = 0.53 -> M_gas ~ 1.35e10.
+    # r_e_kpc = 0.75 is the de-lensed intrinsic [C II] half-light radius from
+    # Rizzo+2020 (Nature 584, 201), source-plane reconstructed from ALMA data
+    # with V/sigma = 9.7 +/- 0.4.  Cathey+2024 (ApJ 967, 11) identify
+    # SPT0418-47 as a 4:1 minor merger with companion SPT0418B at 4.42 kpc
+    # projected separation; the system is therefore excluded from the ALMA
+    # size-ratio mean in paper_heat_letter.tex Table 2, but retained on the
+    # velocity axis where the disk-rotation measurement is robust.
     dict(name="SPT0418-47",         z=4.225, z_type="spec", log_Mstar=10.08,
-         dlog_Mstar=0.08, r_e_kpc=0.22, V_rot=250.0, log_Mgas=10.16,
-         SFR=None, caveat="lensed; merger companion SPT0418B (Cathey+2024)",
+         dlog_Mstar=0.08, r_e_kpc=0.75, V_rot=250.0, log_Mgas=10.16,
+         SFR=None, caveat="lensed; merger with SPT0418B (Rizzo+2020; Cathey+2024)",
          ref="R20; Cathey+2024"),
     # Roman-Oliveira+2023/2024: gas fractions from mass decomposition
     dict(name="CRISTAL-22 (z4.5)",  z=4.53,  z_type="spec", log_Mstar=10.60,
@@ -956,11 +963,21 @@ def _plot_size_mass(results, mc_p16_grid, mc_p84_grid, z_mc_grid, a0_0, out_dir)
     # Zero-parameter HEAT curve: R_obs/R_0 = [a0(z)/a0(0)]^{-1/2}  with a0 = cH/(2pi)
     a0_smooth = np.array([float(a0_hie(z)) for z in z_smooth])
     ratio_heat = (a0_smooth / a0_0) ** (-0.5)
+
+    # +/-20% local-anchor systematic band (Shen+2003 vs van der Wel+2014
+    # differ by ~20% on the z=0 size-mass relation normalisation).
+    ax.fill_between(z_smooth, ratio_heat * 0.80, ratio_heat * 1.20,
+                    color=_CB_BLUE, alpha=0.13, linewidth=0,
+                    label=r"$\pm 20\%$ local-anchor systematic")
     ax.plot(z_smooth, ratio_heat, color=_CB_BLUE, lw=2.2,
             label=r"HEAT (zero parameters): $R\propto [cH(z)]^{-1/2}$")
 
     # --- Spectroscopically confirmed galaxies only ---
-    # R_obs / R_baseline(z=0, same mass); baseline: van der Wel+14
+    # R_obs / R_baseline(z=0, same mass); baseline: van der Wel+14.
+    # Per-galaxy uncertainty combines:
+    #   (i)  stellar-mass propagation: d(obs_ratio)/obs_ratio = 0.22 ln(10) dlog_M
+    #   (ii) an extra +30% systematic for galaxies flagged as merger/lensed/dual
+    #        (non-equilibrium scatter not captured by mass uncertainty alone)
     spec_plotted = []
     for r in results:
         if r["r_e_kpc"] is None or r["r_e_kpc"] <= 0:
@@ -979,6 +996,28 @@ def _plot_size_mass(results, mc_p16_grid, mc_p84_grid, z_mc_grid, a0_0, out_dir)
         ms = 9 if has_vrot else 7
         clr = _CB_GREEN if has_vrot else _CB_PURPLE
 
+        # Fractional uncertainty on obs_ratio
+        dlog_m = r.get("dlog_Mstar") or 0.20
+        frac_mass = 0.22 * np.log(10.0) * dlog_m
+        caveat = (r.get("caveat") or "").lower()
+        is_nonequilib = any(k in caveat for k in ("merger", "lensed", "dual"))
+        frac_extra = 0.30 if is_nonequilib else 0.0
+        frac_err = float(np.hypot(frac_mass, frac_extra))
+        y_lo = obs_ratio * (1.0 - np.exp(-frac_err))
+        y_hi = obs_ratio * (np.exp(frac_err) - 1.0)
+
+        # Faded halo ("fade circle") sized by total fractional uncertainty,
+        # so SPT0418-47's merger systematic appears visibly larger.
+        halo_size = (ms ** 2) * (2.5 + 18.0 * frac_err)
+        ax.scatter(z_gal, obs_ratio, s=halo_size, color=clr, alpha=0.16,
+                   edgecolors="none", zorder=7)
+
+        # Asymmetric vertical error bar (quantitative y-uncertainty)
+        ax.errorbar(z_gal, obs_ratio, yerr=[[y_lo], [y_hi]], fmt="none",
+                    ecolor=clr, elinewidth=0.9, capsize=2, alpha=0.7,
+                    zorder=8)
+
+        # Main marker on top
         ax.plot(z_gal, obs_ratio, marker, color=clr,
                 ms=ms, mec="k", mew=0.6, zorder=10)
 
@@ -988,7 +1027,7 @@ def _plot_size_mass(results, mc_p16_grid, mc_p84_grid, z_mc_grid, a0_0, out_dir)
         ax.annotate(short, (z_gal, obs_ratio),
                     fontsize=6, ha="left", va="bottom",
                     xytext=(4, 4), textcoords="offset points")
-        spec_plotted.append((r["name"], z_gal, obs_ratio, has_vrot))
+        spec_plotted.append((r["name"], z_gal, obs_ratio, has_vrot, frac_err))
 
     # Legend entries for galaxy markers
     ax.plot([], [], "o", color=_CB_GREEN, ms=9, mec="k", mew=0.6,
@@ -1015,9 +1054,10 @@ def _plot_size_mass(results, mc_p16_grid, mc_p84_grid, z_mc_grid, a0_0, out_dir)
 
     # Print summary table
     print("\n  Size compactification summary (R_obs / R_baseline):")
-    print(f"  {'Name':25s} {'z':>5s} {'R_obs/R0':>9s} {'kin?':>5s}")
-    for name, zg, oratio, has_k in spec_plotted:
-        print(f"  {name:25s} {zg:5.2f} {oratio:9.3f} {'yes' if has_k else 'no':>5s}")
+    print(f"  {'Name':25s} {'z':>5s} {'R_obs/R0':>9s} {'kin?':>5s} {'frac_err':>9s}")
+    for name, zg, oratio, has_k, ferr in spec_plotted:
+        print(f"  {name:25s} {zg:5.2f} {oratio:9.3f} {'yes' if has_k else 'no':>5s} "
+              f"{ferr:9.2f}")
 
 
 if __name__ == "__main__":
