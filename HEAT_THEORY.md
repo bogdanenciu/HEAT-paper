@@ -23,7 +23,7 @@ de Sitter horizon temperature.
 
 ## 2. Background cosmology
 
-HEAT's background is held strictly degenerate with LambdaCDM. In
+HEAT's background is held strictly degenerate with ${\Lambda}$ CDM. In
 factorised form,
 
 $$
@@ -39,7 +39,7 @@ All background numbers use Planck 2018 (TT+TE+EE+lowE+lensing):
 
 | Symbol | Value | Role |
 |--------|-------|------|
-| $H_0$ | $67.4$ km s$^{-1}$ Mpc$^{-1}$ | expansion rate today |
+| $H_0$ | $67.4$ km s $^{-1}$ Mpc $^{-1}$ | expansion rate today |
 | $\Omega_b$ | $0.049$ | baryon density |
 | $\Omega_m$ | $0.31$ | matter density |
 | $\Omega_\Lambda$ | $0.69$ | cosmological constant |
@@ -65,7 +65,7 @@ construction. The SPARC 171-galaxy comparison in
 `publication/sparc_publication_quality.py` uses the optional local
 field correction $\phi(r)$ from
 [`theory/heat_field.py`](theory/heat_field.py) (Level-4 interpolating
-function). The HEAT and constant-$a_0$ MOND reduced-$\chi^2$
+function). The HEAT and constant- $a_0$ MOND reduced- $\chi^2$
 distributions are statistically indistinguishable
 (paired Wilcoxon $p = 0.47$).
 
