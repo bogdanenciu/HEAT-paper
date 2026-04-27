@@ -240,13 +240,15 @@ def run_publication_pipeline(
 
     for label, arr in (
         ("MOND (a0 fixed)", chi_m),
-        ("HEAT baseline L2–3 (a0(z))", chi_b),
-        ("HEAT full L2–4 (+ phi)", chi_f),
+        ("HEAT baseline L2-3 (a0(z))", chi_b),
+        ("HEAT full L2-4 (+ phi)", chi_f),
     ):
         print(f"{label}")
-        print(f"  median χ²_red per galaxy: {np.median(arr):.4f}")
-        print(f"  mean χ²_red per galaxy:   {np.mean(arr):.4f}")
-        print(f"  25–75%: {np.percentile(arr, 25):.4f} – {np.percentile(arr, 75):.4f}")
+        print(f"  median chi^2_red per galaxy: {np.median(arr):.4f}")
+        print(f"  mean chi^2_red per galaxy:   {np.mean(arr):.4f}")
+        print(
+            f"  25-75%: {np.percentile(arr, 25):.4f} - {np.percentile(arr, 75):.4f}"
+        )
         print()
 
     # Paired comparisons (same galaxies)
@@ -261,15 +263,15 @@ def run_publication_pipeline(
         except ValueError:
             return "n/a"
 
-    print("Paired differences in χ²_red (positive = second model better / lower χ²)")
-    print(f"  MOND − HEAT baseline:  mean={np.mean(d_mb):.4f},  Wilcoxon p={_wilcoxon_p(d_mb)}")
-    print(f"  MOND − HEAT full:      mean={np.mean(d_mf):.4f},  Wilcoxon p={_wilcoxon_p(d_mf)}")
-    print(f"  HEAT base − HEAT full: mean={np.mean(d_bf):.4f},  Wilcoxon p={_wilcoxon_p(d_bf)}")
+    print("Paired differences in chi^2_red (positive = second model better / lower chi^2)")
+    print(f"  MOND - HEAT baseline:  mean={np.mean(d_mb):.4f},  Wilcoxon p={_wilcoxon_p(d_mb)}")
+    print(f"  MOND - HEAT full:      mean={np.mean(d_mf):.4f},  Wilcoxon p={_wilcoxon_p(d_mf)}")
+    print(f"  HEAT base - HEAT full: mean={np.mean(d_bf):.4f},  Wilcoxon p={_wilcoxon_p(d_bf)}")
 
     wins_base = np.sum(chi_b < chi_m)
     wins_full = np.sum(chi_f < chi_m)
     print()
-    print(f"Galaxies with lower χ²_red than MOND: HEAT baseline {wins_base}/{n}, HEAT full {wins_full}/{n}")
+    print(f"Galaxies with lower chi^2_red than MOND: HEAT baseline {wins_base}/{n}, HEAT full {wins_full}/{n}")
 
     # Regime-split summary: low-acceleration (g_bar < a0) vs
     # high-acceleration (g_bar > a0).  The high regime is Newtonian for
@@ -277,7 +279,7 @@ def run_publication_pipeline(
     # the low-acceleration regime, where the modified-inertia kernel
     # applies.
     print()
-    print("Regime-split χ²_red (radial points with g_bar above/below a0)")
+    print("Regime-split chi^2_red (radial points with g_bar above/below a0)")
     hi_m = np.array([g.chi2_red_mond_high for g in results])
     lo_m = np.array([g.chi2_red_mond_low for g in results])
     hi_b = np.array([g.chi2_red_heat_base_high for g in results])
@@ -293,16 +295,16 @@ def run_publication_pipeline(
             return "n/a"
         return f"{np.median(arr):.3f}"
 
-    print(f"  MOND median χ²_red   high-g: {_med_str(hi_m):>7s}   "
+    print(f"  MOND median chi^2_red   high-g: {_med_str(hi_m):>7s}   "
           f"low-g: {_med_str(lo_m):>7s}")
-    print(f"  HEAT median χ²_red   high-g: {_med_str(hi_b):>7s}   "
+    print(f"  HEAT median chi^2_red   high-g: {_med_str(hi_b):>7s}   "
           f"low-g: {_med_str(lo_b):>7s}")
     diff_low = lo_m - lo_b
     diff_low = diff_low[np.isfinite(diff_low)]
     if diff_low.size > 5:
         try:
             p_low = stats.wilcoxon(diff_low, alternative="two-sided").pvalue
-            print(f"  Wilcoxon (MOND − HEAT, low-g only): p = {p_low:.3e}  "
+            print(f"  Wilcoxon (MOND - HEAT, low-g only): p = {p_low:.3e}  "
                   f"(median Δ = {np.median(diff_low):+.4f})")
         except ValueError:
             pass

@@ -37,6 +37,8 @@ from theory.heat_cosmology import (
     M_sun,
     Om_b,
     Om_m,
+    Om_L,
+    E_heat,
     a0_hie,
     hubble_parameter,
     pc_to_m,
@@ -148,9 +150,9 @@ def free_fall_time_s(M_kg: float, R_m: float, g_eff_factor: float = 1.0) -> floa
 
 
 def age_of_universe_gyr(z: float) -> float:
-    """Age t(z) in Gyr for flat LCDM (Om=0.31, H0=67.4)."""
+    """Age t(z) in Gyr for flat LCDM (Om_m, Om_L from heat_cosmology, H0=67.4)."""
     H0_inv_gyr = 977.8 / H0_km_s_Mpc
-    Om, OL = 0.31, 0.69
+    Om, OL = Om_m, Om_L
     integrand = lambda zp: 1.0 / ((1 + zp) * np.sqrt(Om * (1 + zp) ** 3 + OL))
     t, _ = quad(integrand, z, np.inf, limit=100)
     return t * H0_inv_gyr
@@ -164,7 +166,7 @@ def _sigma_M_z0(M_solar: np.ndarray) -> np.ndarray:
     """RMS variance of linear density field at mass scale M at z=0.
 
     Quadratic fit to Planck 2018 cosmology (sigma_8=0.811, n_s=0.965,
-    Omega_m=0.31) calibrated against CAMB / CLASS tabulations at
+    Omega_m=0.315) calibrated against CAMB / CLASS tabulations at
     M = 10^8, 10^12, 10^14 M_sun.  Valid for 10^8 < M < 10^16.
     """
     x = np.log10(np.asarray(M_solar, dtype=float))
@@ -173,7 +175,7 @@ def _sigma_M_z0(M_solar: np.ndarray) -> np.ndarray:
 
 def _growth_factor_D(z: float) -> float:
     """Linear growth factor D(z)/D(0) for flat LCDM (Carroll+1992)."""
-    Om, OL = 0.31, 0.69
+    Om, OL = Om_m, Om_L
     a = 1.0 / (1.0 + z)
     Omz = Om / (Om + OL * a ** 3)
     OLz = 1.0 - Omz
@@ -196,7 +198,7 @@ def _cumulative_st_number_density(M_solar: float, z: float) -> float:
     """
     delta_c = 1.686
     a_st = 0.707
-    rho_m_Msun_Mpc3 = 0.31 * 2.775e11
+    rho_m_Msun_Mpc3 = Om_m * 2.775e11
 
     sig = float(_sigma_M_z0(np.array([M_solar]))[0])
     Dz = _growth_factor_D(z)
@@ -316,9 +318,8 @@ def mc_a0_bands(z_grid: np.ndarray, n_samples: int = 2000, seed: int = 42):
     H0_samples = rng.normal(H0_ref, sigma_H0 * H0_ref, n_samples)
 
     def Hz_of(H0_val, zv):
-        return H0_val * np.sqrt(
-            0.049 * 6.3265 * (1.0 + zv) ** (-0.0001) * (1.0 + zv) ** 3 + 0.69
-        )
+        zv = np.asarray(zv, dtype=float)
+        return H0_val * E_heat(zv)
 
     a0_samples = np.zeros((n_samples, len(z_grid)))
     for i, H0_i in enumerate(H0_samples):

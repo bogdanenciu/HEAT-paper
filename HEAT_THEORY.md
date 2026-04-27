@@ -41,8 +41,8 @@ All background numbers use Planck 2018 (TT+TE+EE+lowE+lensing):
 |--------|-------|------|
 | $H_0$ | $67.4$ km s $^{-1}$ Mpc $^{-1}$ | expansion rate today |
 | $\Omega_b$ | $0.049$ | baryon density |
-| $\Omega_m$ | $0.31$ | matter density |
-| $\Omega_\Lambda$ | $0.69$ | cosmological constant |
+| $\Omega_m$ | $0.315$ | matter density (Planck; matches paper) |
+| $\Omega_\Lambda$ | $0.685$ | cosmological constant (flatness) |
 | $\Omega_r$ | $9.24 \times 10^{-5}$ | radiation |
 
 ## 3. Deep-MOND kernel and size prediction
@@ -67,7 +67,7 @@ field correction $\phi(r)$ from
 [`theory/heat_field.py`](theory/heat_field.py) (Level-4 interpolating
 function). The HEAT and constant- $a_0$ MOND reduced- $\chi^2$
 distributions are statistically indistinguishable
-(paired Wilcoxon $p = 0.47$).
+(paired Wilcoxon $p = 0.46$).
 
 ## 5. Validation pipeline
 

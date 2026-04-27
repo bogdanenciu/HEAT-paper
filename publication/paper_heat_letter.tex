@@ -17,6 +17,12 @@
 \newcommand{\lcdm}{\Lambda\mathrm{CDM}}
 \newcommand{\heat}{\mathrm{HEAT}}
 
+% Suppress AASTeX default "Draft version ... / Typeset using LaTeX ... in AASTeX631" banner
+% (the line is produced by \frontmatter@title@above in aastex631.cls; emptying it is the recommended fix)
+\makeatletter
+\renewcommand{\frontmatter@title@above}{}
+\makeatother
+
 \shorttitle{Zero-parameter galaxy size evolution from $a_0(z) = cH(z)/(2\pi)$}
 \shortauthors{\textsc{Bogdan Cosmin Enciu}}
 
@@ -68,7 +74,7 @@ compactification ($\langle R_{\rm obs}/R_{0}\rangle=0.38$ observed
 vs.\ HEAT prediction $0.37$) of four ALMA disks at
 $z\!\sim\!4.5$, and reduces to standard MOND at $z=0$ with SPARC
 $\chi^2$ statistically indistinguishable from constant-$\azero$
-MOND ($p=0.47$; 171 galaxies).  We present HEAT as a
+MOND ($p=0.46$; 171 galaxies).  We present HEAT as a
 falsifiable hypothesis rather than a confirmed model:
 pre-registered thresholds on the exponent, the asymptote
 $\mathcal{R}_{\infty}$, and the BTFR/RAR evolution specify what
@@ -629,8 +635,8 @@ upcoming ALMA large programmes will provide.
 \startdata
 CRISTAL-22       & 4.53 & 1.00 & 0.37 & 0.37 \\
 DC-881725        & 4.56 & 1.36 & 0.32 & 0.37 \\
-SGP38326         & 4.42 & 0.75 & 0.45 & 0.38 \\
-SPT0418-47       & 4.22 & 0.89 & 0.18 & 0.39 \\
+SGP38326         & 4.42 & 0.75 & 0.45 & 0.37 \\
+SPT0418-47       & 4.22 & 0.89 & 0.18 & 0.38 \\
 \hline
 Mean (all 4)     & ---  & 1.00 & ---  & ---  \\
 Mean (excl.\ SPT)& ---  & ---  & 0.38 & 0.37 \\
@@ -740,7 +746,7 @@ deep-MOND phenomenology.  Against 171 SPARC galaxies
 \citep{Lelli2016} with fixed mass-to-light ratios
 ($\Upsilon_{\rm disk}=0.5$, $\Upsilon_{\rm bulge}=0.7\,\Msun/L_\odot$)
 and no per-galaxy tuning, HEAT and constant-$\azero$ MOND are
-statistically indistinguishable (paired Wilcoxon $p=0.47$);
+statistically indistinguishable (paired Wilcoxon $p=0.46$);
 HEAT achieves a lower $\chi^{2}_{\rm red}$ than MOND in
 $98/171=57\%$ of galaxies and the same holds separately for
 the Newtonian ($g_{\rm bar}>\azero$) and deep-MOND
@@ -759,7 +765,7 @@ posterior \citep{Lelli2016,Li2018}.
     galaxy's Hubble-law redshift) and constant-$\azero$ MOND,
     using fixed mass-to-light ratios.  The distributions are
     statistically indistinguishable (paired Wilcoxon
-    $p=0.47$).\label{fig:sparc}}
+    $p=0.46$).\label{fig:sparc}}
 \end{figure}
 
 % ======================================================================
@@ -777,7 +783,7 @@ specific, zero-parameter instantiation within that strategy.
 \begin{enumerate}
   \item \textbf{Evolving BTFR (headline future test).}  HEAT
     predicts $v_{\rm flat}(z)/v_{\rm flat}(0)=[\azero(z)/\azero(0)]^{1/4}$,
-    with $v_{\rm flat}(z=4)/v_{\rm flat}(0)=1.58$.
+    with $v_{\rm flat}(z=4)/v_{\rm flat}(0)\approx1.59$.
     Constant-$\azero$ MOND predicts $1.00$ at all epochs; CEG
     \citep{Hossenfelder2017,HossenfelderMistele2018} predicts
     a substantially weaker evolution.  A sample of
@@ -855,6 +861,9 @@ are publicly available at
 \url{https://github.com/bogdanenciu/HEAT-paper} and archived with
 a permanent Digital Object Identifier at
 \dataset[10.5281/zenodo.19709780]{https://doi.org/10.5281/zenodo.19709780}.
+The compiled preprint PDF is separately archived at
+\dataset[10.5281/zenodo.19710286]{https://doi.org/10.5281/zenodo.19710286}
+(same title; concept DOI tracks the latest PDF version).
 The figure set of this letter can be regenerated from a clean
 checkout with
 \texttt{python run\_all\_heat\_tests.py all --agg}.

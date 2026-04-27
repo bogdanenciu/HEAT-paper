@@ -10,7 +10,7 @@ Two-panel figure for the HEAT letter:
 
   Panel B:  Normalisation ratio  R(z) = R_HEAT / R_powerlaw.
             Shows the closed-form curve, its z->inf asymptote
-            Omega_m^{-1/4} = 1.335 (Planck 2018, Om=0.315),
+            Omega_m^{-1/4} (Planck; Om_m from heat_cosmology),
             and the baseline (matter-only, R=1).
             ALMA kinematic-sample mean at z ~ 4.5 is overlaid as
             illustrative current data; a shaded 20% band brackets
@@ -31,19 +31,7 @@ import path_setup  # noqa: E402
 
 import numpy as np  # noqa: E402
 
-from theory.heat_cosmology import (  # noqa: E402
-    a0_hie,
-    hubble_parameter,  # noqa: F401  (kept for consumers of this module)
-)
-
-# Planck 2018 (TT,TE,EE+lowE+lensing; Table 2) matter density fraction.
-# This is the value quoted in paper_heat_letter.tex (Om_m = 0.315),
-# giving the asymptote R_inf = Om_m^{-1/4} = 1.335.  heat_cosmology.py
-# carries an effective Om_m = Om_b * F0 = 0.310; for the closed-form
-# ratio R(z) in this figure we adopt the exact Planck reference so the
-# annotated value matches the text.
-Om_m = 0.315
-Om_L = 0.685
+from theory.heat_cosmology import Om_L, Om_m, a0_hie  # noqa: E402
 
 
 # Colour-blind palette (matches jwst_early_galaxies.py)

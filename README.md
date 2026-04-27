@@ -2,7 +2,8 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Paper: CC BY 4.0](https://img.shields.io/badge/Paper-CC%20BY%204.0-lightgrey.svg)](LICENSE-PAPER)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19709780.svg)](https://doi.org/10.5281/zenodo.19709780)
+[![Code DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19709780.svg)](https://doi.org/10.5281/zenodo.19709780)
+[![Preprint PDF DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19710286.svg)](https://doi.org/10.5281/zenodo.19710286)
 
 Companion code and LaTeX source for the letter:
 
@@ -83,17 +84,33 @@ after the analysis scripts have populated `heat_output/`.
 
 ## Citation
 
-If you use this code or the letter, please cite:
+If you use this work, please cite **both** the archived **software** (code, LaTeX, figures) and the **preprint PDF** (concept DOIs; they always resolve to the latest version):
+
+**Software (code + source + data in this repository):**
 
 ```bibtex
-@misc{heat2026letter,
+@misc{heat2026software,
+  title        = {HEAT Letter: A zero-parameter derivation of the late-type galaxy
+                  size exponent and normalisation from a_0(z) = c H(z) / (2 pi)},
+  author       = {Bogdan Cosmin Enciu},
+  year         = {2026},
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.19709780},
+  url          = {https://doi.org/10.5281/zenodo.19709780}
+}
+```
+
+**Preprint PDF:**
+
+```bibtex
+@misc{heat2026preprint,
   title        = {A zero-parameter derivation of the late-type galaxy
                   size exponent and normalisation from a_0(z) = c H(z) / (2 pi)},
   author       = {Bogdan Cosmin Enciu},
   year         = {2026},
-  howpublished = {Zenodo},
-  doi          = {10.5281/zenodo.19709780},
-  url          = {https://doi.org/10.5281/zenodo.19709780}
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.19710286},
+  url          = {https://doi.org/10.5281/zenodo.19710286}
 }
 ```
 

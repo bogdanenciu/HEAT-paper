@@ -29,6 +29,18 @@ doi: "10.5281/zenodo.19709780"
 identifiers:
   - type: doi
     value: "10.5281/zenodo.19709780"
+references:
+  - type: report
+    title: "A zero-parameter derivation of the late-type galaxy size exponent and normalisation from a0(z) = c H(z) / (2 pi)"
+    authors:
+      - family-names: "Enciu"
+        given-names: "Bogdan Cosmin"
+        affiliation: "Independent Researcher"
+        orcid: "https://orcid.org/0009-0008-7329-7200"
+    year: 2026
+    publisher: "Zenodo"
+    doi: "10.5281/zenodo.19710286"
+    url: "https://doi.org/10.5281/zenodo.19710286"
 keywords:
   - modified gravity
   - MOND

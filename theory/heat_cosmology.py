@@ -27,8 +27,9 @@ H0_km_s_Mpc = 67.4       # Planck 2018 (Table 2, TT+TE+EE+lowE+lensing)
 H0 = (H0_km_s_Mpc * 1000.0) / Mpc_to_m
 
 Om_b = 0.049             # Planck 2018 baryon density parameter
-Om_m = 0.31              # Planck 2018 total matter density parameter
-Om_L = 0.69              # Planck 2018 dark energy density parameter
+# Flat LCDM: Om_m, Om_L match paper_heat_letter.tex (Planck 2018 TT,TE,EE+lowE+lensing, Om_m=0.315)
+Om_m = 0.315
+Om_L = 0.685
 Om_r = 9.24e-5           # radiation density (photons + 3 massless neutrinos)
 
 F0 = (1.0 - Om_L) / Om_b  # derived: Om_b * F0 = Om_m; enforces E_heat(0) = 1
