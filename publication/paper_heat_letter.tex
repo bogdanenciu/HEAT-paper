@@ -1,6 +1,6 @@
 % ======================================================================
-% HEAT Letter: A zero-parameter derivation of the late-type galaxy size
-%              exponent and normalisation from a_0(z) = c H(z) / (2 pi)
+% HEAT Letter: Zero-parameter redshift evolution of late-type galaxy
+%              sizes from a_0(z) \propto H(z)
 %
 % Target: journal letter / short article (aastex631 twocolumn)
 % ======================================================================
@@ -23,14 +23,13 @@
 \renewcommand{\frontmatter@title@above}{}
 \makeatother
 
-\shorttitle{Zero-parameter galaxy size evolution from $a_0(z) = cH(z)/(2\pi)$}
+\shorttitle{Zero-parameter galaxy size evolution from $\azero(z)\propto H(z)$}
 \shortauthors{\textsc{Bogdan Cosmin Enciu}}
 
 \begin{document}
 
-\title{A zero-parameter derivation of the late-type galaxy size
-       exponent and normalisation from
-       $\azero(z) = c\,H(z)/(2\pi)$}
+\title{Zero-parameter redshift evolution of late-type galaxy sizes
+       from $\azero(z)\propto H(z)$}
 
 \author[0009-0008-7329-7200]{Bogdan Cosmin Enciu}
 \affiliation{Independent Researcher}
@@ -38,47 +37,61 @@
 
 % ======================================================================
 \begin{abstract}
-\citet{Milgrom1999} identified the local MOND acceleration scale
-with the de~Sitter horizon temperature, $\azero=cH_0/(2\pi)$.
-We examine the hypothesis that this identification extends
-covariantly to every redshift, with $\azero(z)$ equal to the FRW
-apparent-horizon surface gravity \citep{BakRey2000,CaiKim2005}
-divided by $2\pi$,
-$\azero(z)=\kappa_A(z)/(2\pi)=c\,H(z)/(2\pi)$.  Combined with the
-standard deep-MOND equilibrium $R\propto\azero^{-1/2}$, this
-ansatz produces two matched zero-parameter predictions from a
-single three-step chain---horizon thermodynamics fixes the
-acceleration scale, the deep-MOND kernel fixes the
-radius--acceleration exponent, and Planck-fixed cosmology fixes
-the redshift mapping.  The full prediction factorises as
-$R_{\heat}(z)/R_{0}=(1+z)^{-3/4}\times[\Omega_{m}(z)/\Omega_{m}(0)]^{1/4}$.
+We test a \emph{single closed-form, parameter-free observable}
+for the late-type size--redshift relation at fixed baryonic
+mass,
+\[
+  \frac{R_{\heat}(z)}{R_{0}}
+   \;=\;(1+z)^{-3/4}\,\times\,
+   \left[\frac{\Omega_{m}(z)}{\Omega_{m}(0)}\right]^{1/4},
+\]
+in which exponent and normalisation enter as separately testable
+factors.  The expression follows from the deep-MOND equilibrium
+$R\propto\azero^{-1/2}$ combined with the empirically forced
+scaling $\azero(z)\propto H(z)$: within the modified-inertia
+family $\azero\propto H^{n}$, the late-type size exponent
+measured by \citet{vanderWel2014} pins $n=1.00\pm 0.07$, leaving
+no further freedom in the redshift evolution.  Horizon
+thermodynamics interprets $n=1$ via the FRW apparent-horizon
+temperature \citep{BakRey2000,CaiKim2005} and
+\citet{Milgrom1999}'s identification
+$\azero(0)=cH_{0}/(2\pi)\!\approx\!1.04\times 10^{-10}\,
+\mathrm{m\,s^{-2}}$, matching the empirical MOND scale to within
+$13\%$ \citep{Lelli2016,Li2018}.  We call this hypothesis
+Hubble-Emergent Acceleration Theory (HEAT).
 (i)~The first factor is the matter-era asymptote, matching the
-empirical late-type size--redshift exponent measured in thousands
-of galaxies by \citet{vanderWel2014} and confirmed at higher
-redshift by \citet{Allen2017}.  (ii)~The second factor is a
-closed-form normalisation correction, bounded and monotonic,
-rising from unity at $z=0$ to $\Omega_{m}^{-1/4}\!\approx\!1.335$
-in the matter era and fixed entirely by the Planck expansion
-history.  Current data are consistent with $\mathcal{R}(z)$ at the
-$\sim 20$--$30\%$ precision set by local size-calibration
-systematics but do not yet resolve its distinctive rise above
-the matter-era power law; homogeneous Euclid and Roman samples
-will reduce the per-bin uncertainty to the percent level, at
-which point $\mathcal{R}(z)$ becomes a quantitative test of the
+empirical late-type size--redshift exponent measured in
+thousands of galaxies by \citet{vanderWel2014} and confirmed at
+higher redshift by \citet{Allen2017}.  (ii)~The second factor
+is the closed-form normalisation correction, bounded and
+monotonic, rising from unity at $z=0$ to
+$\Omega_{m}^{-1/4}\!\approx\!1.335$ in the matter era and fixed
+entirely by the Planck expansion history.  Current data are
+consistent with $\mathcal{R}(z)$ at the $\sim 20$--$30\%$
+precision set by local size-calibration systematics but do not
+yet resolve its distinctive rise above the matter-era power
+law; homogeneous Euclid and Roman samples will reduce the
+per-bin uncertainty to the percent level, at which point
+$\mathcal{R}(z)$ becomes a quantitative test of the
 $\azero\propto H(z)$ coupling within the $\lcdm$ expansion
-history.  As supporting evidence, the same zero-parameter
-$\azero(z)$ is jointly consistent with the sample-mean
-flat-rotation velocity
+history.  As an internal consistency check (not a statistical
+test, given $N\!=\!4$), the same zero-parameter $\azero(z)$ is
+jointly consistent with the sample-mean flat-rotation velocity
 ($\langle v_{\heat}/v_{\rm obs}\rangle=1.00\pm0.08$) and size
-compactification ($\langle R_{\rm obs}/R_{0}\rangle=0.38$ observed
-vs.\ HEAT prediction $0.37$) of four ALMA disks at
-$z\!\sim\!4.5$, and reduces to standard MOND at $z=0$ with SPARC
-$\chi^2$ statistically indistinguishable from constant-$\azero$
-MOND ($p=0.46$; 171 galaxies).  We present HEAT as a
-falsifiable hypothesis rather than a confirmed model:
-pre-registered thresholds on the exponent, the asymptote
-$\mathcal{R}_{\infty}$, and the BTFR/RAR evolution specify what
-upcoming surveys are required to decide the hypothesis.
+compactification ($\langle R_{\rm obs}/R_{0}\rangle=0.38$
+observed vs.\ HEAT prediction $0.37$) of four ALMA disks at
+$z\!\sim\!4.5$, and reduces to standard MOND at $z=0$ with
+SPARC $\chi^{2}$ statistically indistinguishable from
+constant-$\azero$ MOND ($p=0.46$; $171$ galaxies).  The
+proportionality constant $1/(2\pi)$ is anchored to SPARC at
+$z=0$; the redshift evolution itself carries no free parameters
+and is invariant under the choice of normalisation, since for
+any $\azero(z)\propto H(z)$ the ratio $R(z)/R_{0}$ depends only
+on the scaling.  We present HEAT as a falsifiable hypothesis
+rather than a confirmed model: pre-registered thresholds on the
+exponent, the asymptote $\mathcal{R}_{\infty}$, and the
+BTFR/RAR evolution specify what upcoming surveys are required
+to decide the hypothesis.
 \end{abstract}
 
 \keywords{gravitation --- galaxies: high-redshift ---
@@ -121,12 +134,38 @@ so at fixed baryonic mass
 \begin{equation}\label{eq:RofH}
   \frac{R(z)}{R_{0}}\;=\;\left[\frac{H(z)}{H_{0}}\right]^{-1/2}.
 \end{equation}
+We emphasise a structural property of Eq.~\ref{eq:RofH} that is
+central to what follows: the ratio $R(z)/R_{0}$ depends only on
+the \emph{scaling} $\azero\propto H$, not on the value of the
+proportionality constant.  For any ansatz of the form
+$\azero(z)=K\,H(z)$, the constant $K$ cancels identically when
+the radius is normalised to its $z=0$ value, so the headline
+size-evolution prediction is invariant under the choice of
+normalisation.  In particular, the empirical anchor
+$\azero(0)=cH_{0}/(2\pi)$ discussed in \S\ref{sec:ansatz} fixes
+the absolute value of $\azero$ but does \emph{not} propagate to
+Eq.~\ref{eq:RofH} or its factorised form (Eq.~\ref{eq:Rfull}
+below).  The $1/(2\pi)$ enters only the absolute predictions of
+\S\ref{sec:alma} (flat-rotation velocities) and
+\S\ref{sec:btfr} (BTFR zero-point), both of which are anchored
+to SPARC at $z=0$ by construction.  Consequently the principal
+test of this letter -- the redshift evolution of late-type
+sizes -- is genuinely free of adjustable parameters even before
+any thermodynamic interpretation of $\azero$ is adopted.
+
 Two consequences follow algebraically, with no free parameter at
 any step.  The non-trivial assumptions entering Eq.~\ref{eq:RofH}
 are three and explicit: (i) deep-MOND equilibrium scaling
 $R\propto(GM_b/\azero)^{1/2}$, (ii) evaluation at fixed
 baryonic mass across cosmic time, and (iii) a fixed local
-size anchor $R_{0}$.  Departures from any of these---evolving
+size anchor $R_{0}$.  Throughout the letter, condition~(ii) is
+interpreted as a statement about \emph{mass-selected populations}
+at each redshift, not about the evolutionary track of an
+individual galaxy: Eq.~\ref{eq:RofH} predicts the median size of
+disks of a given baryonic mass observed at redshift $z$, and the
+empirical comparisons in \S\ref{sec:tests} are correspondingly
+binned in stellar (or baryonic) mass at each $z$.  Departures
+from any of these---evolving
 mass profiles, active mergers, non-equilibrium kinematics, or
 an incorrect $R_{0}$---contribute as \emph{scatter} around the
 predicted curve, not as a shift in its functional form; the
@@ -169,9 +208,42 @@ enhancements, and the full SPARC $\chi^2$ analysis---to a longer
 treatment and do not advance it as primary evidence here.
 
 % ======================================================================
-\section{Ansatz: horizon-thermodynamic $\azero(z)$}\label{sec:ansatz}
+\section{Empirical scaling $\azero\propto H^{n}$ and its
+  horizon-thermodynamic interpretation}\label{sec:ansatz}
 % ======================================================================
 
+We pose the question empirically rather than thermodynamically.
+Within the modified-inertia family
+$\azero(z)\propto H^{n}(z)$, the deep-MOND closure
+$R\propto(GM_b/\azero)^{1/2}$ \citep{Milgrom1983,FamaeyMcGaugh2012}
+combined with the matter-era scaling
+$H(z)\propto(1+z)^{3/2}$ forces a late-type size exponent
+$d\log R/d\log(1+z)=-3n/4$.  The measured value
+$-0.75\!\pm\!0.05$ from the deep \citet{vanderWel2014}
+late-type sample therefore pins
+$n=1.00\!\pm\!0.07$ (\S\ref{sec:exp}); the family
+collapses to a single empirically selected scaling.
+We then ask what theoretical structure naturally selects
+$n=1$, and find that horizon thermodynamics---specifically the
+de~Sitter / FRW apparent-horizon temperature---provides such a
+structure with no further freedom.  The remainder of this section
+\emph{interprets} the empirically forced scaling rather than
+deriving it independently.
+
+\paragraph{Status of free parameters.}
+Two distinct claims must be kept separate.
+\emph{Redshift evolution:} zero free parameters---the
+$n=1$ scaling $\azero(z)\propto H(z)$ is forced by the matter-era
+size exponent (\S\ref{sec:exp}) and propagates through
+Eqs.~\ref{eq:Rfull}--\ref{eq:Vfull} with no further freedom.
+\emph{Absolute normalisation at $z\!=\!0$:} anchored to SPARC,
+with the $1/(2\pi)$ identification matching the empirical MOND
+scale to within $13\%$.  The headline observable
+$R(z)/R_{0}$ depends on the first claim only (K-invariance,
+\S\ref{sec:exp}); the $1/(2\pi)$ enters only the absolute value
+of $\azero$ at $z\!=\!0$.
+
+\paragraph{Horizon-thermodynamic interpretation of $n=1$.}
 An observer comoving with the FRW background sees an apparent
 horizon at radius $R_A(z)=c/H(z)$ with surface gravity
 $\kappa_A(z)=cH(z)$ \citep{BakRey2000,CaiKim2005} and a
@@ -184,58 +256,57 @@ $\kappa_A(0)/(2\pi)=cH_0/(2\pi)\!\approx\!1.04\times10^{-10}
 \,\mathrm{m\,s^{-2}}$, recovers the empirical MOND scale to
 within $13\%$ of the SPARC posterior
 ($1.2\times10^{-10}\,\mathrm{m\,s^{-2}}$;
-\citealt{Lelli2016,Li2018}); the residual is comparable to
-per-galaxy scatter in $\azero$ across SPARC sub-samples and is
-not a discrepancy at the level that would invalidate a
-zero-parameter identification.  HEAT's single theoretical move
-is to promote this static identification to a covariant one at
-every redshift,
+\citealt{Lelli2016,Li2018}).  Within HEAT, horizon thermodynamics
+interprets the empirically forced $n\!=\!1$ scaling as the
+covariant extension of this static identification to every
+redshift,
 \begin{equation}\label{eq:a0}
   \azero(z)\;=\;\frac{\kappa_A(z)}{2\pi}
     \;=\;\frac{c\,H(z)}{2\pi}.
 \end{equation}
-The factor $2\pi$ is not adjustable: it is the Euclidean period
-of the horizon that relates surface gravity to temperature in
-any Hawking--Unruh setting, and the same $2\pi$ appears in the
-\citet{GibbonsHawking1977} de~Sitter temperature.  The
-underlying physical picture is that an observer accelerating at
-rate $a$ inside a de~Sitter background sees a composite Unruh
-bath \citep{DeserLevin1997},
+The $2\pi$ is the Euclidean period that relates horizon surface
+gravity to temperature in any Hawking--Unruh setting, including
+the \citet{GibbonsHawking1977} de~Sitter temperature; we
+emphasise, however, that the \emph{numerical} identification of
+$\azero$ with $\kappa_A/(2\pi)$ rather than (e.g.) $\kappa_A$ or
+$\kappa_A/\pi$ is fixed by matching the empirical SPARC value of
+$\azero$ at $z=0$, not by an independent first-principles
+derivation: the residual $13\%$ between the horizon-thermodynamic
+value $cH_0/(2\pi)$ and the SPARC posterior \citep{Lelli2016,Li2018}
+is comparable to per-galaxy scatter in $\azero$ across SPARC
+sub-samples and is therefore consistent with a zero-parameter
+identification at the precision currently available, but it is
+\emph{anchored} rather than derived.  As a heuristic underlying
+picture, an observer accelerating at rate $a$ in a de~Sitter
+background sees a composite Unruh bath \citep{DeserLevin1997},
 $T_{\rm tot}(a,H)=(\hbar/2\pi c\,k_B)\sqrt{a^{2}+c^{2}H^{2}}$,
-and inertia is sourced by the excess above the cosmological
-floor $T_{dS}(H)$; in the limit $a\!\ll\!cH$ this excess is
-quadratic in $a$, which maps directly onto deep-MOND
-$v_{\rm flat}^{4}=GM_b\azero$.  We treat the
-inertia--temperature mapping as an \emph{effective} relation
-whose phenomenological content is Eq.~\ref{eq:a0}; a
-microscopic derivation---e.g.\ in a covariant formulation
-along the lines of \citet{Hossenfelder2017} or the
+whose excess above the cosmological floor $T_{dS}(H)$ becomes
+quadratic in $a$ for $a\!\ll\!cH$ and maps onto deep-MOND
+$v_{\rm flat}^{4}=GM_b\azero$.  We treat this mapping as an
+\emph{effective} relation whose phenomenological content is
+Eq.~\ref{eq:a0}; a microscopic derivation in a covariant
+formulation along the lines of \citet{Hossenfelder2017} or the
 thermodynamic-gravity programme of
-\citet{Jacobson1995,Padmanabhan2010}---is beyond the scope of
+\citet{Jacobson1995,Padmanabhan2010} is beyond the scope of
 this letter and does not affect the observational predictions
 that follow.
 
-We stress that Eq.~\ref{eq:a0} is a \emph{semi}-derivation, not
-a complete one: the thermodynamic ingredients are rigorous and
-the identification sits naturally within the thermodynamic
-approach to gravity \citep{Jacobson1995,Padmanabhan2010}, but
-the step identifying $\azero$ with the horizon temperature is
-itself a postulate taken over from \citet{Milgrom1999}.
-The postulate is, however, not free-floating: within the
-one-parameter family $\azero\propto H^{n}$, \S\ref{sec:exp}
-shows that $n=1$ is the unique value consistent with the
-measured late-type size exponent
-\citep{vanderWel2014}, so Eq.~\ref{eq:a0} functions as an
-\emph{empirically selected} ansatz rather than an unconstrained
-assumption.  A
-separate parameter-free MOND-like framework---Covariant
-Emergent Gravity \citep{Hossenfelder2017,HossenfelderMistele2018}---
-also ties $\azero$ to cosmological quantities but predicts a
-substantially weaker redshift dependence than Eq.~\ref{eq:a0};
-the two hypotheses can be distinguished observationally
-(\S\ref{sec:falsify}).  HEAT's empirical contribution is to
-show that the resulting zero-parameter formula passes three
-independent redshift windows without adjustment.
+The thermodynamic step is therefore \emph{interpretive}: the
+ingredients (de~Sitter / FRW horizon temperature, surface gravity
+$\kappa_A=cH$, Hawking--Unruh periodicity) are standard
+\citep{Jacobson1995,Padmanabhan2010}, while the identification of
+$\azero$ with $\kappa_A/(2\pi)$ promotes \citet{Milgrom1999}'s
+static observation to a covariant statement consistent with the
+empirically selected $n\!=\!1$.  A separate parameter-free
+MOND-like framework---Covariant Emergent Gravity
+\citep{Hossenfelder2017,HossenfelderMistele2018}---also ties
+$\azero$ to cosmological quantities but predicts a substantially
+weaker redshift dependence than Eq.~\ref{eq:a0}; the two
+hypotheses can be distinguished observationally
+(\S\ref{sec:falsify}).  HEAT's empirical contribution is to show
+that Eq.~\ref{eq:a0}---with zero free parameters governing
+redshift evolution---passes three independent redshift windows
+without adjustment.
 
 % ======================================================================
 \section{Two matched zero-parameter predictions}\label{sec:predictions}
@@ -331,8 +402,8 @@ Eq.~\ref{eq:a0}\,$+$\,deep-MOND kernel\,$+$\,Planck cosmology
 with no fitted quantity.  It is Eq.~\ref{eq:Rfull} that upcoming
 Euclid, Roman, and JWST mass-complete size catalogues will test.
 
-Eq.~\ref{eq:Rnorm2} is the core novel content of this letter.
-Importantly it is not a fit: the $z=0$ anchor is definitional
+Eq.~\ref{eq:Rnorm2} is the \emph{core novel prediction of this
+letter}.  Importantly it is not a fit: the $z=0$ anchor is definitional
 (both curves equal $R_{0}$ at $z=0$ by construction), and the
 matter-era asymptote $\Omega_{m}^{-1/4}$ is fixed by Planck.
 Only the \emph{shape} of $\mathcal{R}(z)$ at $z>0$ carries
@@ -344,40 +415,139 @@ asymptote; the observed saturation near $1.34$ at $z\gtrsim 2$
 consistent with $n=1$ and disfavours $n\neq 1$ at the
 qualitative level of current data.
 
-\paragraph{Non-degeneracy with galaxy-formation physics.}
-The closed-form prediction Eq.~\ref{eq:Rnorm2} is the principal
-discriminant of this letter because it is \emph{not naturally
-generated} by standard galaxy-formation physics at fixed
-cosmology without introducing an explicit, $\Omega_\Lambda$-
-dependent coupling in the galaxy-formation efficiency.  The
-exponent $-3/4$ alone does not establish this: abundance-matched
-$\lcdm$ disk-formation models with tuned feedback and
-angular-momentum loss can reach matter-era exponents anywhere in
-the range $-0.6$ to $-1.0$ \citep{Somerville2018,MoMaoWhite1998},
-and the measured $-0.75$ lies inside that band.  The
-\emph{normalisation curve} is different in kind.
-Eq.~\ref{eq:Rnorm2} is a function of $\Omega_{m}(z)$ alone, with
-asymptote $\Omega_{m}^{-1/4}\!\approx\!1.34$ and a specific
+\paragraph{Distinguishing feature relative to galaxy-formation
+physics.}
+The strongest claim of this letter is the following: no
+$\Omega_{\Lambda}$-independent mechanism reproduces both the
+asymptote $\mathcal{R}_{\infty}\!\approx\!1.34$ and the location
+of the $\Lambda$-sourced break at
+$z_{\rm eq,\Lambda}\!\approx\!0.3$---these are simultaneous
+signatures of the cosmological constant entering the size
+relation through $\Omega_{m}(z)$, not through any galaxy-scale
+physics.  The closed-form prediction Eq.~\ref{eq:Rnorm2} is the
+principal discriminant of this letter because it does not arise
+from a single background quantity in standard $\lcdm$
+disk-formation modelling without invoking coordinated redshift
+evolution across several baryonic ingredients.  The exponent $-3/4$ alone does not
+establish this: abundance-matched $\lcdm$ disk-formation models
+with tuned feedback and angular-momentum loss can reach
+matter-era exponents anywhere in the range $-0.6$ to $-1.0$
+\citep{Somerville2018,MoMaoWhite1998}, and the measured $-0.75$
+lies inside that band.  The \emph{normalisation curve} is
+different in kind.  Eq.~\ref{eq:Rnorm2} is a function of
+$\Omega_{m}(z)$ alone, with asymptote
+$\Omega_{m}^{-1/4}\!\approx\!1.34$ and a specific
 $\Lambda$-sourced transition shape centred on
 $z_{\rm eq,\Lambda}\!\approx\!0.3$.  Baryonic galaxy-formation
 physics---feedback efficiencies, merger rates, spin-parameter
-evolution, adiabatic contraction---has no intrinsic dependence on
-$\Omega_{\Lambda}$; these processes act on halo time-scales
+evolution, adiabatic contraction---is not directly tied to
+$\Omega_{\Lambda}$: these processes act on halo time-scales
 $\propto H(z)^{-1}$ that already absorb the expansion history,
-but they carry no additional factor that would generate precisely
-the $[\Omega_{m}(z)/\Omega_{m}(0)]^{1/4}$ shape.  Reproducing
-Eq.~\ref{eq:Rnorm2} within $\lcdm$ without HEAT therefore
-requires the introduction of at least one new ingredient whose
-amplitude depends on $\Omega_{\Lambda}$ and whose specific
-$z$-profile happens to coincide with $\mathcal{R}(z)$---i.e.\
-parameter tuning rather than a consequence of known physics.
-HEAT, by contrast, delivers the full $\mathcal{R}(z)$ with no
-adjustable parameter as an algebraic consequence of
-Eq.~\ref{eq:a0}.  The falsifiability language of
-\S\ref{sec:falsify} is a direct consequence of this non-degeneracy:
-measuring $\mathcal{R}(z)$ to percent-level accuracy over
-$0\!\lesssim\!z\!\lesssim\!3$ probes a degree of freedom that, in
-$\lcdm$ galaxy-formation models, simply does not exist.
+but standard implementations do not single out the
+$[\Omega_{m}(z)/\Omega_{m}(0)]^{1/4}$ shape as a generic outcome.
+Reproducing Eq.~\ref{eq:Rnorm2} within $\lcdm$ is therefore
+\emph{not a generic outcome of disk-formation modelling}: it
+would arise only if multiple, mutually independent baryonic
+processes happened to combine into a $z$-profile coincident
+with $\mathcal{R}(z)$, rather than emerging from a single
+background quantity.  HEAT, by contrast, delivers the full
+$\mathcal{R}(z)$ with no adjustable parameter as an algebraic
+consequence of Eq.~\ref{eq:a0}.  Measuring $\mathcal{R}(z)$ to
+percent-level accuracy over $0\!\lesssim\!z\!\lesssim\!3$
+therefore probes a structure that is non-generic in $\lcdm$
+galaxy-formation models without invoking a specific,
+$\Omega_\Lambda$-dependent combination of baryonic ingredients.
+
+\paragraph{Robustness to named astrophysical systematics.}
+We list the three baryonic effects most likely to be invoked
+against Eq.~\ref{eq:Rnorm2} and indicate why each fails to
+reproduce its specific shape.  (a)~\emph{Evolving gas fractions
+and stellar/baryonic mass selection}: gas-rich high-$z$ disks
+have larger $f_{\rm gas}$ and therefore systematically lower
+$M_\star/M_b$, but the corresponding bias in size at fixed
+$M_\star$ is smooth, monotone, and tracks the halo time-scale
+$\propto H(z)^{-1}$; it does not single out the
+$\Lambda$-sourced break near $z_{\rm eq,\Lambda}\!\approx\!0.3$
+that is the distinctive feature of $\mathcal{R}(z)$.
+(b)~\emph{Merger-induced size growth}: dry mergers inflate sizes
+but predominantly broaden the dispersion at fixed mass rather
+than coherently shift the binned mean by the
+$\Omega_{m}^{-1/4}\!\approx\!1.34$ factor that
+Eq.~\ref{eq:Rnorm2} forces, and recent merger-rate measurements
+\citep{Conselice2014,Duncan2019} show comparable rates across
+$z\!\sim\!1$--$3$ rather than the
+$\Lambda$-modulated profile required.
+(c)~\emph{Local size-anchor calibration drift}: the
+\citet{Shen2003} versus \citet{vanderWel2014} local anchors
+differ by $\sim 20\%$, comparable to the $\sim 25$--$33\%$
+elevation but with no redshift dependence, so it cannot mimic
+the rise from $\mathcal{R}(0)=1$ to
+$\mathcal{R}_{\infty}\!\approx\!1.34$.  Reproducing the joint
+shape (location of break, asymptote, monotonicity) within
+$\lcdm$ thus requires the three effects to conspire in a
+coordinated, $\Omega_\Lambda$-dependent fashion, rather than
+each contributing as an independent broadening.
+
+\paragraph{Quantitative mass-selection mimic.}  We make
+systematic~(a) explicit.  Suppose a static-MOND universe (constant
+$\azero$) in which the underlying baryonic mass at fixed
+\emph{observed} stellar mass evolves as a power law,
+$M_{b}(z)=M_{b}(0)\,(1+z)^{\alpha}$, capturing evolving gas
+fractions and stellar/baryonic mass selection in a one-parameter
+caricature.  The deep-MOND equilibrium
+$R\propto(GM_{b}/\azero)^{1/2}$ then gives, at fixed observed
+$M_{\star}$,
+\begin{equation}\label{eq:mimic}
+  \mathcal{R}_{\rm mimic}(z;\alpha)\;\equiv\;
+   \frac{R(z)/R_{0}}{(1+z)^{-3/4}}
+   \;=\;(1+z)^{\alpha/2}.
+\end{equation}
+Eq.~\ref{eq:mimic} is monotone, unbounded, and
+$\Lambda$-independent.  HEAT's $\mathcal{R}(z)$ is bounded,
+saturates at $\Omega_{m}^{-1/4}\!\approx\!1.335$, and has a
+$\Lambda$-sourced break at
+$z_{\rm eq,\Lambda}\!\approx\!0.3$.  No single $\alpha$
+reproduces both shape features.  The value
+$\alpha\!\approx\!0.36$ tuned to match the asymptote at
+$z\!=\!4$ \emph{by construction} still under-predicts the rise
+at $z\!=\!0.5$ by $\sim 10\%$ (mimic $1.08$ vs HEAT $1.18$) and
+overshoots the saturation at $z\!\gtrsim\!4$ as $z\to\infty$.
+Figure~\ref{fig:mass_sel} visualises the family
+$\alpha\!\in\![0.0,0.5]$ together with the asymptote-tuned
+mimic and the HEAT closed form: the mimics share the
+$z\!=\!0$ anchor with $\mathcal{R}(z)$ but diverge from it
+both at the break ($z\!\sim\!0.3$, where they rise too slowly)
+and at high redshift ($z\!\gtrsim\!4$, where they fail to
+saturate).  This rules out a one-parameter mass-evolution
+explanation of $\mathcal{R}(z)$ at the percent level and
+quantifies systematic~(a): an $\Omega_\Lambda$-independent
+power-law $M_{b}(z)$ cannot reproduce the
+$\Omega_{m}^{-1/4}$ asymptote without simultaneously
+violating the binned-mean rise at the break.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{../heat_output/jwst_early_galaxies/fig8_mass_selection.pdf}
+  \caption{Quantitative robustness of $\mathcal{R}(z)$ against a
+    one-parameter mass-selection mimic.  Solid blue: HEAT closed
+    form $\mathcal{R}(z)=[\Omega_{m}(z)/\Omega_{m}(0)]^{1/4}$,
+    saturating at $\Omega_{m}^{-1/4}\!\approx\!1.335$ (dotted
+    horizontal line) with a break centred on
+    $z_{\rm eq,\Lambda}\!\approx\!0.3$ (dotted vertical line).
+    Dashed coloured curves: the family of static-MOND
+    mass-evolution mimics
+    $\mathcal{R}_{\rm mimic}(z;\alpha)\!=\!(1+z)^{\alpha/2}$
+    arising from $M_{b}(z)\!=\!M_{b}(0)(1+z)^{\alpha}$ for
+    $\alpha\!\in\!\{0.0,0.1,0.2,0.3,0.4,0.5\}$.  Red dot-dashed:
+    the asymptote-tuned value $\alpha\!\approx\!0.36$ that
+    matches HEAT at $z\!=\!4$ by construction; it still
+    under-predicts the rise at $z\!=\!0.5$ by
+    $\sim 10\%$ and fails to saturate at higher redshift.  No
+    single $\alpha$ reproduces both the asymptote and the
+    location/sharpness of the $\Lambda$-sourced break, so a
+    one-parameter evolving-baryonic-mass selection cannot mimic
+    Eq.~\ref{eq:Rnorm2}.\label{fig:mass_sel}}
+\end{figure}
 
 \subsection{Scaling family}\label{sec:family}
 
@@ -389,8 +559,8 @@ $[\Omega_{m}(z)/\Omega_{m}(0)]^{-p/2}$.  Table~\ref{tab:family}
 collects the four observables of direct observational relevance;
 each exponent is rational and algebraically forced.  The rows
 for $R$ and $v_{\rm flat}$ carry exponents of \emph{opposite}
-sign, which is what makes the joint velocity--size test of
-\S\ref{sec:alma} discriminating.
+sign, which is what makes the joint velocity--size cross-check
+of \S\ref{sec:alma} structurally informative even at small $N$.
 
 \begin{deluxetable}{lcc}
 \tablecaption{Zero-parameter HEAT exponents for the deep-MOND
@@ -450,6 +620,24 @@ deliver.
 \section{Observational tests}\label{sec:tests}
 % ======================================================================
 
+We organise the empirical comparisons that follow into an
+explicit prediction hierarchy.  The \emph{primary} test is the
+shape and asymptote of the late-type size--redshift relation
+$R(z)/R_{0}$ (\S\ref{sec:interz}), which is supported by the
+largest sample ($\sim 10^{4}$ galaxies; \citealt{vanderWel2014})
+and tests the headline prediction Eq.~\ref{eq:Rfull} directly.
+The \emph{secondary} test is the redshift evolution of the BTFR
+zero-point (\S\ref{sec:btfr}, using \citealt{Ubler2017}), which
+probes the same coupling $\azero\propto H$ through an
+independent observable.  The ALMA $z\!\sim\!4.5$ joint
+velocity--size sample (\S\ref{sec:alma}, $N\!=\!4$) is included
+as a \emph{supporting} consistency check rather than a
+statistical test, because its sample size precludes a precision
+constraint on Eq.~\ref{eq:Vfull}.  Pre-registered falsification
+thresholds---on the exponent, the asymptote
+$\mathcal{R}_{\infty}$, and the BTFR/RAR evolution---are
+collected separately in \S\ref{sec:falsify}.
+
 \subsection{Late-type size evolution at
   $z\approx 0.9$--$3.5$}\label{sec:interz}
 
@@ -462,11 +650,12 @@ tested by the exponent; the second factor is tested by the
 binned-mean normalisation offset.
 Table~\ref{tab:interz} lists HEAT's $R(z)/R_{0}$ and the
 corresponding empirical $(1+z)^{-0.75}$ values over
-$z=0.9$--$3.5$.  The two agree on the exponent to within
-$1\%$ across the range, while the HEAT curve lies
+$z=0.9$--$3.5$.  The two are consistent on the exponent to
+within $1\%$ across the range, while the HEAT curve lies
 systematically $25$--$33\%$ above the matter-era empirical
-power law---exactly the behaviour predicted by
-Eq.~\ref{eq:Rnorm2}, which forces
+power law---consistent within the local-anchor systematic
+band with the behaviour predicted by Eq.~\ref{eq:Rnorm2},
+which forces
 $\mathcal{R}(z\geq 3)\to\Omega_{m}^{-1/4}\!\approx\!1.34$.
 The binned-mean ratio column is consistent with the
 $\mathcal{R}(z)$ profile of \S\ref{sec:norm} at the
@@ -520,11 +709,20 @@ $3.5$ & $0.43$ & $0.32$ & $1.33$ \\
   \caption{Zero-parameter HEAT normalisation test.
     \textit{Panel (a):} absolute size evolution
     $R_{\rm eff}(z)/R_{0}$ under the composite zero-parameter
-    prediction of Eq.~\ref{eq:Rfull}.  Solid blue: HEAT,
+    prediction of Eq.~\ref{eq:Rfull}.      Solid blue: HEAT,
     $R/R_{0}=(1+z)^{-3/4}[\Omega_{m}(z)/\Omega_{m}(0)]^{1/4}$,
     equivalently $[H(z)/H_{0}]^{-1/2}$.  Dashed grey: the
-    matter-era first factor $(1+z)^{-3/4}$ in isolation.  The two
-    curves share the $z\!=\!0$ anchor and the high-$z$ logarithmic
+    matter-era first factor $(1+z)^{-3/4}$ in isolation.      Dotted
+    red: the $\lcdm$ disk-formation baseline of
+    \citet{MoMaoWhite1998}, $R/R_{0}=[H(z)/H_{0}]^{-2/3}$,
+    asymptoting to $(1+z)^{-1}$ in the matter era; it sits
+    systematically below the HEAT curve and crosses below the
+    empirical \citet{vanderWel2014} matter-era power law for
+    $z\!\gtrsim\!3$, illustrating the well-known under-prediction
+    of disk sizes at high redshift in the simplest
+    \citet{MoMaoWhite1998} closure without
+    feedback/spin/concentration tuning.  The HEAT and matter-era curves
+    share the $z\!=\!0$ anchor and the high-$z$ logarithmic
     slope but differ by the closed-form second factor
     $\mathcal{R}(z)$.  The shaded band marks a
     $\pm 20\%$ envelope reflecting the local anchor systematic
@@ -583,19 +781,23 @@ of Type Ia supernovae and baryon acoustic oscillations.
     longer treatment.\label{fig:size}}
 \end{figure}
 
-\subsection{ALMA joint velocity--size test at
-  $z\sim 4.5$}\label{sec:alma}
+\subsection{ALMA joint velocity--size consistency check at
+  $z\sim 4.5$ ($N=4$, internal cross-check)}\label{sec:alma}
 
 All four galaxies at $z>4$ with published resolved ALMA
 rotation velocities---SPT0418-47 at $z=4.22$ \citep{Rizzo2020}
 and three disks at $z\sim 4.5$
-\citep{RomanOliveira2023,RomanOliveira2024}---admit a
-simultaneous test of Eq.~\ref{eq:a0}.  Because
+\citep{RomanOliveira2023,RomanOliveira2024}---admit an
+\emph{internal consistency check} (not a statistical test, given
+$N=4$) of Eq.~\ref{eq:a0}.  Because
 $v_{\rm flat}\propto\azero^{+1/4}$ and $R\propto\azero^{-1/2}$
 scale with opposite powers of the acceleration, a joint match
-on both axes tests the functional form of $\azero(z)$, not
+on both axes probes the functional form of $\azero(z)$, not
 merely its normalisation: a rescaling that improves one
-observable generically worsens the other.
+observable generically worsens the other.  We treat the
+resulting numbers as supporting consistency rather than as
+independent evidence; the headline test remains the
+$\sim 10^{4}$-galaxy size shape of \S\ref{sec:interz}.
 
 Using published total baryonic masses and the globally fixed
 $\azero(z)$ we compute the deep-MOND flat velocity
@@ -661,12 +863,15 @@ Mean (excl.\ SPT)& ---  & ---  & 0.38 & 0.37 \\
 \begin{figure}[t]
   \centering
   \includegraphics[width=\columnwidth]{../heat_output/jwst_early_galaxies/fig3c_kinematic.pdf}
-  \caption{Sample-mean ALMA kinematic test.  Observed rotation
+  \caption{Sample-mean ALMA kinematic cross-check ($N{=}4$).
+    Observed rotation
     velocities (points) versus zero-parameter HEAT and
     constant-$\azero$ MOND predictions (curves) for the four
-    $z>4$ disks in Table~\ref{tab:alma}.  HEAT matches the
-    sample-mean to within the $N{=}4$ envelope; MOND
-    under-predicts by a factor $1/0.63\approx 1.6$.
+    $z>4$ disks in Table~\ref{tab:alma}.  HEAT is consistent
+    with the sample-mean within the $N{=}4$ envelope; MOND
+    falls below it by a factor $1/0.63\!\approx\!1.6$.  Given
+    $N{=}4$ this is an internal consistency check rather than a
+    statistical test.
     \label{fig:kin}}
 \end{figure}
 
@@ -821,12 +1026,25 @@ specific, zero-parameter instantiation within that strategy.
 
 Identifying the MOND acceleration scale with the FRW
 apparent-horizon surface gravity divided by $2\pi$
-(Eq.~\ref{eq:a0}) derives, rather than fits, two zero-parameter
-predictions for late-type galaxy structure.  The matter-era
+(Eq.~\ref{eq:a0}) yields, at fixed baryonic mass, two
+zero-parameter redshift-evolution predictions for late-type
+galaxy structure that follow directly from the ansatz without
+further fitting.  They combine into the headline
+factorised relation
+$R_{\heat}(z)/R_{0}=(1+z)^{-3/4}\times[\Omega_{m}(z)/\Omega_{m}(0)]^{1/4}$
+(Eq.~\ref{eq:Rfull}), in which exponent and normalisation enter
+as separately testable factors.  We emphasise that this
+factorised observable is parameter-free under the weaker
+assumption $\azero(z)\propto H(z)$ alone: the empirical anchor
+$\azero(0)=cH_{0}/(2\pi)$ fixes the absolute normalisation of
+$\azero$ but cancels in the ratio
+Eq.~\ref{eq:Rfull}, so the headline test is bona fide
+zero-parameter even before any thermodynamic interpretation of
+$\azero$ is adopted.  The matter-era
 exponent $R\propto(1+z)^{-3/4}$ is the galactic-scale signature
-of de~Sitter horizon thermodynamics and matches the
-\citet{vanderWel2014} measurement in thousands of galaxies at
-$1\sigma$.  The closed-form normalisation
+of de~Sitter horizon thermodynamics and is consistent at
+$1\sigma$ with the \citet{vanderWel2014} measurement in
+thousands of galaxies.  The closed-form normalisation
 $\mathcal{R}(z)=[\Omega_{m}(z)/\Omega_{m}(0)]^{1/4}$
 (Eq.~\ref{eq:Rnorm2}) is a bounded, monotonic function of
 redshift with a specific shape and a Planck-fixed matter-era
@@ -837,9 +1055,10 @@ from the matter-only baseline.  Upcoming Euclid/Roman data
 will push the per-bin uncertainty to the percent level,
 converting the present consistency check into a quantitative
 test of the $\azero\propto H(z)$ coupling within the $\lcdm$
-expansion history on structure scales.  Supporting evidence is provided
-by the joint velocity--size match on four ALMA disks at
-$z\!\sim\!4.5$ (Table~\ref{tab:alma}) and by statistical
+expansion history on structure scales.  An internal consistency
+check is provided by the joint velocity--size cross-check on
+four ALMA disks at $z\!\sim\!4.5$ (Table~\ref{tab:alma};
+$N\!=\!4$, not a statistical test) and by statistical
 equivalence with constant-$\azero$ MOND on SPARC at $z=0$
 (\S\ref{sec:sparc}).
 
@@ -852,6 +1071,26 @@ claim HEAT is confirmed; rather, we offer a zero-parameter,
 empirically anchored alternative to constant-$\azero$ MOND
 whose four pre-registered falsifiers can each be resolved
 within the next survey cycle.
+
+The empirical status of this letter is therefore conditional.
+Current data establish consistency at the
+$\sim 20$--$30\%$ level set by local size-calibration systematics
+(\S\ref{sec:tests}) but do not yet discriminate $\mathcal{R}(z)$
+from the matter-only baseline.  The hypothesis stands or falls
+on the percent-level measurement of $R(z)/R_{0}$ over
+$0\!\lesssim\!z\!\lesssim\!3$ that homogeneous, mass-complete
+Euclid and Roman samples are expected to deliver: a confirmed
+rise from $\mathcal{R}(0)\!=\!1$ to
+$\mathcal{R}_{\infty}\!\approx\!1.34$ with the specific
+$\Omega_{\Lambda}$-sourced shape predicted by
+Eq.~\ref{eq:Rnorm2} would provide strong evidence for the
+$\azero\propto H(z)$ coupling on structure scales, while a
+measured exponent
+outside $-0.75\pm 0.05$ at fixed baryonic mass, or a measured
+asymptote $\mathcal{R}_{\infty}$ inconsistent with
+$\Omega_{m}^{-1/4}$ at the percent level, would falsify
+Eq.~\ref{eq:a0}.  The remainder of the falsification programme
+is collected in \S\ref{sec:falsify}.
 
 % ======================================================================
 \section*{Data and code availability}
@@ -895,9 +1134,14 @@ checkout with
 \bibitem[Cathey et al.(2024)]{Cathey2024}
   Cathey, J., Gonzalez, A.~H., Lower, S., et al.\ 2024, ApJ,
   967, 11
+\bibitem[Conselice(2014)]{Conselice2014}
+  Conselice, C.~J. 2014, ARA\&A, 52, 291
 \bibitem[Deser \& Levin(1997)]{DeserLevin1997}
   Deser, S., \& Levin, O. 1997, Classical and Quantum Gravity,
   14, L163
+\bibitem[Duncan et al.(2019)]{Duncan2019}
+  Duncan, K., Conselice, C.~J., Mortlock, A., et al.\ 2019, ApJ,
+  876, 110
 \bibitem[Famaey \& McGaugh(2012)]{FamaeyMcGaugh2012}
   Famaey, B., \& McGaugh, S.~S. 2012, Living Reviews in Relativity,
   15, 10

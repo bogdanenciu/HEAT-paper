@@ -1,19 +1,27 @@
 cff-version: 1.2.0
 message: "If you use this software or the accompanying letter, please cite it as below."
 type: software
-title: "HEAT Letter: A zero-parameter derivation of the late-type galaxy size exponent and normalisation from a0(z) = c H(z) / (2 pi)"
+title: "HEAT Letter: Zero-parameter redshift evolution of late-type galaxy sizes from a0(z) proportional to H(z)"
 abstract: >-
   Companion code and LaTeX source for the HEAT (Hubble-Emergent
-  Acceleration Theory) letter.  HEAT is a zero-parameter phenomenological
-  model in which the MOND acceleration scale is identified with the
-  surface gravity of the FRW apparent cosmological horizon,
-  a0(z) = c H(z) / (2 pi).  This release reproduces the five figures of
-  the letter: the zero-parameter size-evolution normalisation R(z)/R_0
-  and its matter-era asymptote Om_m^{-1/4}, the stellar-mass-normalised
-  compactification R_obs/R_0 versus redshift, the ALMA z~4.5 joint
-  kinematic test (N=4), the BTFR zero-point evolution trend versus
-  redshift, and the SPARC 171-galaxy local-anchor chi^2 comparison
-  with constant-a0 MOND.
+  Acceleration Theory) letter.  HEAT identifies the MOND acceleration
+  scale with the FRW apparent-horizon surface gravity divided by 2 pi,
+  a0(z) = c H(z) / (2 pi), and predicts the late-type size-redshift
+  relation R(z)/R_0 = (1+z)^{-3/4} [Om_m(z)/Om_m(0)]^{1/4} at fixed
+  baryonic mass.  The headline observable is invariant under the
+  proportionality constant: only the scaling a0 proportional to H(z)
+  enters, while the 1/(2 pi) is anchored to SPARC at z=0.  This release
+  reproduces the six figures of the letter: (i) the closed-form
+  R(z)/R_0 normalisation curve with its asymptote Om_m^{-1/4} and the
+  MMW98 disk-formation baseline as reference; (ii) the
+  stellar-mass-normalised compactification R_obs/R_0 versus redshift;
+  (iii) the ALMA z~4.5 joint kinematic test (N=4); (iv) the BTFR
+  zero-point evolution from SPARC + cosmic-noon + ALMA; (v) the SPARC
+  171-galaxy local-anchor chi^2 comparison with constant-a0 MOND
+  (p=0.46); and (vi) the quantitative mass-selection robustness test
+  ruling out one-parameter M_b(z) mimics of R(z).  The hypothesis
+  stands or falls on percent-level R(z)/R_0 over 0 lesssim z lesssim 3
+  from Euclid/Roman.
 authors:
   - family-names: "Enciu"
     given-names: "Bogdan Cosmin"
@@ -31,7 +39,7 @@ identifiers:
     value: "10.5281/zenodo.19709780"
 references:
   - type: report
-    title: "A zero-parameter derivation of the late-type galaxy size exponent and normalisation from a0(z) = c H(z) / (2 pi)"
+    title: "Zero-parameter redshift evolution of late-type galaxy sizes from a0(z) proportional to H(z)"
     authors:
       - family-names: "Enciu"
         given-names: "Bogdan Cosmin"

@@ -19,6 +19,7 @@ TESTS = {
     "sparc-pub": "publication.sparc_publication_quality",
     "jwst": "publication.jwst_early_galaxies",
     "fig-norm": "publication.fig_normalization",
+    "fig-mass": "publication.mass_selection_robustness",
 }
 
 

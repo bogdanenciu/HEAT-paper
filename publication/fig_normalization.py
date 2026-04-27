@@ -66,6 +66,21 @@ def R_power_law(z, exponent=-0.75):
     return (1.0 + np.asarray(z, dtype=float)) ** exponent
 
 
+def E_lcdm(z):
+    """Dimensionless Hubble parameter E(z) = H(z)/H_0 (flat LCDM)."""
+    z = np.asarray(z, dtype=float)
+    return np.sqrt(Om_m * (1.0 + z) ** 3 + Om_L)
+
+
+def R_mmw98(z):
+    """LCDM disk-formation baseline of Mo, Mao & White (1998).
+
+    R_disk \\propto \\lambda R_vir \\propto H(z)^{-2/3} at fixed baryonic
+    mass (matter-era exponent -1, full LCDM curve via E(z)).
+    """
+    return E_lcdm(z) ** (-2.0 / 3.0)
+
+
 def _alma_sample_point():
     """
     ALMA kinematic-sample mean R_obs/R_0 at z ~ 4.5, excluding lensed SPT0418-47.
@@ -109,6 +124,7 @@ def build_figure(out_dir: Path):
 
     R_heat = R_heat_over_R0(z_grid, a0_0)
     R_pl = R_power_law(z_grid)
+    R_mmw = R_mmw98(z_grid)
     R_ratio = R_closed_form(z_grid)
     R_inf = float(Om_m ** (-0.25))
 
@@ -130,6 +146,8 @@ def build_figure(out_dir: Path):
              label=r"HEAT: $R/R_0 = [H(z)/H_0]^{-1/2}$")
     axA.plot(z_grid, R_pl, color=_CB_GREY, lw=1.8, ls="--",
              label=r"Matter-era power law: $(1+z)^{-3/4}$")
+    axA.plot(z_grid, R_mmw, color=_CB_RED, lw=1.6, ls=":",
+             label=r"$\Lambda$CDM disk baseline (MMW98): $[H(z)/H_0]^{-2/3}$")
 
     axA.errorbar([z_alma], [R_alma], yerr=[R_alma_err],
                  fmt="o", color=_CB_ORANGE, ms=9, mec="k", mew=0.7,
@@ -189,7 +207,13 @@ def build_figure(out_dir: Path):
     print(f"  Omega_m^(-1/4)   = {R_inf:.4f}")
     for zi in [0.25, 0.9, 1.5, 2.0, 3.0, 4.5]:
         r = float(R_closed_form(zi))
-        print(f"  R(z={zi:4.2f})     = {r:.4f}")
+        rh = float(R_heat_over_R0(np.asarray([zi]), a0_0)[0])
+        rm = float(R_mmw98(zi))
+        rp = float(R_power_law(zi))
+        print(
+            f"  z={zi:4.2f}  HEAT={rh:.3f}  pow={rp:.3f}  "
+            f"MMW98={rm:.3f}  R(z)={r:.4f}"
+        )
     print(f"  ALMA mean z      = {z_alma:.3f}")
     print(f"  ALMA R_obs/R_0   = {R_alma:.3f} +/- {R_alma_err:.3f}")
     print(f"  ALMA / powerlaw  = {alma_ratio:.3f} +/- {alma_ratio_err:.3f}")

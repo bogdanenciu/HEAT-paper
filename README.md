@@ -7,8 +7,8 @@
 
 Companion code and LaTeX source for the letter:
 
-> A zero-parameter derivation of the late-type galaxy size exponent and
-> normalisation from `a_0(z) = c H(z) / (2 pi)`.
+> Zero-parameter redshift evolution of late-type galaxy sizes from
+> `a_0(z) ∝ H(z)`.
 
 HEAT identifies the MOND acceleration scale with the surface gravity of the
 FRW apparent cosmological horizon, $\kappa_A(z) = c H(z)$, promoted to all
@@ -16,15 +16,18 @@ redshifts:
 
 $$a_0(z) = \frac{\kappa_A(z)}{2\pi} = \frac{c H(z)}{2\pi}.$$
 
-This is a **zero-parameter** model — no $\beta$, no amplitude fit, no
-interpolation. It recovers the empirical MOND value at $z = 0$ to within
-roughly 13% and, combined with the deep-MOND kernel
-$R \propto a_0^{-1/2}$, forces the late-type size–redshift relation
+Combined with the deep-MOND kernel $R \propto a_0^{-1/2}$, this gives the
+late-type size–redshift relation at fixed baryonic mass:
 
 $$\frac{R_{\mathrm{HEAT}}(z)}{R_0} = (1+z)^{-3/4} \left[\frac{\Omega_m(z)}{\Omega_m(0)}\right]^{1/4}$$
 
-with a matter-era asymptote $\Omega_m^{-1/4} \approx 1.34$ and no free
-parameter at any step.
+with a matter-era asymptote $\Omega_m^{-1/4} \approx 1.34$ and zero free
+parameters governing redshift evolution. The headline observable is
+**invariant under the proportionality constant**: only the scaling
+$a_0 \propto H(z)$ enters, while the $1/(2\pi)$ is anchored to SPARC at
+$z=0$ and recovers the empirical MOND value to within roughly 13%. The
+hypothesis stands or falls on percent-level $R(z)/R_0$ over
+$0 \lesssim z \lesssim 3$ from Euclid/Roman.
 
 ## Repository structure
 
@@ -56,6 +59,7 @@ python run_all_heat_tests.py list          # show available keys
 python run_all_heat_tests.py jwst          # Figures 3c (kinematic), 5 (size-mass), 7 (BTFR)
 python run_all_heat_tests.py sparc-pub     # Figure 4 (SPARC chi^2 histograms)
 python run_all_heat_tests.py fig-norm      # Figure 6 (R(z)/R_0 normalisation)
+python run_all_heat_tests.py fig-mass      # Figure 8 (mass-selection robustness)
 ```
 
 Output is written to `heat_output/` subfolders.
@@ -90,8 +94,8 @@ If you use this work, please cite **both** the archived **software** (code, LaTe
 
 ```bibtex
 @misc{heat2026software,
-  title        = {HEAT Letter: A zero-parameter derivation of the late-type galaxy
-                  size exponent and normalisation from a_0(z) = c H(z) / (2 pi)},
+  title        = {HEAT Letter: Zero-parameter redshift evolution of late-type
+                  galaxy sizes from a_0(z) \propto H(z)},
   author       = {Bogdan Cosmin Enciu},
   year         = {2026},
   publisher    = {Zenodo},
@@ -104,8 +108,8 @@ If you use this work, please cite **both** the archived **software** (code, LaTe
 
 ```bibtex
 @misc{heat2026preprint,
-  title        = {A zero-parameter derivation of the late-type galaxy
-                  size exponent and normalisation from a_0(z) = c H(z) / (2 pi)},
+  title        = {Zero-parameter redshift evolution of late-type galaxy sizes
+                  from a_0(z) \propto H(z)},
   author       = {Bogdan Cosmin Enciu},
   year         = {2026},
   publisher    = {Zenodo},
