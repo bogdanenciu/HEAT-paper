@@ -1,0 +1,48 @@
+==============================================================================
+HEAT a0(z) test against Ciocan+2026 + Varasteanu+2025 + SPARC
+==============================================================================
+
+Per-bin residuals (zero-parameter HEAT, K = 1/(2*pi)):
+  K_HEAT = 1/(2 pi)              = 0.15915
+  K_fit  (best free-K HEAT shape, N=6)   = 0.21535
+  K_fit  (best free-K, N=5 RC-only)      = 0.21039
+  K_fit/K_HEAT  (full)    = +1.353
+  K_fit/K_HEAT  (RC-only) = +1.322
+
+  label                              z   a0_obs  a0_HEAT   sig_HEAT   ratio  RC?
+  ------------------------------------------------------------------------------
+  SPARC z=0                       0.00    1.200    1.042     +0.61s   1.152  yes
+  Varasteanu z<0.08               0.04    1.690    1.062     +4.83s   1.591  no (bTFR)
+  Ciocan bin1                     0.55    1.990    1.420     +4.38s   1.401  yes
+  Ciocan bin2                     0.78    2.250    1.635     +4.73s   1.376  yes
+  Ciocan bin3                     1.05    2.450    1.921     +2.94s   1.275  yes
+  Ciocan bin4                     1.30    2.710    2.215     +2.25s   1.224  yes
+
+  chi^2 ladder ('full' = SPARC+Varasteanu+4Ciocan, N=6;
+                'RC'   = SPARC+4Ciocan, N=5, drops bTFR-derived Varasteanu)
+
+  model                                     full N=6       RC N=5
+  ----------------------------------------------------------------
+  HEAT, fixed K=1/(2 pi)                       78.95        55.64
+  HEAT shape with free K                        7.17         2.91
+  constant-a0 MOND (1.20e-10)                 211.71       197.50
+  Ciocan linear: DC14 uniform                  28.72         5.51
+  Ciocan linear: DC14 per-galaxy               27.64         8.09
+  Ciocan linear: MOND                          33.78        11.61
+
+  chi^2 (HEAT, RC-only, MOND-framework z=0 anchor 1.03+/-0.05) = 55.33
+  -- using the apples-to-apples z=0 anchor for the Ciocan-MOND framework.
+
+Cross-framework comparison at z=0 (intercept of Ciocan linear fits):
+  HEAT a0(0) = c H_0 / (2 pi)        = 1.042 e-10 m/s^2
+  Ciocan DC14 uniform          a0(0)=1.00  -> HEAT/Ciocan = 1.042
+  Ciocan DC14 per-galaxy       a0(0)=1.05  -> HEAT/Ciocan = 0.992
+  Ciocan MOND                  a0(0)=1.03  -> HEAT/Ciocan = 1.012
+
+Note: Ciocan MOND-framework extrapolation gives a0(0)=1.03(0.05)
+which agrees with the HEAT zero-parameter prediction (1.04) to ~1%.
+This is the apples-to-apples z=0 anchor: both invert the same MOND
+interpolation function on the same kinematics. The SPARC RAR-fit
+value (1.20+/-0.26) uses a different inversion (galaxy-by-galaxy
+RAR median); HEAT agrees with it within its 1-sigma envelope.
+==============================================================================

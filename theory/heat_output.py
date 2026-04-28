@@ -12,6 +12,7 @@ import path_setup
 
 REPO_ROOT = path_setup.REPO_ROOT
 HEAT_OUTPUT_ROOT = REPO_ROOT / "heat_output"
+HEAT_DATA_ROOT = REPO_ROOT / "heat_data"
 
 JWST_EARLY = HEAT_OUTPUT_ROOT / "jwst_early_galaxies"
 SPARC_PUBLICATION = HEAT_OUTPUT_ROOT / "sparc_publication"
@@ -28,6 +29,7 @@ __all__ = [
     "JWST_EARLY",
     "REPO_ROOT",
     "HEAT_OUTPUT_ROOT",
+    "HEAT_DATA_ROOT",
     "SPARC_PUBLICATION",
     "ensure_dir",
 ]

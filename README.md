@@ -27,7 +27,10 @@ parameters governing redshift evolution. The headline observable is
 $a_0 \propto H(z)$ enters, while the $1/(2\pi)$ is anchored to SPARC at
 $z=0$ and recovers the empirical MOND value to within roughly 13%. The
 hypothesis stands or falls on percent-level $R(z)/R_0$ over
-$0 \lesssim z \lesssim 3$ from Euclid/Roman.
+$0 \lesssim z \lesssim 3$ from Euclid/Roman, plus the direct $a_0(z)$
+and bTFR tests now opened by the MUSE-DARK trilogy
+(Ciocan+2026 Papers I & III, Jeanneau+2026 Paper II,
+Vărașteanu+2025).
 
 ## Repository structure
 
@@ -36,6 +39,7 @@ $0 \lesssim z \lesssim 3$ from Euclid/Roman.
 | `theory/` | Core physics: cosmology, MOND-family kernel, SPARC I/O, local field correction |
 | `publication/` | Analysis scripts and LaTeX source of the letter |
 | `Rotmod_LTG/` | SPARC rotation-curve data (171 galaxies, Lelli et al. 2016) |
+| `heat_data/` | Public catalogues from the MUSE-DARK trilogy (Ciocan+2026, Jeanneau+2026) and Vărașteanu+2025 used as overlays in Figs 5, 7, 9 |
 | `heat_output/` | Pre-generated letter figures and CSV summaries |
 | `HEAT_THEORY.md` | Formal specification |
 
@@ -60,6 +64,7 @@ python run_all_heat_tests.py jwst          # Figures 3c (kinematic), 5 (size-mas
 python run_all_heat_tests.py sparc-pub     # Figure 4 (SPARC chi^2 histograms)
 python run_all_heat_tests.py fig-norm      # Figure 6 (R(z)/R_0 normalisation)
 python run_all_heat_tests.py fig-mass      # Figure 8 (mass-selection robustness)
+python run_all_heat_tests.py a0-evol       # Figure 9 (direct a_0(z) and Sigma_DM(z) test, MUSE-DARK trilogy)
 ```
 
 Output is written to `heat_output/` subfolders.
@@ -74,11 +79,18 @@ Output is written to `heat_output/` subfolders.
   used by the SPARC analysis, not by the letter's headline predictions.
 - **`publication/jwst_early_galaxies.py`** — ALMA $z \sim 4.5$ joint
   velocity–size test (Fig. 3c), stellar-mass-normalised
-  compactification (Fig. 5), and BTFR zero-point evolution (Fig. 7).
+  compactification (Fig. 5, with binned MUSE-DARK MHUDF overlay
+  from Ciocan+2026 Paper I), and BTFR zero-point evolution
+  (Fig. 7, including the Jeanneau+2026 lensed-bTFR null at $z\sim 1$).
 - **`publication/sparc_publication_quality.py`** — SPARC 171-galaxy
   local-anchor $\chi^2$ comparison (Fig. 4).
 - **`publication/fig_normalization.py`** — Zero-parameter
   $R(z) / R_0$ normalisation figure with matter-era asymptote (Fig. 6).
+- **`publication/mass_selection_robustness.py`** — Mass-selection
+  mimic falsification test (Fig. 8).
+- **`publication/a0_evolution.py`** — Direct $a_0(z)$ and
+  $\Sigma_{\rm DM}(z)$ comparison against the MUSE-DARK trilogy
+  (Fig. 9).
 
 ## The letter
 

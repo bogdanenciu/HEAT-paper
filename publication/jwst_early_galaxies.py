@@ -976,6 +976,195 @@ COSMIC_NOON_BTFR = [
 ]
 
 
+# Jeanneau+2026 (MUSE-DARK Paper II, arXiv:2603.28856) report no detectable
+# evolution of the bTFR zero-point at z~1 from a sample of strongly lensed
+# disks.  Quoted central value: Delta log10(M_b) ~ 0.00 +/- 0.05 dex (we
+# adopt 0.05 as a conservative quote of the per-bin uncertainty given a
+# small sample; Jeanneau+2026 Table 4 gives <=0.05 dex residuals across
+# their two redshift bins).  This is in tension with HEAT, which predicts
+# Delta log10(M_b) = -log10[H(z=1)/H_0] ~ -0.255 dex at z=1.
+JEANNEAU_BTFR_NULL = [
+    (1.0, 0.00, 0.05, r"Jeanneau+2026 ($z\!\sim\!1$, lensed bTFR)"),
+]
+
+
+def _load_mhudf_photometry(min_log_mstar=9.0, n_z_bins=3):
+    """Load MUSE-DARK MHUDF photometry catalogue and return binned R_e(z).
+
+    Bins galaxies by redshift in `n_z_bins` equal-count bins after applying
+    a stellar-mass cut (`log10(M_star) > min_log_mstar`).  For each bin we
+    return the *median* R_obs / R_0(M_star), where R_0(M_star) is the
+    local late-type size-mass relation R_0 = 4 * (M_star/1e10)^0.22 kpc
+    (van der Wel+2014).
+
+    Returns a list of dicts with keys:
+        z_med, z_lo, z_hi    -- redshift bin centre and 16/84 percentiles
+        ratio_med            -- median R_obs/R_0 in the bin
+        ratio_lo, ratio_hi   -- 16/84 percentile bands of R_obs/R_0
+        n                    -- number of galaxies in the bin
+    """
+    cat_path = _repo / "heat_data" / "dark_mhudf_photometry.txt"
+    if not cat_path.exists():
+        return []
+
+    # Manual loader that tolerates the catalogue's "" sentinel for missing
+    # entries (drop the offending rows; ~15/250 rows in the public release
+    # of the MUSE-DARK MHUDF photometry catalogue).
+    z_list, r_list, m_list = [], [], []
+    with open(cat_path, "r", encoding="utf-8") as f:
+        next(f)  # header
+        for line in f:
+            tokens = line.split()
+            if len(tokens) < 9:
+                continue
+            try:
+                zv = float(tokens[1])
+                rv = float(tokens[2])
+                mv = float(tokens[5])
+            except ValueError:
+                continue
+            z_list.append(zv)
+            r_list.append(rv)
+            m_list.append(mv)
+    if not z_list:
+        return []
+
+    z = np.asarray(z_list, dtype=float)
+    r_kpc = np.asarray(r_list, dtype=float)
+    log_mstar = np.asarray(m_list, dtype=float)
+
+    # Apply mass cut to suppress dwarf-galaxy contamination
+    keep = (log_mstar >= min_log_mstar) & (r_kpc > 0) & (z > 0.2) & (z < 1.6)
+    z = z[keep]
+    r_kpc = r_kpc[keep]
+    log_mstar = log_mstar[keep]
+    if z.size == 0:
+        return []
+
+    # van der Wel+2014 z=0 size-mass anchor for late-type galaxies:
+    # R_0(M_star) = 4 kpc * (M_star / 10^10)^0.22
+    R0_local = 4.0 * (10 ** log_mstar / 1.0e10) ** 0.22
+    obs_ratio = r_kpc / R0_local
+
+    # Equal-count z-bins
+    edges = np.quantile(z, np.linspace(0.0, 1.0, n_z_bins + 1))
+    bins = []
+    for i in range(n_z_bins):
+        lo, hi = edges[i], edges[i + 1]
+        sel = (z >= lo) & (z < hi) if i < n_z_bins - 1 else (z >= lo) & (z <= hi)
+        if not np.any(sel):
+            continue
+        z_in = z[sel]
+        r_in = obs_ratio[sel]
+        if r_in.size < 3:
+            continue
+        z_p16, z_med, z_p84 = np.percentile(z_in, [16, 50, 84])
+        r_p16, r_med, r_p84 = np.percentile(r_in, [16, 50, 84])
+        bins.append(dict(
+            z_med=float(z_med), z_lo=float(z_p16), z_hi=float(z_p84),
+            ratio_med=float(r_med), ratio_lo=float(r_p16), ratio_hi=float(r_p84),
+            n=int(r_in.size),
+        ))
+    return bins
+
+
+def _allen2025_size_calibration():
+    """Return Allen+2025 JWST rest-optical size-evolution calibration.
+
+    Allen et al. (2025, A&A 698, A30) fit star-forming galaxies at fixed
+    M_star = 5e10 Msun with
+
+        log10 R_e = beta * log10(1 + z) + B
+
+    over 0 < z < 9, finding beta = -0.807 +/- 0.026 and B = 0.947 +/- 0.014.
+    We compare their high-z relation to HEAT after placing it on the same
+    local late-type anchor used in the letter, not on Allen's extrapolated
+    z=0 intercept.
+    """
+    beta = -0.807
+    beta_err = 0.026
+    intercept = 0.947
+    intercept_err = 0.014
+    stellar_mass = 5.0e10
+    r0_letter = 4.0 * (stellar_mass / 1.0e10) ** 0.22
+    r0_allen = 10.0 ** intercept
+    z_vals = np.array([3.0, 4.5, 6.0, 8.0], dtype=float)
+
+    rows = []
+    implied_r0 = []
+    for z in z_vals:
+        re_allen = 10.0 ** (intercept + beta * np.log10(1.0 + z))
+        heat_ratio = float(E_heat(z)) ** -0.5
+        matter_ratio = (1.0 + z) ** -0.75
+        allen_ratio = re_allen / r0_letter
+        rows.append(dict(
+            z=float(z),
+            re_allen=float(re_allen),
+            allen_ratio=float(allen_ratio),
+            heat_ratio=float(heat_ratio),
+            matter_ratio=float(matter_ratio),
+            allen_over_heat=float(allen_ratio / heat_ratio),
+        ))
+        implied_r0.append(re_allen / heat_ratio)
+
+    return dict(
+        beta=beta,
+        beta_err=beta_err,
+        intercept=intercept,
+        intercept_err=intercept_err,
+        stellar_mass=stellar_mass,
+        r0_letter=float(r0_letter),
+        r0_allen=float(r0_allen),
+        r0_allen_over_letter=float(r0_allen / r0_letter),
+        implied_r0_mean=float(np.mean(implied_r0)),
+        implied_r0_over_letter=float(np.mean(implied_r0) / r0_letter),
+        rows=rows,
+    )
+
+
+def _print_allen2025_size_calibration():
+    """Print the Allen+2025 calibration check used in paper_heat_letter.tex."""
+    cal = _allen2025_size_calibration()
+    print()
+    print("=" * 72)
+    print("ALLEN+2025 JWST REST-OPTICAL SIZE CALIBRATION")
+    print("=" * 72)
+    print(
+        "Allen+2025: log10 R_e = "
+        f"({cal['beta']:+.3f} +/- {cal['beta_err']:.3f}) log10(1+z) "
+        f"+ ({cal['intercept']:.3f} +/- {cal['intercept_err']:.3f}) "
+        "at M*=5e10 Msun"
+    )
+    print(f"Letter local anchor at M*=5e10 Msun: R0 = {cal['r0_letter']:.3f} kpc")
+    print(
+        f"Allen extrapolated z=0 intercept: R0 = {cal['r0_allen']:.3f} kpc "
+        f"({cal['r0_allen_over_letter']:.3f} x letter anchor)"
+    )
+    print()
+    print(f"  {'z':>4s} {'Re_Allen':>9s} {'Allen/R0':>10s} "
+          f"{'HEAT':>8s} {'matter':>8s} {'Allen/HEAT':>12s}")
+    for row in cal["rows"]:
+        print(
+            f"  {row['z']:4.1f} {row['re_allen']:9.3f} "
+            f"{row['allen_ratio']:10.3f} {row['heat_ratio']:8.3f} "
+            f"{row['matter_ratio']:8.3f} {row['allen_over_heat']:12.3f}"
+        )
+    print()
+    print(
+        "Mean HEAT-implied local anchor from Allen high-z points: "
+        f"R0 = {cal['implied_r0_mean']:.3f} kpc "
+        f"({cal['implied_r0_over_letter']:.3f} x letter anchor)"
+    )
+    min_offset = min(abs(row["allen_over_heat"] - 1.0) for row in cal["rows"])
+    max_offset = max(abs(row["allen_over_heat"] - 1.0) for row in cal["rows"])
+    print(
+        "Interpretation: with the letter's local anchor, Allen+2025 lies "
+        f"within {100.0 * min_offset:.1f}-{100.0 * max_offset:.1f}% of "
+        "HEAT over z=3-8; Allen's own z=0 extrapolated intercept is a "
+        "different absolute local normalisation."
+    )
+
+
 def _plot_btfr_evolution(kin_results, a0_0, out_dir):
     """Figure 7: zero-parameter BTFR zero-point evolution.
 
@@ -1056,6 +1245,23 @@ def _plot_btfr_evolution(kin_results, a0_0, out_dir):
         ax.annotate(label_cn, (z_cn, d_cn), textcoords="offset points",
                     xytext=(8, -4), fontsize=8, color=_CB_ORANGE,
                     alpha=0.9, zorder=10)
+
+    # --- Jeanneau+2026 (MUSE-DARK Paper II) bTFR null at z~1 ---------
+    # Direct lensed-bTFR measurement: Delta log M_b(z=1) = 0.00 +/- 0.05 dex,
+    # in tension with HEAT's predicted -0.255 dex shift at z=1.  Plotted in
+    # red as the most direct "challenge" data-point and explicitly named in
+    # Sec 4.4 / 5 of the paper (falsification thresholds).
+    for z_jn, d_jn, sigma_jn, label_jn in JEANNEAU_BTFR_NULL:
+        ax.errorbar(z_jn, d_jn, yerr=sigma_jn, fmt="X",
+                    color=_CB_RED, ms=12, mec="k", mew=0.7,
+                    elinewidth=1.2, ecolor=_CB_RED, capsize=3,
+                    alpha=0.95, zorder=11)
+        ax.annotate(label_jn, (z_jn, d_jn), textcoords="offset points",
+                    xytext=(8, 6), fontsize=8, color=_CB_RED,
+                    alpha=0.95, zorder=12)
+    if JEANNEAU_BTFR_NULL:
+        ax.plot([], [], "X", color=_CB_RED, ms=12, mec="k", mew=0.7,
+                label="Jeanneau+2026 lensed bTFR (challenges HEAT)")
 
     for r in kin_results:
         V_obs_kms = r["V_rot"]
@@ -1247,6 +1453,28 @@ def _plot_size_mass(results, mc_p16_grid, mc_p84_grid, z_mc_grid, a0_0, out_dir)
     ax.plot([], [], "D", color=_CB_PURPLE, ms=7, mec="k", mew=0.6,
             label="Spec-$z$ (photometric size)")
 
+    # ---- MUSE-DARK MHUDF binned overlay (Ciocan+2026 Paper I sample) ----
+    # Same-sample size-mass-redshift cross-check: bin the DARK photometry
+    # catalogue (log M_star > 9) into 3 equal-count z-bins and overlay the
+    # median R_obs/R_0(M_*) value with 16/84 percentile error bars.  This
+    # is an *independent* test of HEAT's size-evolution prediction using
+    # the same parent sample whose RAR evolution motivated the trilogy.
+    mhudf_bins = _load_mhudf_photometry(min_log_mstar=9.0, n_z_bins=3)
+    for b in mhudf_bins:
+        zerr = [[b["z_med"] - b["z_lo"]], [b["z_hi"] - b["z_med"]]]
+        rerr = [[b["ratio_med"] - b["ratio_lo"]],
+                [b["ratio_hi"] - b["ratio_med"]]]
+        ax.errorbar(b["z_med"], b["ratio_med"],
+                    xerr=zerr, yerr=rerr,
+                    fmt="s", color=_CB_ORANGE, ms=10, mec="k", mew=0.7,
+                    elinewidth=1.2, ecolor=_CB_ORANGE, capsize=3,
+                    alpha=0.95, zorder=11)
+    if mhudf_bins:
+        n_total = sum(b["n"] for b in mhudf_bins)
+        ax.plot([], [], "s", color=_CB_ORANGE, ms=10, mec="k", mew=0.7,
+                label=f"MHUDF binned $R_e/R_0$ "
+                      f"(Ciocan+2026 PaperI, $N{{=}}{n_total}$)")
+
     # Reference line at 1
     ax.axhline(1.0, color="k", ls=":", lw=0.8, alpha=0.4)
 
@@ -1270,6 +1498,7 @@ def _plot_size_mass(results, mc_p16_grid, mc_p84_grid, z_mc_grid, a0_0, out_dir)
     for name, zg, oratio, has_k, ferr in spec_plotted:
         print(f"  {name:25s} {zg:5.2f} {oratio:9.3f} {'yes' if has_k else 'no':>5s} "
               f"{ferr:9.2f}")
+    _print_allen2025_size_calibration()
 
 
 if __name__ == "__main__":

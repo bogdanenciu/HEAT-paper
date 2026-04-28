@@ -20,6 +20,7 @@ TESTS = {
     "jwst": "publication.jwst_early_galaxies",
     "fig-norm": "publication.fig_normalization",
     "fig-mass": "publication.mass_selection_robustness",
+    "a0-evol": "publication.a0_evolution",
 }
 
 

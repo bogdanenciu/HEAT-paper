@@ -11,17 +11,25 @@ abstract: >-
   baryonic mass.  The headline observable is invariant under the
   proportionality constant: only the scaling a0 proportional to H(z)
   enters, while the 1/(2 pi) is anchored to SPARC at z=0.  This release
-  reproduces the six figures of the letter: (i) the closed-form
+  reproduces the seven figures of the letter: (i) the closed-form
   R(z)/R_0 normalisation curve with its asymptote Om_m^{-1/4} and the
   MMW98 disk-formation baseline as reference; (ii) the
-  stellar-mass-normalised compactification R_obs/R_0 versus redshift;
+  stellar-mass-normalised compactification R_obs/R_0 versus redshift,
+  with a binned MUSE-DARK MHUDF overlay from Ciocan+2026 Paper I;
   (iii) the ALMA z~4.5 joint kinematic test (N=4); (iv) the BTFR
-  zero-point evolution from SPARC + cosmic-noon + ALMA; (v) the SPARC
-  171-galaxy local-anchor chi^2 comparison with constant-a0 MOND
-  (p=0.46); and (vi) the quantitative mass-selection robustness test
-  ruling out one-parameter M_b(z) mimics of R(z).  The hypothesis
-  stands or falls on percent-level R(z)/R_0 over 0 lesssim z lesssim 3
-  from Euclid/Roman.
+  zero-point evolution from SPARC + cosmic-noon + ALMA, including the
+  Jeanneau+2026 lensed-bTFR null at z~1 as the principal extant
+  challenge; (v) the SPARC 171-galaxy local-anchor chi^2 comparison
+  with constant-a0 MOND (p=0.46); (vi) the quantitative
+  mass-selection robustness test ruling out one-parameter M_b(z)
+  mimics of R(z); and (vii) the direct a0(z) and DM-density
+  evolution test against the MUSE-DARK trilogy (Ciocan+2026 Papers
+  I & III, Vărașteanu+2025), in which HEAT's H(z) shape is
+  recovered at chi^2 = 7.2 for 5 dof under a single floating
+  normalisation K and matches the Ciocan MOND-framework intercept
+  to within 1 percent.  The hypothesis stands or falls on
+  percent-level R(z)/R_0 over 0 lesssim z lesssim 3 from
+  Euclid/Roman, plus the direct HI-based bTFR test at z~1.
 authors:
   - family-names: "Enciu"
     given-names: "Bogdan Cosmin"

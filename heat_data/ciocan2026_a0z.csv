@@ -1,0 +1,38 @@
+# Ciocan et al. (2026) MUSE-DARK trilogy + Varasteanu et al. (2025) data
+#
+# Used by:
+#   publication/a0_evolution.py  -> Fig 9 (a0(z) and Sigma_DM(z) panels)
+#   publication/paper_heat_letter.tex Sec 4.5 (direct a0(z) test)
+#
+# References:
+#   Ciocan+2026  Paper I    : arXiv:2506.19721  (MUSE-DARK-I: halo properties)
+#   Jeanneau+2026 Paper II  : arXiv:2603.28856  (MUSE-DARK-II: lensed bTFR)
+#   Ciocan+2026  Paper III  : arXiv:2604.22613  (MUSE-DARK-III: RAR evolution)
+#   Varasteanu+2025         : (MIGHTEE-HI low-z bTFR-derived a0)
+#   McGaugh+2016            : SPARC z=0 anchor (a0 = 1.20 +/- 0.26 e-10 m/s^2)
+#
+# All a0 values are in units of 10^-10 m/s^2.
+#
+# Section 1: per-bin a0 measurements
+#   Ciocan+2026 Fig.3 binned values are read from the figure (visual extraction).
+#   The Ciocan team kindly tabulated their fit triplets in the appendix; we
+#   reproduce those triplets in section 3 below.
+#   "section" column distinguishes section-1 / section-2 / section-4 rows.
+section,label,z,a0_1e_minus10,sigma_lo,sigma_hi,source
+1,SPARC z=0,0.00,1.20,0.26,0.26,McGaugh+2016 (N=171)
+1,Varasteanu z<0.08,0.04,1.69,0.13,0.13,Varasteanu+2025 (MIGHTEE-HI)
+1,Ciocan bin1,0.55,1.99,0.13,0.13,Ciocan+2026 PaperIII Fig.3 (bin1/4)
+1,Ciocan bin2,0.78,2.25,0.13,0.13,Ciocan+2026 PaperIII Fig.3 (bin2/4)
+1,Ciocan bin3,1.05,2.45,0.18,0.18,Ciocan+2026 PaperIII Fig.3 (bin3/4)
+1,Ciocan bin4,1.30,2.71,0.22,0.22,Ciocan+2026 PaperIII Fig.3 (bin4/4)
+2,Ciocan global DC14 uniform,1.00,2.38,0.10,0.12,Ciocan+2026 PaperIII Eq.2
+2,Ciocan global DC14 per-galaxy,1.00,2.61,0.09,0.13,Ciocan+2026 PaperIII Eq.D.1
+2,Ciocan global MOND,1.00,2.19,0.10,0.12,Ciocan+2026 PaperIII Eq.E.4
+4,Paper I MHUDF z~0.85,0.85,0.30,0.10,0.10,Ciocan+2026 PaperI Sect.7 (Delta log Sigma_DM ~0.30)
+#
+# Section 3: linear-fit triplets a0(z) = a0(0) + a1*z (Ciocan+2026 Paper III)
+#   These are NOT plotted as data points; they are reference curves.
+#   Ciocan DC14 uniform     : a0(0)=1.00(0.04)  a1=1.59(0.11)   [Eq.4]
+#   Ciocan DC14 per-galaxy  : a0(0)=1.05(0.05)  a1=1.63(0.12)   [Eq.D.2]
+#   Ciocan MOND             : a0(0)=1.03(0.05)  a1=1.20(0.10)   [Eq.E.5]
+# These triplets are consumed directly inside publication/a0_evolution.py.
