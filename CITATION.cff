@@ -16,29 +16,29 @@ abstract: >-
   MMW98 disk-formation baseline as reference; (ii) the
   stellar-mass-normalised compactification R_obs/R_0 versus redshift,
   with a binned MUSE-DARK MHUDF overlay from Ciocan+2026 Paper I;
-  (iii) the ALMA z~4.5 joint kinematic test (N=4); (iv) the BTFR
+  (iii) the ALMA z~4.5 joint kinematic cross-check (N=4); (iv) the BTFR
   zero-point evolution from SPARC + cosmic-noon + ALMA, including the
-  Jeanneau+2026 lensed-bTFR null at z~1 as the principal extant
-  challenge; (v) the SPARC 171-galaxy local-anchor chi^2 comparison
+  Jeanneau+2026 lensed-bTFR zero-evolution result at z~1 as the
+  principal extant challenge; (v) the SPARC 171-galaxy local-anchor chi^2 comparison
   with constant-a0 MOND (p=0.46); (vi) the quantitative
-  mass-selection robustness test ruling out one-parameter M_b(z)
+  mass-selection robustness diagnostic for one-parameter M_b(z)
   mimics of R(z); and (vii) the direct a0(z) and DM-density
-  evolution test against the MUSE-DARK trilogy (Ciocan+2026 Papers
-  I & III, Vărașteanu+2025), in which HEAT's H(z) shape is
-  recovered at chi^2 = 7.2 for 5 dof under a single floating
-  normalisation K and matches the Ciocan MOND-framework intercept
-  to within 1 percent.  The hypothesis stands or falls on
-  percent-level R(z)/R_0 over 0 lesssim z lesssim 3 from
-  Euclid/Roman, plus the direct HI-based bTFR test at z~1.
+  evolution diagnostic against the MUSE-DARK trilogy (Ciocan+2026
+  Papers I & III, Vărașteanu+2025).  Current data are treated as
+  consistency checks and challenges, not confirmation; decisive tests
+  require percent-level R(z)/R_0 over 0 lesssim z lesssim 3 from
+  Euclid/Roman and a direct HI-based bTFR test at z~1.  Licensing is
+  split: code is MIT, while the paper, documentation, and generated
+  figures are CC BY 4.0.
 authors:
   - family-names: "Enciu"
     given-names: "Bogdan Cosmin"
     affiliation: "Independent Researcher"
     email: "bogdanenciu.author@gmail.com"
     orcid: "https://orcid.org/0009-0008-7329-7200"
-version: "v1.0.0"
-date-released: "2026-04-15"
-license: MIT
+version: "v3.0.0"
+date-released: "2026-04-28"
+license: "MIT AND CC-BY-4.0"
 url: "https://github.com/bogdanenciu/HEAT-paper"
 repository-code: "https://github.com/bogdanenciu/HEAT-paper"
 doi: "10.5281/zenodo.19709780"

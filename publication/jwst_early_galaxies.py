@@ -1,10 +1,12 @@
 ﻿"""
 JWST "impossible early galaxies" test for HEAT.
 
-HEAT predicts a0(z) rising dramatically at high z, enhancing baryonic gravity.
-This naturally explains (1) the existence of massive galaxies at z > 7 that
-violate the LCDM baryon budget and (2) mature rotating disks at z > 4 that
-form faster than LCDM allows without fine-tuned star-formation efficiency.
+HEAT predicts a0(z) rising dramatically at high z, enhancing the dynamical
+effect of a fixed baryonic mass in the low-acceleration regime.  In the letter
+release, the JWST/ALMA objects are used as consistency checks and stress tests:
+(1) the baryon-budget calculation is reframed as model-dependent bookkeeping,
+and (2) the mature rotating disks at z > 4 provide a small-N kinematic
+cross-check of the same redshift scaling.
 
 Data sources:
   [L23]  Labbe et al. 2023, Nature 616, 266    -- massive candidates z ~ 7-9
@@ -715,12 +717,14 @@ def main(out_dir=_DEFAULT_OUT):
     print(f"  a0(z=10)/a0(0) = {a0_10 / a0_0:.1f}x")
     print(f"  a0(z=14)/a0(0) = {a0_14 / a0_0:.1f}x")
     print()
-    print("  RESULT: HEAT's evolving a0(z) naturally explains the JWST")
-    print("  early galaxy crisis. This is a unique, falsifiable prediction")
-    print("  that MOND (constant a0) cannot make.")
+    print("  STATUS: HEAT's evolving a0(z) reduces the first-order")
+    print("  baryon-budget tension and gives the kinematic/size scalings")
+    print("  used in the letter. These are consistency checks, not a")
+    print("  standalone confirmation of the model.")
     print()
-    print("  FALSIFICATION: ALMA kinematics at z > 6 should match")
-    print("  HEAT's enhanced a0(z), not MOND's constant a0.")
+    print("  FALSIFICATION TARGET: larger ALMA/JWST kinematic samples")
+    print("  should test the predicted redshift evolution against the")
+    print("  constant-a0 MOND baseline.")
 
     return results
 
@@ -740,8 +744,8 @@ def _print_param_table():
     print("  HEAT external (fixed from Planck): H0, Omega_b, Omega_L")
     print("  HEAT derived (not free):           F0 = (1-OL)/Ob  (E(0)=1 identity)")
     print()
-    print("  HEAT makes a z-DEPENDENT prediction with ZERO free parameters,")
-    print("  tied rigidly to the Planck expansion history.")
+    print("  Once the a0(z)/a0(0)=H(z)/H0 scaling is adopted, HEAT fixes")
+    print("  the redshift dependence from the Planck expansion history.")
 
 
 # ---------------------------------------------------------------------------
@@ -1176,10 +1180,10 @@ def _plot_btfr_evolution(kin_results, a0_0, out_dir):
 
     i.e. high-z baryon-lighter galaxies at the same V_flat.  A constant-
     a_0 MOND predicts Delta log M_bary(z) = 0 for all z.  This is a
-    zero-parameter, falsifiable test of HEAT; the four z~4.5 ALMA
-    kinematic sources already sit closer to the HEAT curve than to the
-    MOND null, and Cosmic-Noon KMOS3D samples at z~1-2.5 will decide
-    the hypothesis at the next survey cycle.
+    falsifiable absolute-normalisation test of the locally anchored HEAT
+    scaling; the four z~4.5 ALMA kinematic sources are treated as a
+    trend-level consistency check, while homogeneous Cosmic-Noon samples
+    at z~1-2.5 are needed for a decisive comparison.
     """
     if not kin_results:
         return
@@ -1203,9 +1207,9 @@ def _plot_btfr_evolution(kin_results, a0_0, out_dir):
                     color=_CB_BLUE, alpha=0.14, linewidth=0,
                     label=r"$\pm 0.10$ dex BTFR intrinsic scatter (Lelli+2019)")
 
-    # --- MOND constant-a0 null hypothesis ---
+    # --- MOND constant-a0 baseline ---
     ax.axhline(0.0, color=_CB_GREY, ls="--", lw=1.2,
-               label=r"Constant-$a_0$ MOND (null): $\Delta\log M_b = 0$")
+               label=r"Constant-$a_0$ MOND baseline: $\Delta\log M_b = 0$")
 
     # --- Data: per-galaxy residual vs local HEAT BTFR ---
     #
@@ -1246,7 +1250,7 @@ def _plot_btfr_evolution(kin_results, a0_0, out_dir):
                     xytext=(8, -4), fontsize=8, color=_CB_ORANGE,
                     alpha=0.9, zorder=10)
 
-    # --- Jeanneau+2026 (MUSE-DARK Paper II) bTFR null at z~1 ---------
+    # --- Jeanneau+2026 (MUSE-DARK Paper II) bTFR zero-evolution result at z~1 ---------
     # Direct lensed-bTFR measurement: Delta log M_b(z=1) = 0.00 +/- 0.05 dex,
     # in tension with HEAT's predicted -0.255 dex shift at z=1.  Plotted in
     # red as the most direct "challenge" data-point and explicitly named in

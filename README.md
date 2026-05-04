@@ -25,10 +25,10 @@ with a matter-era asymptote $\Omega_m^{-1/4} \approx 1.34$ and zero free
 parameters governing redshift evolution. The headline observable is
 **invariant under the proportionality constant**: only the scaling
 $a_0 \propto H(z)$ enters, while the $1/(2\pi)$ is anchored to SPARC at
-$z=0$ and recovers the empirical MOND value to within roughly 13%. The
-hypothesis stands or falls on percent-level $R(z)/R_0$ over
-$0 \lesssim z \lesssim 3$ from Euclid/Roman, plus the direct $a_0(z)$
-and bTFR tests now opened by the MUSE-DARK trilogy
+$z=0$ and recovers the empirical MOND value to within roughly 13%. Current
+data are treated as consistency checks and challenges, not confirmation:
+percent-level $R(z)/R_0$ over $0 \lesssim z \lesssim 3$ from Euclid/Roman,
+plus direct $a_0(z)$ and bTFR tests opened by the MUSE-DARK trilogy
 (Ciocan+2026 Papers I & III, Jeanneau+2026 Paper II,
 Vărașteanu+2025).
 
@@ -46,7 +46,7 @@ Vărașteanu+2025).
 ## Quick start
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/bogdanenciu/HEAT-paper.git
 cd HEAT-paper
 pip install -r requirements.txt
 ```
@@ -56,7 +56,7 @@ Python 3.10+ is assumed.
 ## Reproducing the letter figures
 
 ```bash
-python run_all_heat_tests.py all --agg     # all three pipelines
+python run_all_heat_tests.py all --agg     # all five figure-generation targets
 python run_all_heat_tests.py list          # show available keys
 
 # Individual analyses:
@@ -68,6 +68,10 @@ python run_all_heat_tests.py a0-evol       # Figure 9 (direct a_0(z) and Sigma_D
 ```
 
 Output is written to `heat_output/` subfolders.
+See [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md) for the expected artifact list,
+the latest checked package versions, and the script-to-figure map.  See
+[`heat_data/README.md`](heat_data/README.md) for row-level provenance notes on
+the bundled MUSE-DARK / MIGHTEE-HI overlay data.
 
 ## Key modules
 
@@ -81,7 +85,8 @@ Output is written to `heat_output/` subfolders.
   velocity–size test (Fig. 3c), stellar-mass-normalised
   compactification (Fig. 5, with binned MUSE-DARK MHUDF overlay
   from Ciocan+2026 Paper I), and BTFR zero-point evolution
-  (Fig. 7, including the Jeanneau+2026 lensed-bTFR null at $z\sim 1$).
+  (Fig. 7, including the Jeanneau+2026 lensed-bTFR zero-evolution
+  result at $z\sim 1$).
 - **`publication/sparc_publication_quality.py`** — SPARC 171-galaxy
   local-anchor $\chi^2$ comparison (Fig. 4).
 - **`publication/fig_normalization.py`** — Zero-parameter

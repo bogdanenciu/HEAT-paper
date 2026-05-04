@@ -1,17 +1,19 @@
 """
 Figure 9 (a0(z) and Sigma_DM(z) evolution) for HEAT Letter.
 
-Tests the zero-parameter HEAT prediction a0(z) = c H(z) / (2 pi) directly
-against the MUSE-DARK trilogy:
+Tests the HEAT a0(z) propto H(z) shape directly against the
+MUSE-DARK trilogy, with the c H(z) / (2 pi) normalisation retained
+as a secondary anchor reference:
   Paper I  (Ciocan+2026, arXiv:2506.19721) -- halo central density evolution
-  Paper II (Jeanneau+2026, arXiv:2603.28856) -- lensed bTFR null (treated in Fig 7)
+  Paper II (Jeanneau+2026, arXiv:2603.28856) -- lensed bTFR zero-evolution result (treated in Fig 7)
   Paper III (Ciocan+2026, arXiv:2604.22613) -- intermediate-z RAR a0(z) evolution
 
 Two-panel layout:
-  (a) a0(z) -- zero-parameter HEAT curve vs Ciocan multi-framework data
+  (a) a0(z) -- free-K HEAT shape vs Ciocan multi-framework data
        (DC14 uniform, DC14 per-galaxy, MOND) and SPARC + Varasteanu anchors.
-       Constant-a0 MOND null is shown as a dashed grey line.  We annotate
-       the 1% match between HEAT prediction and Ciocan-MOND framework
+       The cH/(2pi) anchor and constant-a0 MOND baseline are shown as dashed
+       references.  We annotate
+       the 1% match between the HEAT anchor and Ciocan-MOND framework
        extrapolated to z=0.
   (b) Delta log Sigma_DM vs log(1+z) -- HEAT-implied scaling
        Delta log Sigma_DM = log10[a0(z)/a0(0)] = log10[H(z)/H_0] (since,
@@ -26,9 +28,13 @@ Outputs:
 from __future__ import annotations
 
 import csv
+import sys
 from pathlib import Path
 
-import path_setup  # noqa: F401  # ensures repo root on sys.path
+try:
+    import path_setup  # noqa: F401  # ensures repo root on sys.path
+except ModuleNotFoundError:
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import numpy as np
 
@@ -275,7 +281,8 @@ def _plot(rows, stats, out_dir):
     # ----- Panel (a): a0(z) -----
     z_smooth = np.linspace(0.0, 1.7, 220)
     a0_curve = np.array([heat_a0_at(z) for z in z_smooth])
-    ax_a0.plot(z_smooth, a0_curve, color=_CB_BLUE, lw=2.4)
+    ax_a0.plot(z_smooth, a0_curve, color=_CB_BLUE, lw=1.6, ls="--",
+               alpha=0.85)
 
     # 13% systematic band (SPARC posterior vs HEAT z=0 anchor); described
     # in the figure caption rather than the legend to keep the latter clean.
@@ -290,10 +297,9 @@ def _plot(rows, stats, out_dir):
     K_fit = float(stats["K_fit"])
     K_heat = float(stats["K_heat"])
     a0_freeK = a0_curve * (K_fit / K_heat)
-    ax_a0.plot(z_smooth, a0_freeK, color=_CB_BLUE, lw=1.6, ls="--",
-               alpha=0.85)
+    ax_a0.plot(z_smooth, a0_freeK, color=_CB_BLUE, lw=2.4)
 
-    # Constant-a0 MOND null
+    # Constant-a0 MOND baseline
     ax_a0.axhline(1.20, color=_CB_GREY, ls="--", lw=1.3)
 
     # Ciocan linear fits (plotted with their own colors but grouped into
@@ -350,16 +356,16 @@ def _plot(rows, stats, out_dir):
     n_rc = int(np.sum(stats["is_rc"]))
     chi2_text = (
         r"$\chi^{2}$  (full $N\!=\!%d$ / RC $N\!=\!%d$):" "\n"
-        r"  HEAT, $K{=}1/(2\pi)$ : %5.1f / %5.1f""\n"
         r"  HEAT free $K$        : %5.1f / %5.1f  (best)""\n"
+        r"  HEAT, $K{=}1/(2\pi)$ : %5.1f / %5.1f""\n"
         r"  Const-$a_0$ MOND     : %5.1f / %5.1f""\n"
         r"  Ciocan DC14 unif.    : %5.1f / %5.1f""\n"
         r"  Ciocan DC14 per-gal  : %5.1f / %5.1f""\n"
         r"  Ciocan MOND fwk      : %5.1f / %5.1f"
     ) % (
         n_full, n_rc,
-        chi2_h, chi2_h_rc,
         chi2_fk, chi2_fk_rc,
+        chi2_h, chi2_h_rc,
         chi2_m, chi2_m_rc,
         lin["DC14 uniform"], lin_rc["DC14 uniform"],
         lin["DC14 per-galaxy"], lin_rc["DC14 per-galaxy"],
@@ -400,18 +406,18 @@ def _plot(rows, stats, out_dir):
     K_fit_rc_disp = float(stats["K_fit_rc"])
     K_heat_disp = float(stats["K_heat"])
 
-    # Existing curves (HEAT zero-K solid blue, free-K dashed blue, MOND
+    # Existing curves (free-K solid blue, HEAT zero-K dashed blue, MOND
     # dashed grey) + the band already carry labels via their plot calls;
     # we re-collect them and append our composite Ciocan handle plus
     # marker proxies so a single ax.legend() call orders everything.
     handles = [
         Line2D([0], [0], color=_CB_BLUE, lw=2.4,
-               label=r"HEAT zero-parameter: $a_0(z)=cH(z)/(2\pi)$"),
-        Line2D([0], [0], color=_CB_BLUE, lw=1.6, ls="--",
                label=(r"HEAT shape, free $K$: $K\!\approx\!%.2f\,K_{\rm HEAT}$ "
                       r"(full); $K\!\approx\!%.2f\,K_{\rm HEAT}$ (RC-only)" %
                       (K_fit_disp / K_heat_disp,
                        K_fit_rc_disp / K_heat_disp))),
+        Line2D([0], [0], color=_CB_BLUE, lw=1.6, ls="--",
+               label=r"HEAT anchor reference: $a_0(z)=cH(z)/(2\pi)$"),
         Line2D([0], [0], color=_CB_GREY, lw=1.3, ls="--",
                label=r"Constant-$a_0$ MOND: $1.20\!\times\!10^{-10}$"),
         tuple(ciocan_line_handles),  # combined Ciocan linear fits
@@ -461,7 +467,7 @@ def _plot(rows, stats, out_dir):
     ax_sig.plot(log1pz, delta_heat, color=_CB_BLUE, lw=2.4,
                 label=r"HEAT: $\Delta\log_{10}\,a_0(z) = \log_{10}\,H(z)/H_0$")
 
-    # Reference null: no evolution
+    # Reference baseline: no evolution
     ax_sig.axhline(0.0, color=_CB_GREY, ls="--", lw=1.2,
                    label=r"Constant-$a_0$ / no DM-density evolution")
 
