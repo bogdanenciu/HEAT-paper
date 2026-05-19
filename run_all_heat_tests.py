@@ -21,6 +21,8 @@ TESTS = {
     "fig-norm": "publication.fig_normalization",
     "fig-mass": "publication.mass_selection_robustness",
     "a0-evol": "publication.a0_evolution",
+    "a0-ml": "publication.a0_ml_degeneracy",
+    "a0-robust": "publication.a0_robustness_tests",
 }
 
 

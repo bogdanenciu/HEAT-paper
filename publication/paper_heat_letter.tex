@@ -39,7 +39,8 @@
 
 % ======================================================================
 \begin{abstract}
-We test a \emph{single closed-form, parameter-free observable}
+We derive and check the current consistency of a
+\emph{single closed-form, parameter-free observable}
 for the late-type size--redshift relation at fixed baryonic
 mass,
 \[
@@ -86,12 +87,36 @@ constant-$\azero$ MOND ($p=0.46$; $171$ galaxies) when the common
 local normalisation $\azero(0)\simeq cH_0/(2\pi)$ is adopted.
 This Milgrom--Hubble normalisation is a secondary, widely used
 absolute anchor; it is not required for the headline size test.
-Two new MUSE-DARK measurements at $z\!\approx\!0.5$--$1.5$ are
-broadly consistent with the predicted $\azero(z)$ shape
-\citep{Ciocan2026RAR,Ciocan2026Halo}, while the lensed bTFR
-zero-evolution result at $z\!\approx\!1$ of \citet{Jeanneau2026}
-sits $\sim 4\sigma$ below the predicted absolute BTFR shift and is
-treated as the principal extant challenge.  In the RAR comparison, the free-$K$
+Two new MUSE-DARK measurements directly probe the
+$\azero(z)$ coupling: \citet{Ciocan2026RAR,Ciocan2026Halo}
+establish a highly significant ($\gg 5\sigma$) positive
+$\azero(z)$ trend over $0.33\!<\!z\!<\!1.44$ whose shape matches
+the predicted $H(z)$ scaling.  On the clean $N\!=\!7$ cohort
+(SPARC and Varasteanu+2025 at low $z$; the four Ciocan bin
+centres at $z\!\sim\!0.55$--$1.30$ inside the
+$0.33\!<\!z\!<\!1.44$ MUSE-DARK sample) the free-$K$ HEAT
+shape achieves
+$\chi^{2}\!=\!5.9$ for $6$ dof; the constant-$\azero$ MOND
+baseline is excluded at $\Delta\chi^{2}\!\simeq\!192$; the
+likelihood-ratio test for $n\!=\!1$ vs.\ free $n$ accepts
+$n\!=\!1$ at $p\!=\!0.47$; and a $3\!+\!4$ predictive
+cross-validation is internally consistent in both directions
+($\chi^{2}_{\rm fwd}\!=\!7.89$ vs.\ $\chi^{2}_{\rm crit}\!=\!9.49$;
+$\chi^{2}_{\rm back}\!=\!3.97$ vs.\ $\chi^{2}_{\rm crit}\!=\!7.81$,
+both under HEAT $n\!=\!1$).  The MOND-framework $z\!=\!0$
+anchor agrees with the parameter-free HEAT value to $\sim 1\%$.
+The free-$K$ residual prefactor $\beta\!=\!1.29\!\pm\!0.04$ at
+Planck cosmology is jointly degenerate with $H_{0}$ and stellar
+mass-to-light: it reduces to $\beta\!=\!1.06\!\pm\!0.03$ under a
+uniform $+0.11$\,dex M/L revision (within the Paper~III
+per-galaxy M/L uncertainty floor), although that same revision
+fails the forward $3\!\to\!4$ predictive cross-validation at
+$95\%$; the raw cohort with the bare HEAT shape is the more
+self-consistent slice of the $(\beta,n)$ calibration envelope.  In contrast, the
+lensed bTFR zero-evolution result at $z\!\approx\!1$ of
+\citet{Jeanneau2026} sits $\sim 4\sigma$ below the predicted
+absolute BTFR shift and is treated as the principal extant
+challenge.  In the RAR comparison, the free-$K$
 curve is the main shape test; the $cH_0/(2\pi)$ anchor is retained
 as a secondary absolute-normalisation reference.  We present HEAT
 as a falsifiable hypothesis rather than a confirmed model:
@@ -147,15 +172,33 @@ by construction, so the theory is not a competing matter sector;
 all deviations from standard physics are confined to the
 low-acceleration regime, and the Newtonian regime is unmodified.
 
+The idea that $\azero$ may carry a cosmological time dependence
+has a long pedigree.  \citet{Milgrom1999} noted the numerical
+coincidence $\azero\!\approx\!cH_{0}$ and discussed both
+constant and evolving interpretations.
+\citet{Hossenfelder2017} embedded a related coupling in the
+covariant emergent gravity (CEG) framework, predicting a
+substantially weaker redshift dependence than
+Eq.~\ref{eq:a0scale}; \citet{HossenfelderMistele2018} showed
+that the resulting $\azero(z)$ evolution in the RAR is the
+cleanest discriminator among MOND-family frameworks.  HEAT is
+distinguished from these predecessors not by the underlying idea
+but by the specific observable package: a closed-form,
+parameter-free size--redshift relation (Eq.~\ref{eq:Rfull}
+below) with a bounded normalisation factor
+(Eq.~\ref{eq:Rnorm2}), paired velocity predictions, and
+pre-registered falsification thresholds tested against current
+survey data.
+
 While this article was being prepared, two new lines of
 intermediate-redshift evidence relevant to the
 $\azero(z)\propto H(z)$ hypothesis appeared.
 \citet{Varasteanu2025} measure $\azero$ at $z\!<\!0.08$ from a
 MIGHTEE-HI rotation-curve sample; \citet{Ciocan2026RAR}
-(MUSE-DARK Paper III) infer $\azero(z)$ at $z\!\sim\!0.5$--$1.5$
+(MUSE-DARK Paper III) infer $\azero(z)$ at $0.33\!<\!z\!<\!1.44$
 from MUSE intermediate-redshift radial-acceleration relation
-fits in three independent frameworks (DC14 uniform, DC14
-per-galaxy, and direct MOND), reporting a $\sim 4\sigma$
+fits in three independent frameworks (DC14 uniform, best-fit
+per-galaxy, and direct MOND), reporting a highly significant ($\gg 5\sigma$; Paper~III uncertainties are 95\,\% confidence intervals)
 positive trend in all three; the matching halo-density rise
 $\rho_{s}\propto(1\!+\!z)^{0.54\pm 0.31}$ inferred from the same
 sample by \citet{Ciocan2026Halo} (Paper I) is the
@@ -206,10 +249,19 @@ binned in stellar (or baryonic) mass at each $z$.  Departures
 from any of these---evolving
 mass profiles, active mergers, non-equilibrium kinematics, or
 an incorrect $R_{0}$---contribute as \emph{scatter} around the
-predicted curve, not as a shift in its functional form; the
+predicted curve rather than as a coherent shift in its functional
+form, because non-equilibrium perturbations (mergers, tidal
+interactions, gas inflows) act stochastically at any given redshift
+bin and do not generically correlate with the background expansion
+rate $H(z)$ that sets the predicted curve.  The
 $-3/4$ exponent and the $\mathcal{R}(z)$ normalisation are
 therefore protected against the generic galaxy-formation
-systematics that dominate individual-galaxy residuals.
+systematics that dominate individual-galaxy residuals, provided
+the sample is large enough that the stochastic perturbations
+average down---a condition well satisfied by the
+$\sim 10^{4}$-galaxy \citet{vanderWel2014} sample but not by the
+$N\!=\!4$ ALMA cross-check.
+
 \emph{First}, in the matter era
 $H(z)\propto(1+z)^{3/2}$, so Eq.~\ref{eq:RofH} asymptotes to
 $R(z)/R_{0}\propto(1+z)^{-3/4}$---the exponent measured by
@@ -297,11 +349,9 @@ we treat Eq.~\ref{eq:a0} as a phenomenological anchor rather than
 as a microscopic derivation.  The point of the present paper is
 not priority for the Hubble-scale acceleration link itself, but
 the closed observable package obtained by applying the scaling to
-disk sizes, flat velocities, and BTFR/RAR evolution.  A separate
-parameter-free MOND-like framework---Covariant Emergent Gravity
-\citep{Hossenfelder2017,HossenfelderMistele2018}---also ties
-$\azero$ to cosmological quantities but predicts a substantially
-weaker redshift dependence than Eq.~\ref{eq:a0scale}; the hypotheses
+disk sizes, flat velocities, and BTFR/RAR evolution.  As noted in \S\ref{sec:intro}, CEG
+\citep{Hossenfelder2017,HossenfelderMistele2018} predicts a
+substantially weaker redshift dependence; the two hypotheses
 can be distinguished observationally (\S\ref{sec:falsify}).  The
 empirical contribution of the present article is to propagate
 Eq.~\ref{eq:a0scale} into zero-parameter scaling predictions and,
@@ -342,6 +392,16 @@ and the quadratic coupling $n=2$ (exponent $-3/2$) do not match
 the observed slope without adding additional galaxy-formation
 evolution.  This is why the paper adopts $n=1$ as the benchmark
 scaling rather than fitting a redshift exponent later.
+To be explicit about the logical status of this choice: the
+matter-era exponent $-3/4$ is the \emph{empirical motivation}
+for selecting $n\!=\!1$, not the test of the resulting model.
+The independent, falsifiable predictions are the
+normalisation curve $\mathcal{R}(z)$ and its asymptote
+$\Omega_{m}^{-1/4}$ (\S\ref{sec:norm}), the velocity scaling
+(\S\ref{sec:family}), the BTFR zero-point evolution
+(\S\ref{sec:btfr}), and the direct $\azero(z)$ values
+(\S\ref{sec:a0z})---none of which are inputs to the
+$n$-selection step.
 
 For completeness we note that a baseline $\lcdm$ disk-formation
 calculation with
@@ -535,7 +595,7 @@ violating the binned-mean rise at the break.
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=\columnwidth]{../heat_output/jwst_early_galaxies/fig8_mass_selection.pdf}
+  \includegraphics[width=\columnwidth]{figures/fig8_mass_selection.pdf}
   \caption{Diagnostic comparison between $\mathcal{R}(z)$ and a
     one-parameter mass-selection mimic.  Solid blue: HEAT closed
     form $\mathcal{R}(z)=[\Omega_{m}(z)/\Omega_{m}(0)]^{1/4}$,
@@ -753,7 +813,7 @@ $3.5$ & $0.43$ & $0.32$ & $1.33$ \\
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=\columnwidth]{../heat_output/jwst_early_galaxies/fig6_normalization.pdf}
+  \includegraphics[width=\columnwidth]{figures/fig6_normalization.pdf}
   \caption{Scaling-only HEAT normalisation test.
     \textit{Panel (a):} predicted size evolution
     $R_{\rm eff}(z)/R_{0}$ under the composite relation
@@ -808,7 +868,7 @@ of Type Ia supernovae and baryon acoustic oscillations.
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=\columnwidth]{../heat_output/jwst_early_galaxies/fig5_size_mass.pdf}
+  \includegraphics[width=\columnwidth]{figures/fig5_size_mass.pdf}
   \caption{Observed galaxy compactification versus redshift:
     $R_{\rm obs}/R_{0}(M_{\star},z\!=\!0)$ for spectroscopically
     confirmed high-$z$ galaxies, normalised to the local
@@ -839,7 +899,7 @@ of Type Ia supernovae and baryon acoustic oscillations.
 \end{figure}
 
 \subsection{MUSE-DARK RAR shape test at
-  $z\approx 0.5$--$1.5$}\label{sec:a0z_priority}
+  $z\approx 0.3$--$1.4$}\label{sec:a0z_priority}
 
 Before using the absolute Milgrom--Hubble anchor for velocities
 or BTFR zero-points, the direct MUSE-DARK RAR measurements provide
@@ -848,15 +908,30 @@ the one-parameter family $\azero(z)=K\,cH(z)$ as the main
 comparison: it preserves all scaling-only predictions of
 \S\ref{sec:exp}, including $R(z)/R_{0}$, while asking whether the
 observed $\azero(z)$ points have the predicted $H(z)$ form.
-On the combined SPARC, \citet{Varasteanu2025}, and MUSE-DARK
-Paper~III cohort, this free-$K$ shape gives
-$\chi^{2}\!=\!7.2$ for $5$ degrees of freedom; on the
-rotation-curve-only subset it gives $\chi^{2}\!=\!2.9$ for
-$4$ degrees of freedom.  The conventional
-$\azerolocal=cH_0/(2\pi)$ curve is kept as the secondary
-absolute-reference line, not as the definition of the headline
-size prediction.  The detailed goodness-of-fit ladder,
-methodology split, and halo-density counterpart are given in
+On the clean $N\!=\!7$ cohort (\citealt{McGaugh2016},
+\citealt{Desmond2023}, \citealt{Varasteanu2025} combined fit,
+and the four MUSE-DARK Paper~III bins) this free-$K$ shape gives
+$\chi^{2}\!=\!5.9$ for $6$ degrees of freedom with best-fit
+$\beta\!\equiv\!K/K_{\rm HEAT}\!=\!1.29\!\pm\!0.04$ at Planck
+cosmology.  The HEAT $n\!=\!1$ shape is accepted by the
+likelihood-ratio test against the free-$n$ alternative at
+$p\!=\!0.47$, and a $3\!+\!4$ predictive cross-validation under
+HEAT $n\!=\!1$ is internally consistent in both directions
+($\chi^{2}_{\rm fwd}\!=\!7.89$ vs.\ $\chi^{2}_{\rm crit}\!=\!9.49$;
+$\chi^{2}_{\rm back}\!=\!3.97$ vs.\ $\chi^{2}_{\rm crit}\!=\!7.81$).
+A uniform $+0.11$\,dex M/L revision applied to the four Ciocan
+high-$z$ bins (within the Paper~III per-galaxy M/L uncertainty
+floor) reduces the prefactor to $\beta\!=\!1.06\!\pm\!0.03$,
+illustrating that the $\beta\!\neq\!1$ residual is jointly
+degenerate with the stellar M/L calibration; the same revision
+fails the forward predictive cross-validation, so the raw
+cohort is the more self-consistent slice of the calibration
+envelope.  The conventional $\azerolocal=cH_0/(2\pi)$ curve is
+kept as the secondary absolute-reference line, not as the
+definition of the headline size prediction.  The detailed
+goodness-of-fit ladder, the six robustness tests
+(MCMC posterior, cosmology grid, LRT, bootstrap, cross-validation,
+M/L profiles), and the halo-density counterpart are given in
 \S\ref{sec:a0z} and Figure~\ref{fig:a0z}.
 
 \subsection{ALMA joint velocity--size consistency check at
@@ -891,7 +966,10 @@ envelope.  The corresponding constant-$\azero$ MOND
 velocity mean is $0.63$.  Leave-one-out resampling gives
 $1.00\pm 0.08$ (HEAT) versus $0.63\pm 0.05$ (MOND) on the
 velocity axis; the HEAT advantage survives removal of any
-single galaxy.  Per-galaxy $v_{\rm obs}$ values carry
+single galaxy, although at $N\!=\!4$ jackknife uncertainty
+estimates are themselves unreliable and should be read as
+order-of-magnitude guides rather than formal confidence
+intervals.  Per-galaxy $v_{\rm obs}$ values carry
 intrinsic systematic uncertainties at the $15$--$20\%$ level
 from inclination, beam smearing, and turbulent-broadening
 subtraction, so the residual scatter in individual HEAT-to-
@@ -941,7 +1019,7 @@ Mean (excl.\ SPT)& ---  & ---  & 0.38 & 0.37 \\
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=\columnwidth]{../heat_output/jwst_early_galaxies/fig3c_kinematic.pdf}
+  \includegraphics[width=\columnwidth]{figures/fig3c_kinematic.pdf}
   \caption{Sample-mean ALMA kinematic cross-check ($N{=}4$).
     Observed rotation
     velocities (points) versus locally anchored HEAT and
@@ -1006,31 +1084,72 @@ $\Delta\log_{10}M_{b}\!=\!0.00\!\pm\!0.05$\,dex, against the
 HEAT prediction $-\log_{10}[H(z\!=\!1)/H_{0}]\!\approx\!-0.26$\,dex.
 Taken at face value this is a $\sim 4\sigma$ challenge to
 Eq.~\ref{eq:btfr-evo} and we list it as such in
-\S\ref{sec:falsify}.  Two caveats temper the immediate
-interpretation but do not dissolve the tension.  First, the
-Jeanneau sample is strongly lensed, so individual baryonic-mass
-estimates carry $\gtrsim 0.2$\,dex systematic uncertainty from
-source-plane reconstruction and the assumed disk mass-to-light
-ratio (the same $\sim 0.2$\,dex shift that
-\citealt{Ciocan2026Halo} (Paper I) explore explicitly in their
-Appendix~C systematic test); a coherent $+0.2$ to $+0.45$\,dex
-zero-point bias relative to the SPARC anchor is not excluded.
-Second, the Jeanneau zero-point is derived assuming a
-\emph{static} BTFR slope and $z=0$ scatter, which absorbs part
-of any redshift dependence into the inferred normalisation.  The
-direct $\azero(z)$ measurement of \citet{Ciocan2026RAR} (Paper
-III), discussed in \S\ref{sec:a0z}, is consistent with the HEAT
-\emph{shape} (free-$K$ $\chi^{2}\!=\!7.2$ for $5$ dof) and with
-HEAT's zero-point in the MOND framework (Paper III App.~E) to
-within $1\%$, so the trilogy as a whole supports the
-$\azero\propto H(z)$ coupling on at least two of three
+\S\ref{sec:falsify}.  Several systematics temper the immediate
+interpretation but do not dissolve the tension; we adopt here
+the interpretation outlined to us by the MUSE-DARK collaboration
+(B.~Ciocan, priv.\ comm., 2026) together with the internal
+discussions in Papers~II and~III.  The dominant uncertainty on
+\emph{both} sides of the comparison is the baryonic-mass budget,
+but the leading component differs.  In Paper~II the lensed bTFR
+baryonic masses are reconstructed via scaling relations whose
+calibrations carry non-negligible systematics, in particular the
+HI mass and the \citet{Tacconi2018}-type molecular-gas scaling
+relation that is extrapolated below its
+well-calibrated stellar-mass range in Paper~II's regime; a coherent systematic shift
+in the inferred baryon budget could plausibly drive an apparent
+bTFR zero-point non-evolution, and independent cosmic-noon
+measurements (e.g.\ \citealt{Ubler2017}) do not converge on a
+single sign for that shift.  In addition, the Jeanneau
+zero-point is derived assuming a \emph{static} BTFR slope and
+$z\!=\!0$ scatter, which absorbs part of any redshift dependence
+into the inferred normalisation, and individual lensed
+baryonic-mass estimates carry a $\sim 0.2$\,dex source-plane
+and mass-to-light systematic of the kind discussed in the
+MUSE-DARK Paper~III appendix material, leaving room for a
+coherent zero-point bias whose sign and magnitude cannot be
+fixed from the present data alone.
+
+In Papers~I and~III, the disk--halo decomposition uses parametric
+HI models with priors on $M_{\rm HI}$ from comparable scaling
+relations and---like the SPARC analyses---does not model molecular
+gas as a separate component; the molecular contribution is
+absorbed into the disk, contributing an additional systematic of
+order $0.15$--$0.20$\,dex to the disk masses.  Paper~III shows
+internally that a perturbation of this size on its $\azero(z)$
+inversion is insufficient to reconcile the data with a
+non-evolving $\azero$, so the Paper~II/Paper~III tension cannot
+be removed by uniformly inflating the disk-mass error budget on
+the supportive side alone.
+
+Where we do not invoke these systematics, the direct $\azero(z)$
+measurement of \citet{Ciocan2026RAR} (Paper~III), discussed in
+\S\ref{sec:a0z}, is consistent with the HEAT \emph{shape}
+$\azero(z)\!\propto\!H(z)$: on the clean $N\!=\!7$ cohort the
+free-$K$ HEAT fit gives $\chi^{2}\!=\!5.9$ for $6$ dof, the
+likelihood-ratio test for $n\!=\!1$ vs.\ free $n$ accepts
+$n\!=\!1$ at $p\!=\!0.47$, and the $3\!+\!4$ predictive
+cross-validation is internally consistent in both directions
+at $95\%$.  The Ciocan MOND-framework $z\!=\!0$ intercept also
+agrees with HEAT's zero-point (Paper~III App.~E) to within
+$1\%$.  The trilogy as a whole therefore supports the
+$\azero\!\propto\!H(z)$ coupling on at least two of three
 independent observables; the Jeanneau bTFR zero-evolution result
-remains the single most demanding falsifier of HEAT in the current
-literature.
+remains the single most demanding falsifier of HEAT in the
+current literature.  The asymmetry in our treatment of the supportive
+vs.\ challenging MUSE-DARK observables is
+observable-driven: Papers~I and~III derive $\azero(z)$ from
+\emph{rotation-curve} modelling, where the kinematic observable
+is independent of the lens model, whereas Paper~II's bTFR
+zero-point depends directly on the lensed baryonic-mass
+reconstruction.  A direct HI-based bTFR measurement at
+$z\!\sim\!1$, ultimately requiring SKA-precursor and very deep
+ALMA programmes that resolve cold gas without extrapolation
+(\S\ref{sec:falsify}, test~7), would resolve this
+observable-level distinction.
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=\columnwidth]{../heat_output/jwst_early_galaxies/fig7_btfr_evolution.pdf}
+  \includegraphics[width=\columnwidth]{figures/fig7_btfr_evolution.pdf}
   \caption{BTFR zero-point offset
     $\Delta\log_{10}M_{b}$ at fixed $V_{\rm flat}$ versus
     redshift.  Solid blue: locally anchored HEAT model prediction
@@ -1066,7 +1185,7 @@ literature.
 The redshift evolution of $\azero$ is the single feature on
 which HEAT differs from constant-$\azero$ MOND.  The MUSE-DARK
 collaboration has now provided a direct measurement of $\azero$
-at $z\!\sim\!0.5$--$1.5$ from intermediate-redshift radial
+at $0.33\!<\!z\!<\!1.44$ from intermediate-redshift radial
 acceleration relation (RAR) fits to a sample of MUSE
 spectro-imaging targets in the Hubble Ultra-Deep Field
 \citep{Ciocan2026RAR}.  We compare the resulting $\azero(z)$
@@ -1074,136 +1193,205 @@ points against four reference scalings: (i) the free-$K$ HEAT
 shape $\azero(z)=K\,cH(z)$, which tests whether the data follow
 the predicted $H(z)$ form independently of the absolute anchor;
 (ii) the conventional HEAT absolute anchor
-$\azero(z)\!=\azerolocal H(z)/H_0$ with
+$\azero(z)\!=\!\azerolocal H(z)/H_0$ with
 $\azerolocal=cH_0/(2\pi)$; (iii) the constant
 $\azero(0)\!\equiv\!1.20\!\times\!10^{-10}\,\mathrm{m\,s^{-2}}$
 of \citet{McGaugh2016}; and (iv) the linear-in-$z$
 parameterisations $\azero(z)\!=\!a_{0}(0)\!+\!a_{1}\,z$ that
 Paper~III adopts as a phenomenological summary in three
-independent fitting frameworks (DC14 uniform, DC14 per-galaxy,
-and direct MOND).
+independent fitting frameworks: a global DC14 prescription
+(adopted because DC14 emerges as the best-fitting profile across
+the Paper~I sample), a per-galaxy preferred-profile fit in which
+each galaxy is assigned the halo family selected by pairwise
+Bayesian model comparison from the six profiles tested in
+Paper~I (NFW, cNFW, Burkert, Dekel--Zhao, DC14, and Einasto), and
+a direct MOND-framework fit.
 
-\paragraph{Shape of $\azero(z)$.}  Across the full set of six
-data points (SPARC at $z\!=\!0$, \citealt{Varasteanu2025} at
-$z\!\sim\!0.04$, and the four \citealt{Ciocan2026RAR} bins at
-$z\!\sim\!0.55$, $0.78$, $1.05$, $1.30$), the constant-$\azero$
-MOND baseline gives $\chi^{2}\!\simeq\!212$ for $6$ data
-points.  By contrast, allowing only the proportionality constant
-$K$ in $\azero(z)\!=\!K\,c\,H(z)$ to float and re-fitting yields
-$\chi^{2}\!=\!7.2$ for $5$ degrees of freedom with a best-fit
-$K\!=\!0.215\!\approx\!1.35\,/\,(2\pi)$.  This is the main
-comparison in Fig.~\ref{fig:a0z}: the \emph{shape} of the data is
-consistent with HEAT's $H(z)$ scaling at the $\sim 1\sigma$
-level.  The conventional-anchor HEAT prediction with
-$\azerolocal=cH_0/(2\pi)$ is then the secondary
-absolute-normalisation reference; it gives
-$\chi^{2}\!\simeq\!79$, dominated by a joint $\sim 13\%$ z=0
-anchor offset and a $\sim 25\%$ slope under-prediction at
-$z\!>\!0.5$.  The residual tension therefore lies in the
-absolute normalisation, which is the very quantity the
-K-invariance argument of \S\ref{sec:exp} shows does not enter
-the headline observable $R(z)/R_{0}$.
-By comparison, the three Ciocan linear-in-$z$ fits give
-$\chi^{2}\!=\!28$--$34$, all substantially worse fits to the
-same six points than the free-$K$ HEAT shape despite carrying
-\emph{one extra} fitted parameter; the full diagnostic
-goodness-of-fit ladder is collected in Table~\ref{tab:a0z_chi2}.
-The constant-$\azero$ baseline remains the poorest description
-among the $\azero \propto H^{n}$-flavoured alternatives tested here.
+\paragraph{Clean cohort.}  The $z\!=\!0$ anchor combines the
+SPARC RAR-fit median of \citet{McGaugh2016}
+($1.20\!\pm\!0.26\!\times\!10^{-10}\,\mathrm{m\,s^{-2}}$) with
+the tighter full-Hamiltonian Monte Carlo joint inference of
+\citet{Desmond2023} on the same SPARC sample
+($1.19\!\pm\!0.10$, MLS interpolating function, matching the
+framework adopted by \citealt{Ciocan2026RAR}); we use the
+\citet{Varasteanu2025} combined MIGHTEE-HI + high-acceleration
+SPARC RAR-framework value
+($1.32\!\pm\!0.13$ at $z\!\sim\!0.04$) as the lowest
+intermediate-$z$ anchor.  Together with the four
+\citet{Ciocan2026RAR} bins at $z\!\sim\!0.55$, $0.78$, $1.05$,
+$1.30$ this defines the clean $N\!=\!7$ cohort on which we report
+all goodness-of-fit numbers in this section.  Numerical outputs
+are reproducible from
+\texttt{publication/a0\_ml\_degeneracy.py} (Sec.~4.5 fitting
+ladder) and \texttt{publication/a0\_robustness\_tests.py}
+(robustness tests A--F summarised below).
 
-The Hubble-scaling agreement is most cleanly seen as a
-shape-convergence statement: anchored at the SPARC $z\!=\!0$
-value, the ratio
-$[\azero^{\rm obs}(z)/\azero^{\rm SPARC}]/[H(z)/H_{0}]$ falls
-monotonically across the four \citet{Ciocan2026RAR} bins from
-$1.22$ at $z\!=\!0.55$ to $1.06$ at $z\!=\!1.30$, indicating
-that the data approaches the HEAT-predicted Hubble scaling at
-high redshift to within $\sim 6\%$.
+\paragraph{Headline goodness of fit on the raw cohort.}  Allowing
+only the proportionality constant $K$ in
+$\azero(z)\!=\!K\,c\,H(z)$ to float yields a best-fit
+$\beta\!\equiv\!K/K_{\rm HEAT}\!=\!1.29\!\pm\!0.04$ with
+$\chi^{2}\!=\!5.9$ for $6$ degrees of freedom (Planck-2018
+$H_{0}\!=\!67.4\,\mathrm{km\,s^{-1}\,Mpc^{-1}}$, $\Omega_{m}\!=\!0.315$).
+The constant-$\azero$ MOND baseline gives $\chi^{2}\!=\!198$ for
+the same cohort and is excluded at $\Delta\chi^{2}\!>\!190$
+against the free-$K$ HEAT shape.  The three Ciocan linear-in-$z$
+fits give $\chi^{2}\!=\!13$--$18$ on the same cohort, worse than
+the free-$K$ HEAT shape despite carrying one extra fitted
+parameter; the full goodness-of-fit ladder is collected in
+Table~\ref{tab:a0z_chi2}.
 
-\paragraph{Methodology-split $\chi^{2}$.}  The two
-local-redshift anchors enter the residual through different
-inversions of different observables: SPARC and the
-\citet{Ciocan2026RAR} bins are derived from rotation-curve
-modelling under a MOND-flavoured interpolation function, while
-\citet{Varasteanu2025} infers $\azero$ from the slope and
-intercept of an HI baryonic Tully--Fisher relation.
-\citet{Rodrigues2018} and \citet{McGaugh2018} document
-methodology-dependent shifts of order $\sim 30\%$ between
-these two inversions on overlapping samples; consistent with
-that, \citet{Varasteanu2025} sits $3.5\sigma$ above the SPARC
-RC-derived value at essentially the same redshift, and is the
-single largest contributor to $\chi^{2}$ for every
-$\azero\!\propto\!H^{n}$-flavoured model we consider.  We
-therefore report the goodness-of-fit ladder twice: on the full
-$N\!=\!6$ sample and on the rotation-curve-derived
-$N\!=\!5$ subset (Table~\ref{tab:a0z_chi2}, second
-$\chi^{2}$ column).  On the RC-only cohort the free-$K$ HEAT
-shape achieves $\chi^{2}\!=\!2.9$ for $4$ degrees of freedom
-(with
-$K\!\approx\!1.32\,K_{\rm HEAT}$, statistically
-indistinguishable from the full-sample free-$K$ fit), the
-$\azerolocal=cH_0/(2\pi)$ HEAT reference gives
-$\chi^{2}\!=\!55.6$, and the
-constant-$\azero$ MOND baseline remains strongly disfavoured at
-$\chi^{2}\!=\!197$.  The relative ordering of the models is
-preserved on both cohorts.
+\paragraph{Test of the $\azero(z)\!\propto\!H(z)$ shape.}  The
+specific HEAT prediction is not the absolute prefactor $\beta$
+(which is jointly degenerate with $H_{0}$ and the stellar
+mass-to-light calibration, as quantified below), but the shape
+exponent: $\azero(z)\!\propto\!H(z)^{n}$ with $n\!=\!1$.  We test
+this by promoting $n$ to a free parameter and applying the
+likelihood-ratio test (LRT) for the nested $n\!=\!1$ hypothesis.
+On the raw cohort the free-$n$ fit recovers
+$n\!=\!+1.08\!\pm\!0.10$ at $\chi^{2}\!=\!5.42$ for $5$ degrees
+of freedom; the $n\!=\!1$ vs.\ $n$-free likelihood ratio gives
+$\Delta\chi^{2}\!=\!0.52$ for one extra parameter
+($p\!=\!0.47$, $0.7\sigma$).  The data therefore do not reject
+the HEAT $n\!=\!1$ shape.  Independently, the MCMC marginal
+posterior on $n$ (Test A of
+\texttt{a0\_robustness\_tests.py}) gives
+$n\!=\!1.07\!\pm\!0.11$ ($68\%$ credible region containing
+$n\!=\!1$), and a $10^{4}$-draw bootstrap (Test D) returns the
+$95\%$ non-parametric interval $n\!\in\![0.78, 1.44]$
+(containing $n\!=\!1$).  The Hubble-scaling agreement is also
+visible directly in the data: anchored at the
+\citet{Desmond2023} $z\!=\!0$ value, the ratio
+$[\azero^{\rm obs}(z)/\azero^{\rm SPARC}]/[H(z)/H_{0}]$ stays
+within $1.22$--$1.40$ across the four \citet{Ciocan2026RAR}
+bins, with no significant residual trend in $z$.
 
-\begin{deluxetable}{lccc}
+\paragraph{Predictive cross-validation.}  The LRT and MCMC tests
+above are likelihood-based and do not by themselves test
+\emph{predictive} consistency.  We therefore perform a
+$3\,{+}\,4$ split of the cohort and evaluate the HEAT
+$n\!=\!1$ extrapolation in both directions (Test E of
+\texttt{a0\_robustness\_tests.py}).
+\textit{Forward direction}: training only on the three $z\!\lesssim\!0.04$
+anchors gives $\beta\!=\!1.18\!\pm\!0.07$; the four held-out
+\citet{Ciocan2026RAR} bins at $z\!\sim\!0.55$--$1.30$, evaluated
+against this low-$z$-only HEAT model, give a predictive
+$\chi^{2}\!=\!7.89$ for $4$ degrees of freedom against the
+$95\%$-critical value $\chi^{2}_{\rm crit}\!=\!9.49$
+(accepted at $95\%$).  \textit{Back direction}: training only on
+the four Ciocan high-$z$ bins (with $n$ fixed at the HEAT value
+$n\!=\!1$) gives $\beta\!=\!1.33\!\pm\!0.05$; the three held-out
+low-$z$ anchors, evaluated against this high-$z$-only HEAT
+model, give $\chi^{2}\!=\!3.97$ for $3$ degrees of freedom
+against $\chi^{2}_{\rm crit}\!=\!7.81$ (also accepted at
+$95\%$).  The cohort is bidirectionally consistent with the
+HEAT shape: the low-$z$ anchor predicts the MUSE-DARK trend,
+and the MUSE-DARK trend back-extrapolates to the low-$z$ anchor,
+under a single common $\beta$ in each direction whose internal
+$1\sigma$ values ($1.18$, $1.33$) bracket the joint fit
+($1.29$).  (Allowing $n$ to float on the Ciocan-only subset
+inflates the back-direction $\chi^{2}$ to $29$; this is a
+two-parameter-on-four-points degeneracy artifact -- the
+$n\!=\!1$ fit on the same four Ciocan bins is only
+$\Delta\chi^{2}\!=\!2.3$ worse than the $n$-free best fit --
+not a HEAT failure.)
+
+\paragraph{Common-framework $\chi^{2}$.}  All three low-$z$
+anchors and the four MUSE-DARK bins share the same underlying
+methodology: a standard $\Lambda$CDM disk--halo decomposition of
+the rotation curve, supplying $a_{\rm tot}$ from the HI velocity
+field and $a_{\rm bar}$ from the baryonic surface-density
+profile via Poisson's equation, with a MOND-flavoured
+interpolation function fit \emph{only} to the resulting
+$a_{\rm tot}$ vs.\ $a_{\rm bar}$ relation
+\citep[as explicitly stated for SPARC by][and adopted
+identically in Paper~III]{McGaugh2016}.  The
+\citet{Varasteanu2025} combined fit reports $\azero$ from this
+same RAR framework applied jointly to their MIGHTEE-HI sample
+and the high-acceleration portion of SPARC, not from a primary
+bTFR inversion.  We therefore treat all seven points as
+methodology-consistent and do not partition the cohort by
+inversion-type.  The residual methodological lever remaining is
+which halo-density prescription is allowed at the disk--halo
+decomposition step inside Paper~III itself: a global DC14
+template, per-galaxy preferred profiles, or a direct
+MOND-framework fit.  These choices shift the recovered
+$\azero(z\!=\!1)$ across $2.19$--$2.61\!\times\!10^{-10}\,
+\mathrm{m\,s^{-2}}$ (Eqs.~2, D.1, E.4 of Paper~III) and define
+the $\chi^{2}$ spread among the three Ciocan linear-in-$z$
+parameterisations in Table~\ref{tab:a0z_chi2}.
+
+\begin{deluxetable*}{lccc}
 \tablecaption{Goodness-of-fit comparison for $\azero(z)$
-  parameterisations on two cohorts: the full $N\!=\!6$ sample
-  (SPARC $+$ \citealt{Varasteanu2025} $+$ four
-  \citealt{Ciocan2026RAR} bins) and the rotation-curve-only
-  $N\!=\!5$ subset, which drops the bTFR-derived
-  \citet{Varasteanu2025} point following the methodology
-  caveats of \citet{Rodrigues2018} and \citet{McGaugh2018}.
-  The free-$K$ HEAT shape gives the lowest $\chi^{2}$ among the
-  entries shown, including each of the three
-  Ciocan linear-in-$z$ parameterisations on \emph{both} cohorts
-  \emph{despite carrying one fewer fitted parameter} (1 vs.\ 2).
-  The constant-$\azero$ MOND baseline is strongly disfavoured at
-  $\chi^{2}\!\gtrsim\!200$ on both
-  cohorts.\label{tab:a0z_chi2}}
+  parameterisations on the clean $N\!=\!7$ cohort
+  (\citealt{McGaugh2016} and \citealt{Desmond2023} at
+  $z\!=\!0$, the combined MIGHTEE-HI\,+\,high-$g$-SPARC RAR-fit
+  of \citealt{Varasteanu2025} at $z\!\sim\!0.04$, and the four
+  \citealt{Ciocan2026RAR} bins at
+  $z\!\sim\!0.55$--$1.30$), reported both raw and after the
+  uniform $+0.11$\,dex M/L correction discussed below
+  (\S\ref{sec:a0z}, ``Stellar-mass systematic'').  The free-$K$
+  HEAT shape gives the lowest $\chi^{2}$ among the entries
+  shown, including each of the three Ciocan linear-in-$z$
+  parameterisations \emph{despite carrying one fewer fitted
+  parameter} (1 vs.\ 2).  The constant-$\azero$ MOND baseline is
+  strongly disfavoured at $\chi^{2}\!\gtrsim\!95$ on both
+  columns.  Note that under the $+0.11$\,dex M/L correction the
+  free-$K$ fit recovers $\beta\!=\!1.06\!\pm\!0.03$ (the bare
+  HEAT prefactor at $\sim 2\sigma$) but the same correction
+  fails the forward $3\!\to\!4$ predictive cross-validation on
+  the raw cohort (\S\ref{sec:a0z}, ``Stellar-mass systematic''),
+  so the M/L column is a calibration sensitivity rather than a
+  preferred analysis.\label{tab:a0z_chi2}}
+\tablewidth{0pt}
 \tablehead{
   \colhead{Model} & \colhead{Fitted pars} &
-  \colhead{$\chi^{2}_{\rm full}$ ($N\!=\!6$)} &
-  \colhead{$\chi^{2}_{\rm RC}$ ($N\!=\!5$)}
+  \colhead{$\chi^{2}_{\rm raw}$ ($N\!=\!7$)} &
+  \colhead{$\chi^{2}_{+0.11\,\rm dex\,M/L}$ ($N\!=\!7$)}
 }
 \startdata
-HEAT shape, free $K$                & 1    & {\bf 7.2}  & {\bf 2.9}  \\
-HEAT, $\azerolocal\!=\!cH_0/(2\pi)$ & 0    & 79.0       & 55.6 \\
-Constant-$\azero$ MOND ($1.20$)     & 0    & 211.7      & 197.5 \\
-Ciocan DC14 uniform                 & ext. & 28.7       & 5.5  \\
-Ciocan DC14 per-galaxy              & ext. & 27.6       & 8.1  \\
-Ciocan MOND framework               & ext. & 33.8       & 11.6 \\
+HEAT shape, free $K$                & 1    & {\bf 5.9}  & {\bf 6.2}  \\
+HEAT, $\azerolocal\!=\!cH_0/(2\pi)$ & 0    & 61.8       & 9.7  \\
+Constant-$\azero$ MOND ($1.20$)     & 0    & 198.4      & 95.1 \\
+Ciocan DC14 uniform                 & ext. & 13.0       & $104.7^{\dagger}$ \\
+Ciocan best-fit per-galaxy           & ext. & 12.5       & $129.9^{\dagger}$ \\
+Ciocan MOND framework               & ext. & 17.6       & $29.1^{\dagger}$  \\
 \enddata
 \tablecomments{``Fitted pars'' is the number of parameters
-  refit on the $N\!=\!6$ subset of this work; the free-$K$
-  fit therefore has $5$ dof on the full sample and $4$ dof on
-  the RC-only sample.  Rows marked ``ext.'' are external
+  refit on the $N\!=\!7$ cohort of this work; the free-$K$ fit
+  therefore has $6$ dof.  Rows marked ``ext.'' are external
   two-parameter linear fits to the broader
   \citet{Ciocan2026RAR} sample (Eqs.~4, D.2, E.5 of
   Paper~III); their slopes and intercepts are fixed for our
   $\chi^{2}$ accounting and no dof reduction is applied.
-  ``HEAT shape, free $K$'' is the main shape test and refits only
-  the single proportionality constant in $\azero(z)=K\,cH(z)$,
-  finding
-  $K\!\approx\!1.35\,K_{\rm HEAT}$ on the full sample and
-  $K\!\approx\!1.32\,K_{\rm HEAT}$ on the RC-only subset
-  (i.e.\ statistically indistinguishable across cohorts; the
-  headline observable $R(z)/R_{0}$ is invariant under this
-  shift, \S\ref{sec:exp}).  ``HEAT,
-  $\azerolocal\!=\!cH_0/(2\pi)$'' uses the conventional absolute
-  anchor in Eq.~\ref{eq:a0} and is retained as the secondary
-  normalisation reference.  Replacing the SPARC RAR-fit anchor
-  $\azero^{\rm SPARC}(0)\!=\!1.20\!\pm\!0.26$ with the
-  apples-to-apples Ciocan MOND-framework intercept
-  $\azero^{\rm MOND}(0)\!=\!1.03\!\pm\!0.05$ leaves
-  $\chi^{2}_{\rm RC}$ unchanged at $55.3$ for HEAT, since the
-  SPARC contribution is sub-dominant under either anchor.
+  ``HEAT shape, free $K$'' refits only the single proportionality
+  constant in $\azero(z)=K\,cH(z)$, finding $\beta\!\equiv\!
+  K/K_{\rm HEAT}\!=\!1.29\!\pm\!0.04$ raw and $1.06\!\pm\!0.03$
+  after the $+0.11$\,dex M/L correction; the headline observable
+  $R(z)/R_{0}$ is invariant under this prefactor, \S\ref{sec:exp}.
+  ``HEAT, $\azerolocal\!=\!cH_0/(2\pi)$'' uses the conventional
+  absolute anchor of Eq.~\ref{eq:a0} ($\beta\!=\!1$) and is
+  retained as the secondary normalisation reference; its
+  $\chi^{2}_{\rm raw}\!=\!62$ falls to $9.7$ under the same
+  M/L correction, i.e.\ becomes statistically indistinguishable
+  from the free-$K$ fit at $\sim 2\sigma$, approaching the bare
+  HEAT prediction.
+  $^{\dagger}$ Entries marked with a dagger are the
+  \emph{unrefitted} Ciocan linear $\azero(z)\!=\!a_0\!+\!a_1\,z$
+  parameterisations evaluated against the M/L-corrected
+  data; the corrected data want a markedly shallower slope, so
+  the unrefitted DC14 and per-galaxy linear fits fail
+  $\chi^{2}\!\gtrsim\!100$ in the second column.  These dagger
+  entries should be read as ``this $a_1$ slope is incompatible
+  with the M/L-corrected data,'' not as competitive model fits.
+  The Ciocan MOND-framework intercept
+  $\azero^{\rm MOND}(0)\!=\!1.03\!\pm\!0.05$ remains the
+  apples-to-apples $z\!=\!0$ anchor for any cohort whose high-$z$
+  points are themselves derived in the Ciocan-MOND framework.
   Numbers are reproduced from \texttt{a0\_evolution\_stats.txt}
-  in the Zenodo deposit and visualised in
+  and \texttt{a0\_ml\_degeneracy.txt} in the Zenodo deposit and
+  visualised in
   Figure~\ref{fig:a0z}.}
-\end{deluxetable}
+\end{deluxetable*}
 
 \paragraph{Cross-framework normalisation match.}  In the MOND
 framework adopted in Paper~III Appendix~E, the linear-fit
@@ -1216,7 +1404,7 @@ and this is the apples-to-apples comparison: both invert the
 same MOND interpolation function on the same observed
 kinematics, so any methodology-dependent normalisation drift
 is differenced out.  The DC14 uniform fit
-($1.00\!\pm\!0.04$) and the DC14 per-galaxy fit
+($1.00\!\pm\!0.04$) and the best-fit per-galaxy fit
 ($1.05\!\pm\!0.05$) bracket the HEAT value within their
 $1\sigma$ envelope, again with the MOND interpolation
 function used inside the disk--halo decomposition.
@@ -1225,14 +1413,15 @@ The SPARC RAR-fit value
 $\azero^{\rm SPARC}(0)\!=\!1.20\!\pm\!0.26$ is a different
 inversion of partially overlapping physics: a galaxy-by-galaxy
 RAR median rather than a population-level interpolation-function
-fit.  \citet{Rodrigues2018} and \citet{McGaugh2018} document
-methodology-dependent shifts of order $\sim 30\%$ between the
-two reductions on the same SPARC subsample, of the same
+fit.  The exchange between \citet{Rodrigues2018} and
+\citet{McGaugh2018} documents methodology-dependent shifts of
+order $\sim 30\%$ between the two reductions on the same SPARC
+subsample, of the same
 direction and roughly the same magnitude as the
 $\sim 13\%$ offset between HEAT's $1.04$ and SPARC's $1.20$.
-The adopted anchor therefore agrees with the
-framework-self-consistent (MOND-interpolation) z=0 anchor at
-$1\%$ and remains within $1\sigma$ of the SPARC RAR-fit
+The adopted anchor therefore matches the framework-self-consistent
+(MOND-interpolation) $z\!=\!0$ anchor at the level
+quantified above and remains within $1\sigma$ of the SPARC RAR-fit
 anchor; we treat the two anchors as bounding the
 methodology-dependent normalisation rather than as a single
 common datum.
@@ -1240,7 +1429,7 @@ common datum.
 \paragraph{Appendix robustness.}  The positive $\azero(z)$
 trend in Paper~III is not tied to a single halo
 parameterisation.  Paper~III's appendix repeats the inversion
-under a uniform DC14 prescription, per-galaxy DC14 fits, and a
+under a uniform DC14 prescription, best-fit per-galaxy fits, and a
 MOND-framework fit; all three recover an increasing acceleration
 scale across the MUSE-DARK redshift interval, with a common
 qualitative shape but methodology-dependent intercepts.  This
@@ -1250,18 +1439,145 @@ why Table~\ref{tab:a0z_chi2} reports their $\chi^{2}$ alongside
 both the free-$K$ HEAT shape test and the conventional-anchor
 HEAT reference.
 
-\paragraph{Stellar-mass systematic.}  A natural objection is that
-the apparent $\azero(z)$ rise reflects an unmodelled mass
-systematic in the high-$z$ Ciocan sample: low signal-to-noise
-disk decomposition at $z\!\sim\!1$ might overestimate
-$M_{\star}$, biasing the inferred $\azero$ upward.  Paper~III
-Appendix~C explicitly tests this by applying coherent
-$+0.2$ and $+0.45$\,dex shifts to the disk mass-to-light ratio
-of the entire sample; the recovered $\azero(z)$ trend persists
-in both cases, ruling out this systematic as the source of the
-positive slope.  The Paper~III analysis therefore stands
-independent of the M/L assumption to the precision currently
-quoted.
+\paragraph{Stellar-mass systematic.}  The natural objection
+\citep[discussed by][see also Paper~III \S\,4]{Ciocan2026RAR}
+is in the opposite direction from a naive expectation: the
+MUSE-DARK dynamical disk--halo decompositions are potentially
+\emph{submaximal}, so the high-$z$ baryonic mass
+$M_{\star}\!+\!M_{\rm HI}$ may be \emph{under-estimated}, which
+in the deep-MOND limit
+$g_{\rm obs}\!=\!\sqrt{g_{\rm bar}\azero}$ biases the recovered
+$\azero$ \emph{upward} by a factor
+$10^{+\delta_{M_{\star}}}$.  Paper~III Appendix~C tests this
+along the trend axis by applying coherent $+0.2$ and $+0.45$\,dex
+shifts to the disk mass-to-light ratio of the entire sample;
+the recovered positive $\azero(z)$ \emph{slope} persists in both
+cases, and the Paper~I appendix further demonstrates the
+MUSE-DARK dynamical $M_{\star}$ are consistent with
+SED-derived stellar masses at the same redshift.  Paper~III's
+\emph{trend} conclusion therefore stands independent of the
+M/L assumption.
+
+The complementary question we ask here is at what
+$\delta_{M_{\star}}$ the empirical \emph{prefactor}
+$\beta\!\equiv\!K/K_{\rm HEAT}$ relaxes to unity.  Applying a
+uniform $\delta_{M_{\star}}$ correction only to the four
+Ciocan high-$z$ bins (the SPARC and Varasteanu+2025 anchors use
+independently calibrated M/L), we find the high-$z$ weighted
+$K$ reaches unity at
+$\delta_{M_{\star}}\!=\!+0.124\!\pm\!0.05$\,dex and the
+low-$z$/high-$z$ aggregate $K$ values reconcile at
+$\delta_{M_{\star}}\!=\!+0.05$\,dex; both lie within the
+per-galaxy M/L uncertainty floor quoted in Paper~III and below
+the $+0.2$ to $+0.45$\,dex range that Paper~III Appendix~C
+tested for the trend.  Refitting the cohort under a fiducial
+$+0.11$\,dex uniform correction yields
+$\beta\!=\!1.06\!\pm\!0.03$ and reduces the
+$\beta\!=\!1$ residual from $\chi^{2}\!=\!62$ to
+$\chi^{2}\!=\!9.7$.
+
+We note, however, that the $+0.11$\,dex uniform correction is
+not preferred by the predictive cross-validation of the
+preceding paragraph: applying the same correction to the four
+Ciocan bins and re-running the forward direction
+(3 low-$z$ anchors $\to$ 4 high-$z$ bins under HEAT $n\!=\!1$)
+gives predictive $\chi^{2}\!=\!10.14$ for $4$ degrees of
+freedom, just above the $95\%$ critical value of $9.49$
+(rejected at $95\%$; Test E2 of
+\texttt{a0\_robustness\_tests.py}).  The uniform correction
+shifts the four Ciocan bins below the band predicted by the
+low-$z$ anchor; the residuals all turn negative
+($-0.89, -1.15, -1.83, -2.16\sigma$ at the four bins), in
+contrast to the raw-cohort positive residuals
+($+1.91, +1.85, +0.82, +0.37\sigma$).  We therefore treat the
+$+0.11$\,dex correction as a sensitivity test for the
+prefactor, not as a preferred analysis: the raw cohort with
+the bare HEAT shape is the more self-consistent fit when the
+goal is bidirectional predictivity.  The
+$(\beta, n)$ region tabulated below is the
+calibration-marginalised envelope of plausible analyses; the
+joint Planck-cosmology fit prefers the raw end of that
+envelope.
+
+\paragraph{$(\beta,n)$ calibration sensitivity.}  Repeating the
+two-parameter fit
+$\azero(z)\!=\!\beta\!\cdot\!cH_0/(2\pi)\!\cdot\![H(z)/H_0]^{n}$
+under five well-motivated calibration choices traces a narrow
+one-parameter ridge in $(\beta,n)$ space (Table~\ref{tab:beta_n_degeneracy}).
+
+\begin{deluxetable}{lcc}
+\tablecaption{$(\beta,n)$ calibration sensitivity on the clean
+  $N\!=\!7$ cohort.  At fixed M/L the joint posterior is much
+  tighter than the spread shown here (Test A of
+  \texttt{a0\_robustness\_tests.py}: marginal posteriors give
+  $\sigma_{\beta}\!\sim\!0.06$ and $\sigma_{n}\!\sim\!0.11$);
+  what this table reports is the shift of the joint best fit
+  under reasonable calibration variations.  All five rows
+  exclude the constant-$\azero$ baseline ($n\!=\!0$) at
+  $\Delta\chi^{2}\!\geq\!90$; none in isolation excludes
+  $\beta\!=\!1$.\label{tab:beta_n_degeneracy}}
+\tablehead{
+  \colhead{Calibration} & \colhead{$\beta$} & \colhead{$n$}
+}
+\startdata
+default (Ciocan bins, raw)            & $1.29\!\pm\!0.04$ & $+1.08\!\pm\!0.10$ \\
+Ciocan MOND-IF global (raw)           & $1.18\!\pm\!0.05$ & $+1.00\!\pm\!0.13$ \\
+$+0.06$\,dex M/L                      & $1.16\!\pm\!0.03$ & $+0.88\!\pm\!0.10$ \\
+$+0.11$\,dex M/L                      & $1.06\!\pm\!0.03$ & $+0.72\!\pm\!0.10$ \\
+$+0.11$\,dex M/L $+$ MOND-IF          & $0.99\!\pm\!0.04$ & $+0.56\!\pm\!0.13$ \\
+\enddata
+\tablecomments{The MOND-IF column uses the single Paper~III
+  Eq.~E.4 sample-wide intercept ($\azero(z\!=\!1)\!=\!2.19$)
+  in place of the four binned bin1--bin4 points, because that
+  reduction inverts the same MOND interpolation function as the
+  HEAT prediction itself.  The $+0.11$\,dex M/L column applies a
+  uniform stellar mass-to-light revision only to the four Ciocan
+  high-$z$ bins (and to the MOND-IF global in the last row),
+  leaving the SPARC and Varasteanu+2025 anchors unchanged.
+  The constant-$\azero$ baseline (the $n\!=\!0$ limit) is
+  excluded at $\Delta\chi^{2}\!\geq\!90$ on every row.  Numbers
+  are reproduced from \texttt{a0\_ml\_degeneracy.txt}.}
+\end{deluxetable}
+
+\noindent The five rows trace a calibration-driven
+one-parameter family in $(\beta,n)$ space spanning
+$(1.29,1.08)\!\to\!(0.99,0.56)$.  At fixed calibration the
+joint posterior is narrow (Test A), but
+the choice of M/L calibration shifts the joint best fit by
+$\Delta\beta\!\sim\!0.3$ and $\Delta n\!\sim\!0.5$.  Three
+independent statements survive this calibration sensitivity:
+(i) the constant-$\azero$ alternative ($n\!=\!0$) is excluded
+by every row at $\Delta\chi^{2}\!\geq\!90$ -- this is the
+robust constant-vs.-evolving statement;
+(ii) on the raw cohort the joint best fit is
+$(\beta, n)\!=\!(1.29, 1.08)$, with the HEAT $n\!=\!1$ shape
+accepted by the LRT at $p\!=\!0.47$ and by the bidirectional
+cross-validation at $95\%$ in both directions;
+(iii) the $\beta\!=\!1$ row of the table is reached only when
+one of the M/L corrections is applied, and that same correction
+fails the forward predictive cross-validation at $95\%$ on the
+raw cohort -- so $\beta\!=\!1$ is accessible within the
+calibration envelope but is not the most predictively
+consistent slice of it.  We therefore quote the raw
+$(\beta, n)\!=\!(1.29, 1.08)$ as the headline joint fit at
+Planck cosmology, and the $(\beta\!=\!1, n\!\sim\!0.6$--$0.7)$
+end as the M/L-corrected sensitivity.  Independent breaking of
+this residual $(\beta,n)$ degeneracy requires either an
+independent stellar M/L calibration at $z\!>\!0.5$
+(e.g.\ JWST NIRSpec stellar populations on a
+MUSE-DARK-overlap sample) or new $\azero(z)$ measurements at
+the currently-empty $0.1\!<\!z\!<\!0.5$ range.  An $H_{0}$
+sensitivity test on a $9{\times}5$ grid in
+$H_{0}\!\in\![60,76]$ and $\Omega_{m}\!\in\![0.27,0.35]$
+(Test B of \texttt{a0\_robustness\_tests.py}) further shows
+that the joint $\chi^{2}$ for the bare HEAT
+($\beta\!=\!1, n\!=\!1$) prediction falls from $\chi^{2}\!=\!62$
+at Planck to $\chi^{2}\!=\!36$ at $H_{0}\!=\!73$; combined with
+the $+0.11$\,dex M/L lever it falls to $\chi^{2}\!=\!8$ at
+$H_{0}\!=\!73$.  In other words, $\beta\!=\!1$ becomes the
+data-preferred slice only when both the SH$_{0}$ES-style $H_{0}$
+and the M/L revision are taken together; neither lever alone is
+sufficient.
 
 \paragraph{Halo-density counterpart from Paper~I.}  An
 independent corroboration comes from the same MUSE-DARK sample
@@ -1284,62 +1600,85 @@ $\azero(z)$ comparison and the
 $\Delta\log_{10}\Sigma_{\rm DM}(z)$ counterpart.
 
 \paragraph{Status.}  The intermediate-redshift RAR data of
-\citet{Ciocan2026RAR} strongly prefer an evolving
-acceleration scale over the constant-$\azero$ MOND baseline in
-this diagnostic comparison, and are consistent with the HEAT
-\emph{shape} once a single normalisation $K$ is
-allowed to float, and---in the MOND-framework reduction---
-extrapolate to a $z\!=\!0$ intercept agreeing with the
-conventional Milgrom--Hubble anchor to within $1\%$.  Combined
-with the Paper~I halo-density elevation and the Paper~II bTFR
-zero-evolution result discussed in \S\ref{sec:btfr}, the trilogy
-provides two of three independent observational signatures of an
-evolving $\azero(z)$, with the lensed bTFR zero-evolution result
-remaining the principal challenge listed in the falsification
-programme of \S\ref{sec:falsify}.
+\citet{Ciocan2026RAR}, anchored at $z\!=\!0$ by
+\citet{Desmond2023} and \citet{McGaugh2016} and at
+$z\!\sim\!0.04$ by \citet{Varasteanu2025}, jointly
+\emph{exclude} the constant-$\azero$ MOND baseline at
+$\Delta\chi^{2}\!\geq\!90$ on every calibration choice in
+Table~\ref{tab:beta_n_degeneracy}.  The bare HEAT shape
+($n\!=\!1$) is accepted by the likelihood-ratio test against
+the free-$n$ alternative at $p\!=\!0.47$ on the raw cohort,
+and the three-low-$z$ vs.\ four-high-$z$ predictive
+cross-validation is internally consistent in both directions
+at $95\%$ ($\chi^{2}_{\rm fwd}\!=\!7.89$ vs.\ $9.49$;
+$\chi^{2}_{\rm back}\!=\!3.97$ vs.\ $7.81$, both under HEAT
+$n\!=\!1$).  At Planck-2018 cosmology the prefactor is
+$\beta\!=\!1.29\!\pm\!0.04$; this $\sim\!7\sigma$ offset from
+$\beta\!=\!1$ is jointly degenerate with $H_{0}$ and with the
+stellar M/L calibration, and the bare HEAT prediction is
+recovered when a SH$_{0}$ES-style $H_{0}\!=\!73$ is adopted
+together with a $+0.11$\,dex M/L revision (within the
+per-galaxy M/L uncertainty floor of Paper~III), although the
+same M/L revision over-corrects the high-$z$ data in the
+predictive cross-validation.  The MOND-framework
+intercept extrapolates to a $z\!=\!0$ value compatible with the
+conventional Milgrom--Hubble anchor at the $\sim 1\%$ level.
+Combined with the Paper~I halo-density elevation and the
+Paper~II bTFR zero-evolution result discussed in
+\S\ref{sec:btfr}, the trilogy provides two of three independent
+observational signatures of an evolving $\azero(z)$, with the
+lensed bTFR zero-evolution result remaining the principal
+challenge listed in the falsification programme of
+\S\ref{sec:falsify}.
 
 \begin{figure*}[t]
   \centering
-  \includegraphics[width=0.95\textwidth]{../heat_output/jwst_early_galaxies/fig9_a0_evolution.pdf}
+  \includegraphics[width=0.95\textwidth]{figures/fig9_a0_evolution.pdf}
   \caption{Direct $\azero(z)$ diagnostic against the MUSE-DARK
     trilogy.  \textit{Panel (a):} $\azero(z)$ values from
     \citet{Ciocan2026RAR} (Paper~III; binned values documented in
     \texttt{heat\_data/ciocan2026\_a0z.csv}) compared with the
-    free-$K$ HEAT shape (solid blue, $K\!\approx\!1.35\,K_{\rm
-    HEAT}$, $\chi^{2}\!=\!7.2$ for $5$ dof), which is the main
-    comparison because it tests the $H(z)$ \emph{shape}
-    independently of the absolute normalisation.  The
-    conventional Milgrom--Hubble anchor
+    HEAT shape $\azero(z)\!\propto\!H(z)$.  The upper solid blue
+    curve is the raw-cohort free-$K$ best fit
+    ($\beta\!=\!1.29\!\pm\!0.04$, $\chi^{2}\!=\!5.9$ for $6$
+    dof) -- this is the headline joint fit on Planck cosmology
+    and is accepted by the likelihood-ratio test against a
+    free-$n$ alternative at $p\!=\!0.47$.  The lower solid blue
+    curve is the $+0.11$\,dex M/L-corrected best fit
+    ($\beta\!=\!1.06\!\pm\!0.03$, $\chi^{2}\!=\!6.2$) -- this
+    is shown as a calibration sensitivity, not as a preferred
+    analysis (it fails the forward $3\!\to\!4$ predictive
+    cross-validation at $95\%$ on the raw cohort; see text).
+    The shaded blue band between them is the M/L systematic
+    envelope.  The bare HEAT prediction
     $\azero(z)\!=\!\azerolocal H(z)/H_0$ with
-    $\azerolocal=cH_0/(2\pi)$ is shown as a dashed blue reference;
-    its normalisation does not enter the headline observable
-    $R(z)/R_{0}$ by the K-invariance argument of
-    \S\ref{sec:exp}.  Also shown are the constant-$\azero$ MOND
-    baseline ($1.20\!\times\!10^{-10}\,\mathrm{m\,s^{-2}}$, dashed grey),
-    and the three Ciocan linear-in-$z$ fits in the DC14 uniform,
-    DC14 per-galaxy, and MOND frameworks (dotted lines).  Black
-    square: SPARC $z\!=\!0$ RC-derived anchor
-    \citep{McGaugh2016}; red plus: \citet{Varasteanu2025}
-    HI bTFR-derived value at $z\!<\!0.08$ (\emph{not} included
-    in the RC-only $\chi^{2}$ column of
-    Table~\ref{tab:a0z_chi2}, per the methodology caveats of
-    \citealt{Rodrigues2018,McGaugh2018}); purple circles:
-    Ciocan $z\!\sim\!0.55$--$1.30$ binned RAR points
-    (Paper~III Fig.~3); purple/green/orange large markers: the
-    same Ciocan global measurement at $z\!\sim\!1$ in the three
-    frameworks (Eqs.~2, D.1, E.4 of Paper~III).  The light-blue
-    band around the dashed anchor reference is the $\pm 13\%$
-    $z\!=\!0$ anchor envelope from the SPARC posterior on
-    $\azero(0)$.  The upper-left inset tabulates the
-    $\chi^{2}$ goodness-of-fit ladder for the six models
-    reproduced in Table~\ref{tab:a0z_chi2}, on both the full
-    $N\!=\!6$ cohort and the rotation-curve-only $N\!=\!5$
-    subset; the annotation highlights the $1\%$ agreement
-    between the Ciocan MOND-framework intercept
-    ($a_0(0)\!=\!1.03\pm 0.05$) and the conventional
-    Milgrom--Hubble anchor ($cH_0/(2\pi)\!=\!1.04$), which is the
-    apples-to-apples comparison since both invert the same
-    MOND interpolation function on the same kinematics.
+    $\azerolocal\!=\!cH_0/(2\pi)$ ($\beta\!=\!1$) is shown as a
+    dotted blue reference.  The constant-$\azero$ MOND baseline
+    ($1.20\!\times\!10^{-10}\,\mathrm{m\,s^{-2}}$, dashed grey)
+    is excluded at $\Delta\chi^{2}\!\geq\!90$ everywhere in the
+    envelope.  The three Ciocan linear-in-$z$ fits in the DC14
+    uniform, best-fit per-galaxy, and MOND frameworks are
+    shown as dotted lines.  Black square: SPARC $z\!=\!0$
+    RAR-fit median \citep{McGaugh2016}; black diamond:
+    \citet{Desmond2023} full-Hamiltonian Monte Carlo SPARC
+    re-inference (MLS interpolating function, matching
+    Paper~III); red plus: \citet{Varasteanu2025} combined
+    MIGHTEE-HI + high-$g$-SPARC RAR-framework value at
+    $z\!\sim\!0.04$; purple circles: Ciocan
+    $z\!\sim\!0.55$--$1.30$ binned RAR points (Paper~III Fig.~3,
+    1-$\sigma$ error bars); purple/green/orange large markers:
+    the same Ciocan global measurement at $z\!\sim\!1$ in the
+    three Paper~III frameworks (Eqs.~2, D.1, E.4).  The
+    upper-left inset tabulates the $\chi^{2}$ goodness-of-fit
+    ladder for the six models reproduced in
+    Table~\ref{tab:a0z_chi2}, on both the raw $N\!=\!7$ cohort
+    and the $+0.11$\,dex M/L-corrected cohort; the annotation
+    highlights the $1\%$ agreement between the Ciocan
+    MOND-framework intercept ($a_0(0)\!=\!1.03\pm 0.05$) and
+    the conventional Milgrom--Hubble anchor
+    ($cH_0/(2\pi)\!=\!1.04$), which is the apples-to-apples
+    comparison since both invert the same MOND interpolation
+    function on the same kinematics.
     \textit{Panel (b):} Halo-density evolution counterpart in
     the DM frame.  Solid blue:
     $\Delta\log_{10}\,\Sigma_{\rm DM}(z)
@@ -1376,7 +1715,7 @@ posterior \citep{Lelli2016,Li2018}.
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=\columnwidth]{../heat_output/sparc_publication/sparc_chi2_red_histograms.png}
+  \includegraphics[width=\columnwidth]{figures/sparc_chi2_red_histograms.png}
   \caption{Reduced $\chi^{2}$ distributions for 171 SPARC
     galaxies under HEAT with the conventional local anchor
     $\azero(0)=cH_0/(2\pi)$ and constant-$\azero$ MOND,
@@ -1459,9 +1798,11 @@ as the cleanest discriminator among MOND-family frameworks.
     HEAT predicts a bTFR zero-point shift
     $\Delta\log_{10}M_{b}\!=\!-\log_{10}[H(z\!=\!1)/H_{0}]\!\approx\!
     -0.255$\,dex at $z\!=\!1$.  A homogeneous direct HI-based
-    bTFR sample (i.e.\ velocities measured from rotation
-    rather than absorption-line stellar dynamics, removing the
-    Jeanneau+2026 source-plane systematic) of
+    bTFR sample (i.e.\ velocities measured from spatially
+    resolved HI rotation in unlensed disks, rather than via
+    lens-model reconstruction of strongly-lensed emission-line
+    kinematics, removing the Jeanneau+2026 source-plane
+    systematic) of
     $\gtrsim 30$ disks at $z\!\sim\!1$ that returns
     $|\Delta\log_{10}M_{b}|\!<\!0.05$\,dex centred on $0.00$ at
     $\geq 3\sigma$ confidence falsifies Eq.~\ref{eq:btfr-evo}.
@@ -1531,11 +1872,23 @@ matter-era baseline.  The recent MUSE-DARK trilogy then provides
 the cleanest direct check of the acceleration-scale shape:
 the Paper~III RAR-based $\azero(z)$ measurement is consistent
 with the HEAT $H(z)$ form when only $K$ is floated
-(\S\ref{sec:a0z}, $\chi^{2}\!=\!7.2$ for $5$ dof), so this is the
-main RAR comparison.  The conventional Milgrom--Hubble value
-$cH_0/(2\pi)$ remains a secondary anchor; in the
-MOND-framework reduction its $z=0$ intercept matches that anchor
-to within $1\%$.  The
+(\S\ref{sec:a0z}, $\chi^{2}\!=\!5.9$ for $6$ dof on the clean
+$N\!=\!7$ cohort, excluding constant-$\azero$ MOND at
+$\Delta\chi^{2}\!>\!190$).  The HEAT $n\!=\!1$ shape is
+accepted against a free-$n$ alternative at $p\!=\!0.47$, and a
+$3\!+\!4$ predictive cross-validation under HEAT $n\!=\!1$ is
+internally consistent in both directions
+($\chi^{2}_{\rm fwd}\!=\!7.89$ vs.\ $9.49$ and
+$\chi^{2}_{\rm back}\!=\!3.97$ vs.\ $7.81$ at $95\%$).  The
+joint prefactor at Planck cosmology is
+$\beta\!=\!1.29\!\pm\!0.04$; this $\sim\!7\sigma$ offset from
+$\beta\!=\!1$ is jointly degenerate with $H_{0}$ and stellar
+M/L, and the bare HEAT prediction is reached within plausible
+calibration systematics but is not the most predictively
+consistent slice of that envelope.  The conventional
+Milgrom--Hubble value $cH_0/(2\pi)$ remains a secondary anchor;
+in the MOND-framework reduction its $z=0$ intercept matches
+that anchor to within $1\%$.  The
 Paper~I halo-density rise
 $\rho_{s}\!\propto\!(1\!+\!z)^{0.54\pm 0.31}$ is consistent
 within $0.9\sigma$ with HEAT's predicted $\Delta\log_{10}\Sigma_{\rm
@@ -1566,6 +1919,15 @@ the new $\azero(z\!=\!2)$, $\azero(z\!=\!3)$, and direct HI bTFR
 thresholds---is collected in \S\ref{sec:falsify}.
 
 % ======================================================================
+\section*{Acknowledgments}
+% ======================================================================
+
+This work is independent and unfunded; it relies on publicly
+available data products from the MUSE-DARK collaboration
+\citep{Ciocan2026RAR,Ciocan2026Halo,Jeanneau2026}, SPARC,
+MIGHTEE-HI, ALMA, JWST, and HST.
+
+% ======================================================================
 \section*{Claim ledger and sensitivity summary}
 % ======================================================================
 
@@ -1587,10 +1949,18 @@ evolution, direct $\azero(z)$ values, and the SPARC local comparison.
 These are not used to establish the headline size relation.  The
 MUSE-DARK RAR comparison is therefore reported in two forms: the
 free-$K$ shape test of $\azero(z)\propto H(z)$, and the conventional
-$cH_0/(2\pi)$ anchor as a secondary reference.  The Jeanneau+2026
-lensed bTFR zero-evolution result is the strongest current
-challenge to this absolute layer and is explicitly listed among the
-falsification thresholds.
+$cH_0/(2\pi)$ anchor as a secondary reference.  The shape test is
+backed by six independent robustness exercises whose outputs are
+collected in \texttt{publication/a0\_robustness\_tests.py}:
+(A) a joint $(\beta, n)$ MCMC posterior; (B) a $9\!\times\!5$
+cosmology grid scan in $(H_{0}, \Omega_{m})$; (C) the
+likelihood-ratio test for $n\!=\!1$ vs.\ free $n$; (D) a
+$10^{4}$-draw bootstrap of the $(\beta, n)$ fit; (E) a
+bidirectional $3\!+\!4$ predictive cross-validation under HEAT
+$n\!=\!1$; and (F) a smooth $z$-dependent M/L profile
+sensitivity.  The Jeanneau+2026 lensed bTFR zero-evolution result
+is the strongest current challenge to the absolute-normalisation
+layer and is explicitly listed among the falsification thresholds.
 
 The ALMA $z\!\sim\!4.5$ velocity--size sample and the JWST compact
 systems are supporting consistency checks only.  Their small sample
@@ -1669,6 +2039,13 @@ checkout with
   intermediate redshifts)
 \bibitem[Conselice(2014)]{Conselice2014}
   Conselice, C.~J. 2014, ARA\&A, 52, 291
+\bibitem[Desmond(2023)]{Desmond2023}
+  Desmond, H. 2023, MNRAS, 526, 3342 (arXiv:2303.11314; full
+  Hamiltonian Monte Carlo joint inference of the underlying
+  SPARC RAR under the MLS interpolating function, yielding
+  $\azero(0)\!=\!1.19\!\pm\!0.04\,(\mathrm{stat})
+  \!\pm\!0.09\,(\mathrm{sys})\!\times\!10^{-10}\,
+  \mathrm{m\,s^{-2}}$)
 \bibitem[Duncan et al.(2019)]{Duncan2019}
   Duncan, K., Conselice, C.~J., Mortlock, A., et al.\ 2019, ApJ,
   876, 110
@@ -1729,6 +2106,9 @@ checkout with
   Skordis, C., \& Z{\l}o\'snik, T. 2021, PRL, 127, 161302
 \bibitem[Somerville et al.(2018)]{Somerville2018}
   Somerville, R.~S., et al.\ 2018, MNRAS, 473, 2714
+\bibitem[Tacconi et al.(2018)]{Tacconi2018}
+  Tacconi, L.~J., Genzel, R., Saintonge, A., et al.\
+  2018, ApJ, 853, 179
 \bibitem[{\"U}bler et al.(2017)]{Ubler2017}
   {\"U}bler, H., F\"orster Schreiber, N.~M., Genzel, R., et al.\
   2017, ApJ, 842, 121

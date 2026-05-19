@@ -8,18 +8,26 @@ as a secondary anchor reference:
   Paper II (Jeanneau+2026, arXiv:2603.28856) -- lensed bTFR zero-evolution result (treated in Fig 7)
   Paper III (Ciocan+2026, arXiv:2604.22613) -- intermediate-z RAR a0(z) evolution
 
+Clean N=7 cohort:
+  z=0.00 SPARC RAR-fit median        (McGaugh+2016)
+  z=0.00 SPARC HMC joint inference   (Desmond+2023, MLS IF -- matches Paper III)
+  z=0.04 MIGHTEE+SPARC RAR combined  (Varasteanu+2025, RAR-framework value)
+  z=0.55-1.30 four MUSE-DARK bins    (Ciocan+2026 Paper III, Fig.3)
+
 Two-panel layout:
-  (a) a0(z) -- free-K HEAT shape vs Ciocan multi-framework data
-       (DC14 uniform, DC14 per-galaxy, MOND) and SPARC + Varasteanu anchors.
-       The cH/(2pi) anchor and constant-a0 MOND baseline are shown as dashed
-       references.  We annotate
-       the 1% match between the HEAT anchor and Ciocan-MOND framework
-       extrapolated to z=0.
+  (a) a0(z) -- TWO HEAT bands shown as a systematic uncertainty envelope:
+       upper solid (raw cohort, beta = 1.251 +/- 0.037) and lower solid
+       (+0.11 dex M/L correction applied only to the four Ciocan bins,
+       beta = 1.032 +/- 0.031), with a shaded blue band between them.
+       The bare HEAT prediction beta = 1 (i.e. a0(z) = c H(z) / (2 pi))
+       is shown as a dashed blue reference and lies inside the band.
+       Constant-a0 MOND (1.20 e-10) is shown as a dashed grey reference;
+       it is excluded at >9 sigma everywhere in the band.  The three
+       Ciocan linear-in-z fits (DC14 uniform, best-fit per-galaxy,
+       MOND framework) are shown as dotted lines.
   (b) Delta log Sigma_DM vs log(1+z) -- HEAT-implied scaling
-       Delta log Sigma_DM = log10[a0(z)/a0(0)] = log10[H(z)/H_0] (since,
-       under the deep-MOND <-> equivalent-DM mapping, the dynamical
-       acceleration scale is a0(z)).  Paper I MHUDF point at z~0.85
-       is overlaid.
+       Delta log Sigma_DM = log10[a0(z)/a0(0)] = log10[H(z)/H_0].
+       Paper I MHUDF point at z~0.85 is overlaid.
 
 Outputs:
   heat_output/jwst_early_galaxies/fig9_a0_evolution.pdf (and .png)
@@ -48,6 +56,27 @@ _CB_GREEN = "#009E73"
 _CB_PURPLE = "#882255"
 _CB_GREY = "#999999"
 _CB_RED = "#CC3311"
+
+# Uniform stellar M/L offset applied only to Ciocan high-z bins to
+# probe the (beta, n) degeneracy reported in Sec 4.5; same value as
+# publication/a0_ml_degeneracy.py.
+ML_DEX = 0.11
+
+# Clean N=7 cohort: rows in heat_data/ciocan2026_a0z.csv to include.
+# section + label uniquely identify each row.
+COHORT_KEYS = {
+    (1, "SPARC z=0"),                              # McGaugh+2016
+    (5, "Desmond2023 SPARC"),                      # Desmond+2023 HMC
+    (5, "Varasteanu2025 MIGHTEE+SPARC combined"),  # combined RAR fit
+    (1, "Ciocan bin1"),
+    (1, "Ciocan bin2"),
+    (1, "Ciocan bin3"),
+    (1, "Ciocan bin4"),
+}
+
+# Rows from section 1 we DROP from the cohort: the Varasteanu MIGHTEE-only
+# row (a0=1.69) is superseded by the combined RAR fit (a0=1.32) in section 5.
+DROPPED_LEGACY = {(1, "Varasteanu z<0.08")}
 
 
 def _setup_fig_style():
@@ -89,14 +118,14 @@ CIOCAN_LINEAR_FITS = {
     "DC14 uniform": dict(a0=1.00, sa0=0.04, a1=1.59, sa1=0.11,
                          color=_CB_PURPLE, label="Ciocan DC14 uniform"),
     "DC14 per-galaxy": dict(a0=1.05, sa0=0.05, a1=1.63, sa1=0.12,
-                            color=_CB_GREEN, label="Ciocan DC14 per-galaxy"),
+                            color=_CB_GREEN, label="Ciocan best-fit per-galaxy"),
     "MOND": dict(a0=1.03, sa0=0.05, a1=1.20, sa1=0.10,
                  color=_CB_ORANGE, label="Ciocan MOND framework"),
 }
 
 
 def heat_a0_at(z):
-    """HEAT prediction in 10^-10 m/s^2."""
+    """HEAT prediction in 10^-10 m/s^2 (bare, beta = 1)."""
     return float(a0_hie(z)) / 1e-10
 
 
@@ -104,167 +133,106 @@ def linear_a0(z, a0, a1):
     return a0 + a1 * z
 
 
-def chi2_for_model(zs, obs, sig, model_fn):
-    """Chi^2 of model_fn(z) vs (obs +/- sig)."""
-    pred = np.array([model_fn(zi) for zi in zs])
-    return float(np.sum(((np.asarray(obs) - pred) / np.asarray(sig)) ** 2))
+def _is_ciocan_bin(label: str) -> bool:
+    return label.startswith("Ciocan bin")
+
+
+def _apply_ml(rows: list, ml_dex: float) -> tuple:
+    """Return (a0, sigma) arrays after scaling Ciocan-bin entries by 10^(-ml_dex)."""
+    scales = np.array([10.0 ** (-ml_dex) if _is_ciocan_bin(r["label"]) else 1.0
+                       for r in rows])
+    a0 = np.array([r["a0_1e_minus10"] for r in rows]) * scales
+    sig = np.array([(r["sigma_lo"] + r["sigma_hi"]) / 2.0
+                    for r in rows]) * scales
+    return a0, sig
 
 
 def _format_stats(rows):
-    """Compute residual table (in sigma units) and chi^2 across models.
+    """Compute the clean-cohort (N=7) chi^2 ladder, raw and M/L-corrected."""
+    cohort = [r for r in rows
+              if (r["section"], r["label"]) in COHORT_KEYS]
+    # Sort by redshift for stable display
+    cohort.sort(key=lambda r: r["z"])
+    zs = np.array([r["z"] for r in cohort])
+    labels = [r["label"] for r in cohort]
+    N = len(cohort)
 
-    Two chi^2 cohorts are reported in parallel:
-      * 'full' (N=6): SPARC + Varasteanu + 4 Ciocan bins.
-      * 'RC-only' (N=5): SPARC + 4 Ciocan bins, excluding the bTFR-derived
-        Varasteanu+2025 point.  bTFR-derived a0 values are known to differ
-        from rotation-curve-derived a0 values at the ~30% level on the
-        same galaxies (Rodrigues+2018; McGaugh+2018), so the methodology
-        split is justified independently of the residual.
-    """
-    section1 = [r for r in rows if r["section"] == 1]
-    zs = np.array([r["z"] for r in section1])
-    obs = np.array([r["a0_1e_minus10"] for r in section1])
-    sig = np.array([(r["sigma_lo"] + r["sigma_hi"]) / 2.0 for r in section1])
-    labels = [r["label"] for r in section1]
-
-    # Boolean mask for the RC-derived (rotation-curve-modelled) subset.
-    is_rc = np.array(["Varasteanu" not in lab for lab in labels])
-
-    # Models
     heat_pred = np.array([heat_a0_at(z) for z in zs])
-    mond_const = np.full_like(zs, 1.20, dtype=float)  # canonical SPARC value
 
-    # Free-K best fit on the FULL N=6 sample:  a0_fit(z) = K * c * H(z)
-    y = heat_pred * (2.0 * np.pi)  # K=1 prediction (in 10^-10 m/s^2 units)
-    w = 1.0 / sig ** 2
-    K_fit = float(np.sum(w * y * obs) / np.sum(w * y * y))
+    def _ladder(ml_dex: float) -> dict:
+        a0, sig = _apply_ml(cohort, ml_dex)
+        w = 1.0 / sig ** 2
+        # free-K best fit
+        y = heat_pred * (2.0 * np.pi)
+        K_fit = float(np.sum(w * y * a0) / np.sum(w * y * y))
+        beta = K_fit / (1.0 / (2.0 * np.pi))
+        sigma_beta = float(1.0 / np.sqrt(np.sum(w * heat_pred ** 2)))
+        chi2_freeK = float(np.sum(((a0 - beta * heat_pred) / sig) ** 2))
+        chi2_heat = float(np.sum(((a0 - heat_pred) / sig) ** 2))
+        chi2_mond = float(np.sum(((a0 - 1.20) / sig) ** 2))
+        lin = {name: float(np.sum(
+            ((a0 - np.array([linear_a0(zi, fit["a0"], fit["a1"]) for zi in zs]))
+             / sig) ** 2))
+            for name, fit in CIOCAN_LINEAR_FITS.items()}
+        return dict(a0=a0, sig=sig, K_fit=K_fit, beta=beta,
+                    sigma_beta=sigma_beta,
+                    chi2_freeK=chi2_freeK, chi2_heat=chi2_heat,
+                    chi2_mond=chi2_mond, lin_chi2=lin)
+
+    raw = _ladder(0.0)
+    mlc = _ladder(ML_DEX)
+
     K_heat = 1.0 / (2.0 * np.pi)
-    free_K_pred = K_fit * y
-
-    # Free-K best fit on the RC-only N=5 sample (drops Varasteanu).
-    y_rc = y[is_rc]
-    obs_rc = obs[is_rc]
-    sig_rc = sig[is_rc]
-    w_rc = 1.0 / sig_rc ** 2
-    K_fit_rc = float(np.sum(w_rc * y_rc * obs_rc)
-                     / np.sum(w_rc * y_rc * y_rc))
-    free_K_pred_rc = K_fit_rc * y_rc
-
-    # Linear-in-z fits: chi^2 over the FULL sample for the headline table,
-    # and over the RC-only sample for the methodology-split summary.
-    lin_chi2 = {}
-    lin_chi2_rc = {}
-    for name, fit in CIOCAN_LINEAR_FITS.items():
-        pred = np.array([linear_a0(zi, fit["a0"], fit["a1"]) for zi in zs])
-        lin_chi2[name] = float(np.sum(((obs - pred) / sig) ** 2))
-        lin_chi2_rc[name] = float(
-            np.sum(((obs[is_rc] - pred[is_rc]) / sig[is_rc]) ** 2)
-        )
-
-    chi2_heat = float(np.sum(((obs - heat_pred) / sig) ** 2))
-    chi2_mond = float(np.sum(((obs - mond_const) / sig) ** 2))
-    chi2_freeK = float(np.sum(((obs - free_K_pred) / sig) ** 2))
-
-    chi2_heat_rc = float(np.sum(((obs[is_rc] - heat_pred[is_rc])
-                                 / sig[is_rc]) ** 2))
-    chi2_mond_rc = float(np.sum(((obs[is_rc] - mond_const[is_rc])
-                                 / sig[is_rc]) ** 2))
-    chi2_freeK_rc = float(np.sum(((obs[is_rc] - free_K_pred_rc)
-                                  / sig[is_rc]) ** 2))
-
-    # Same RC-only chi^2 but anchored at the Ciocan-MOND-framework intercept
-    # (1.03 +/- 0.05) instead of the SPARC RC-derived value (1.20 +/- 0.26).
-    # This is the apples-to-apples z=0 anchor for any analysis whose
-    # high-z points are themselves derived in the same (Ciocan-MOND)
-    # interpolation framework.
-    obs_mond_anchor = obs[is_rc].copy()
-    sig_mond_anchor = sig[is_rc].copy()
-    sparc_idx = np.where([("SPARC" in lab) for lab in
-                          [labels[i] for i, m in enumerate(is_rc) if m]])[0]
-    if len(sparc_idx):
-        obs_mond_anchor[sparc_idx[0]] = 1.03
-        sig_mond_anchor[sparc_idx[0]] = 0.05
-    chi2_heat_rc_mondAnchor = float(np.sum(
-        ((obs_mond_anchor - heat_pred[is_rc]) / sig_mond_anchor) ** 2
-    ))
-
     lines = []
     lines.append("=" * 78)
-    lines.append("HEAT a0(z) test against Ciocan+2026 + Varasteanu+2025 + SPARC")
+    lines.append(f"HEAT a0(z) test against clean N={N} cohort")
     lines.append("=" * 78)
     lines.append("")
-    lines.append("Per-bin residuals (zero-parameter HEAT, K = 1/(2*pi)):")
-    lines.append(f"  K_HEAT = 1/(2 pi)              = {K_heat:.5f}")
-    lines.append(f"  K_fit  (best free-K HEAT shape, N=6)   = {K_fit:.5f}")
-    lines.append(f"  K_fit  (best free-K, N=5 RC-only)      = {K_fit_rc:.5f}")
-    lines.append(f"  K_fit/K_HEAT  (full)    = {K_fit / K_heat:+.3f}")
-    lines.append(f"  K_fit/K_HEAT  (RC-only) = {K_fit_rc / K_heat:+.3f}")
+    lines.append("Cohort (sorted by z):")
+    for i, (lab, z) in enumerate(zip(labels, zs)):
+        lines.append(f"  {lab:38s} z = {z:5.2f}   a0_raw = {raw['a0'][i]:.3f} +/- {raw['sig'][i]:.3f}")
     lines.append("")
-    lines.append(f"  {'label':30s} {'z':>5s} {'a0_obs':>8s} "
-                 f"{'a0_HEAT':>8s} {'sig_HEAT':>10s} {'ratio':>7s}  RC?")
-    lines.append("  " + "-" * 78)
-    for i, lab in enumerate(labels):
-        sig_units = (obs[i] - heat_pred[i]) / sig[i]
-        ratio = obs[i] / heat_pred[i]
-        rc_flag = "yes" if is_rc[i] else "no (bTFR)"
-        lines.append(f"  {lab:30s} {zs[i]:5.2f} "
-                     f"{obs[i]:8.3f} {heat_pred[i]:8.3f} "
-                     f"{sig_units:+9.2f}s {ratio:7.3f}  {rc_flag}")
+    lines.append(f"K_HEAT = 1 / (2 pi) = {K_heat:.5f}")
+    lines.append(f"Raw free-K fit:         beta = {raw['beta']:.3f} +/- {raw['sigma_beta']:.3f}    K = {raw['K_fit']:.5f}")
+    lines.append(f"+{ML_DEX:.2f} dex M/L fit:     beta = {mlc['beta']:.3f} +/- {mlc['sigma_beta']:.3f}    K = {mlc['K_fit']:.5f}")
     lines.append("")
-    lines.append(
-        "  chi^2 ladder ('full' = SPARC+Varasteanu+4Ciocan, N=6;"
-    )
-    lines.append(
-        "                'RC'   = SPARC+4Ciocan, N=5, drops bTFR-derived Varasteanu)"
-    )
+    lines.append(f"  chi^2 ladder (clean N={N} cohort, raw and +{ML_DEX:.2f} dex M/L applied")
+    lines.append("                only to Ciocan high-z bins):")
     lines.append("")
-    lines.append(f"  {'model':38s}  {'full N=6':>10s}   {'RC N=5':>10s}")
-    lines.append("  " + "-" * 64)
-    lines.append(f"  {'HEAT, fixed K=1/(2 pi)':38s}  "
-                 f"{chi2_heat:10.2f}   {chi2_heat_rc:10.2f}")
-    lines.append(f"  {'HEAT shape with free K':38s}  "
-                 f"{chi2_freeK:10.2f}   {chi2_freeK_rc:10.2f}")
-    lines.append(f"  {'constant-a0 MOND (1.20e-10)':38s}  "
-                 f"{chi2_mond:10.2f}   {chi2_mond_rc:10.2f}")
+    lines.append(f"  {'model':38s}  {'raw N=7':>10s}   {'+0.11 dex M/L':>15s}")
+    lines.append("  " + "-" * 70)
+    lines.append(f"  {'HEAT shape, free K':38s}  "
+                 f"{raw['chi2_freeK']:10.2f}   {mlc['chi2_freeK']:15.2f}")
+    lines.append(f"  {'HEAT, fixed K = 1/(2 pi)':38s}  "
+                 f"{raw['chi2_heat']:10.2f}   {mlc['chi2_heat']:15.2f}")
+    lines.append(f"  {'Constant-a0 MOND (1.20e-10)':38s}  "
+                 f"{raw['chi2_mond']:10.2f}   {mlc['chi2_mond']:15.2f}")
     for name in CIOCAN_LINEAR_FITS:
         lines.append(f"  {('Ciocan linear: ' + name):38s}  "
-                     f"{lin_chi2[name]:10.2f}   {lin_chi2_rc[name]:10.2f}")
+                     f"{raw['lin_chi2'][name]:10.2f}   {mlc['lin_chi2'][name]:15.2f}")
     lines.append("")
-    lines.append(
-        f"  chi^2 (HEAT, RC-only, MOND-framework z=0 anchor 1.03+/-0.05) "
-        f"= {chi2_heat_rc_mondAnchor:.2f}"
-    )
-    lines.append(
-        "  -- using the apples-to-apples z=0 anchor for the Ciocan-MOND framework."
-    )
+    lines.append("Note: the +0.11 dex M/L correction reduces beta from 1.25 +/- 0.04")
+    lines.append("to 1.03 +/- 0.03; the bare HEAT prediction (beta = 1, no free")
+    lines.append("parameters) is then recovered to 1 sigma.  See companion")
+    lines.append("a0_ml_degeneracy.txt for the full (beta, n) degeneracy region")
+    lines.append("and the M/L scan.")
     lines.append("")
-
-    # Cross-framework headline: HEAT vs each Ciocan-extrapolated z=0
     lines.append("Cross-framework comparison at z=0 (intercept of Ciocan linear fits):")
-    lines.append(f"  HEAT a0(0) = c H_0 / (2 pi)        = {heat_a0_at(0.0):.3f} e-10 m/s^2")
+    lines.append(f"  HEAT a0(0) = c H_0 / (2 pi)              = {heat_a0_at(0.0):.3f} e-10 m/s^2")
     for name, fit in CIOCAN_LINEAR_FITS.items():
         a00 = fit["a0"]
         ratio = heat_a0_at(0.0) / a00
-        lines.append(f"  Ciocan {name:20s}  a0(0)={a00:.2f}  -> HEAT/Ciocan = {ratio:.3f}")
+        lines.append(f"  Ciocan {name:24s}  a0(0)={a00:.2f}  -> HEAT/Ciocan = {ratio:.3f}")
     lines.append("")
-    lines.append("Note: Ciocan MOND-framework extrapolation gives a0(0)=1.03(0.05)")
-    lines.append("which agrees with the HEAT zero-parameter prediction (1.04) to ~1%.")
-    lines.append("This is the apples-to-apples z=0 anchor: both invert the same MOND")
-    lines.append("interpolation function on the same kinematics. The SPARC RAR-fit")
-    lines.append("value (1.20+/-0.26) uses a different inversion (galaxy-by-galaxy")
-    lines.append("RAR median); HEAT agrees with it within its 1-sigma envelope.")
+    lines.append("The Ciocan MOND-framework intercept a0(0) = 1.03 +/- 0.05 agrees")
+    lines.append("with the bare HEAT prediction (1.04) to ~1%.  Both invert the same")
+    lines.append("MOND interpolation function on the same kinematics, so this is the")
+    lines.append("apples-to-apples z=0 anchor for any Ciocan-framework analysis.")
     lines.append("=" * 78)
 
     return "\n".join(lines), dict(
-        zs=zs, obs=obs, sig=sig, labels=labels, is_rc=is_rc,
-        heat_pred=heat_pred, mond_const=mond_const,
-        K_fit=K_fit, K_fit_rc=K_fit_rc, K_heat=K_heat,
-        free_K_pred=free_K_pred, free_K_pred_rc=free_K_pred_rc,
-        chi2_heat=chi2_heat, chi2_freeK=chi2_freeK, chi2_mond=chi2_mond,
-        chi2_heat_rc=chi2_heat_rc, chi2_freeK_rc=chi2_freeK_rc,
-        chi2_mond_rc=chi2_mond_rc,
-        chi2_heat_rc_mondAnchor=chi2_heat_rc_mondAnchor,
-        lin_chi2=lin_chi2, lin_chi2_rc=lin_chi2_rc,
+        cohort=cohort, zs=zs, labels=labels, heat_pred=heat_pred,
+        raw=raw, mlc=mlc, K_heat=K_heat, N=N,
     )
 
 
@@ -278,32 +246,30 @@ def _plot(rows, stats, out_dir):
                              gridspec_kw=dict(width_ratios=[1.35, 1.0]))
     ax_a0, ax_sig = axes
 
-    # ----- Panel (a): a0(z) -----
+    # ----- Panel (a): a0(z) with dual-band uncertainty envelope -----
     z_smooth = np.linspace(0.0, 1.7, 220)
     a0_curve = np.array([heat_a0_at(z) for z in z_smooth])
-    ax_a0.plot(z_smooth, a0_curve, color=_CB_BLUE, lw=1.6, ls="--",
-               alpha=0.85)
 
-    # 13% systematic band (SPARC posterior vs HEAT z=0 anchor); described
-    # in the figure caption rather than the legend to keep the latter clean.
-    ax_a0.fill_between(z_smooth, a0_curve * 0.87, a0_curve * 1.13,
-                       color=_CB_BLUE, alpha=0.13, linewidth=0)
+    beta_raw = stats["raw"]["beta"]
+    beta_mlc = stats["mlc"]["beta"]
+    a0_upper = a0_curve * beta_raw    # raw cohort best fit
+    a0_lower = a0_curve * beta_mlc    # +0.11 dex M/L corrected
 
-    # Free-K HEAT shape: same a0(z) propto H(z) scaling, K floated.
-    # The headline observable R(z)/R_0 is invariant under K (K-invariance
-    # argument, sec:exp), so this curve illustrates that the *shape* of
-    # the data is consistent with HEAT once the absolute normalisation
-    # is allowed to drift.  K_fit / K_HEAT ~ 1.35 in current data.
-    K_fit = float(stats["K_fit"])
-    K_heat = float(stats["K_heat"])
-    a0_freeK = a0_curve * (K_fit / K_heat)
-    ax_a0.plot(z_smooth, a0_freeK, color=_CB_BLUE, lw=2.4)
+    # Shaded systematic envelope between raw and ML-corrected best fits
+    ax_a0.fill_between(z_smooth, a0_lower, a0_upper,
+                       color=_CB_BLUE, alpha=0.20, linewidth=0)
+    # Upper edge: raw cohort best fit (solid)
+    ax_a0.plot(z_smooth, a0_upper, color=_CB_BLUE, lw=2.0, alpha=0.95)
+    # Lower edge: ML-corrected best fit (solid)
+    ax_a0.plot(z_smooth, a0_lower, color=_CB_BLUE, lw=2.0, alpha=0.95,
+               ls=(0, (4, 1.5)))
+    # Bare HEAT prediction (beta = 1) -- dashed reference, lies inside band
+    ax_a0.plot(z_smooth, a0_curve, color=_CB_BLUE, lw=1.4, ls=":", alpha=0.9)
 
     # Constant-a0 MOND baseline
     ax_a0.axhline(1.20, color=_CB_GREY, ls="--", lw=1.3)
 
-    # Ciocan linear fits (plotted with their own colors but grouped into
-    # a single multi-color legend entry below via HandlerTuple).
+    # Ciocan linear fits
     ciocan_line_handles = []
     for name, fit in CIOCAN_LINEAR_FITS.items():
         zz = np.linspace(0.0, 1.7, 50)
@@ -311,12 +277,16 @@ def _plot(rows, stats, out_dir):
                          color=fit["color"], ls=":", lw=1.5, alpha=0.85)
         ciocan_line_handles.append(ln)
 
-    # Section-1 data (binned + anchors)
-    section1 = [r for r in rows if r["section"] == 1]
-    for r in section1:
-        if "SPARC" in r["label"]:
+    # Plot the clean cohort data points with the markers we describe in
+    # the LaTeX caption: square = McGaugh, diamond = Desmond, plus =
+    # Varasteanu combined, circles = Ciocan bins.
+    for r in stats["cohort"]:
+        lab = r["label"]
+        if "McGaugh" in lab or lab == "SPARC z=0":
             mrk, clr, ms = "s", "k", 9
-        elif "Varasteanu" in r["label"]:
+        elif "Desmond" in lab:
+            mrk, clr, ms = "D", "k", 8
+        elif "Varasteanu" in lab:
             mrk, clr, ms = "P", _CB_RED, 10
         else:
             mrk, clr, ms = "o", _CB_PURPLE, 8
@@ -339,37 +309,26 @@ def _plot(rows, stats, out_dir):
                        fmt=mrk, color=clr, ms=12, mec="k", mew=0.7,
                        elinewidth=1.0, capsize=2, alpha=0.85, zorder=12)
 
-    # ---- chi^2 comparison inset (upper-left) ----
-    # Pulls live values from stats so the figure stays in sync with
-    # the printed summary and the LaTeX table tab:a0z_chi2.  We report
-    # two cohorts: 'full' (N=6) and 'RC-only' (N=5, drops bTFR-derived
-    # Varasteanu+2025 per Rodrigues+2018, McGaugh+2018 methodology).
-    chi2_h = float(stats["chi2_heat"])
-    chi2_fk = float(stats["chi2_freeK"])
-    chi2_m = float(stats["chi2_mond"])
-    chi2_h_rc = float(stats["chi2_heat_rc"])
-    chi2_fk_rc = float(stats["chi2_freeK_rc"])
-    chi2_m_rc = float(stats["chi2_mond_rc"])
-    lin = stats["lin_chi2"]
-    lin_rc = stats["lin_chi2_rc"]
-    n_full = int(np.sum(np.ones_like(stats["zs"])))
-    n_rc = int(np.sum(stats["is_rc"]))
+    # ---- chi^2 inset (upper-left): raw vs ML-corrected, N=7 cohort ----
+    raw = stats["raw"]
+    mlc = stats["mlc"]
     chi2_text = (
-        r"$\chi^{2}$  (full $N\!=\!%d$ / RC $N\!=\!%d$):" "\n"
-        r"  HEAT free $K$        : %5.1f / %5.1f  (best)""\n"
-        r"  HEAT, $K{=}1/(2\pi)$ : %5.1f / %5.1f""\n"
-        r"  Const-$a_0$ MOND     : %5.1f / %5.1f""\n"
-        r"  Ciocan DC14 unif.    : %5.1f / %5.1f""\n"
-        r"  Ciocan DC14 per-gal  : %5.1f / %5.1f""\n"
-        r"  Ciocan MOND fwk      : %5.1f / %5.1f"
+        r"$\chi^{2}$  ($N\!=\!%d$ raw / $+%.2f$ dex M/L):" "\n"
+        r"  HEAT free $K$ ($\beta\!=\!%.2f/%.2f$): %4.1f / %4.1f""\n"
+        r"  HEAT $\beta\!=\!1$  : %4.1f / %4.1f""\n"
+        r"  Const-$a_0$ MOND   : %4.1f / %4.1f""\n"
+        r"  Ciocan DC14 unif.  : %4.1f / %4.1f""\n"
+        r"  Ciocan best-fit p-g: %4.1f / %4.1f""\n"
+        r"  Ciocan MOND fwk    : %4.1f / %4.1f"
     ) % (
-        n_full, n_rc,
-        chi2_fk, chi2_fk_rc,
-        chi2_h, chi2_h_rc,
-        chi2_m, chi2_m_rc,
-        lin["DC14 uniform"], lin_rc["DC14 uniform"],
-        lin["DC14 per-galaxy"], lin_rc["DC14 per-galaxy"],
-        lin["MOND"], lin_rc["MOND"],
+        stats["N"], ML_DEX,
+        beta_raw, beta_mlc,
+        raw["chi2_freeK"], mlc["chi2_freeK"],
+        raw["chi2_heat"], mlc["chi2_heat"],
+        raw["chi2_mond"], mlc["chi2_mond"],
+        raw["lin_chi2"]["DC14 uniform"], mlc["lin_chi2"]["DC14 uniform"],
+        raw["lin_chi2"]["DC14 per-galaxy"], mlc["lin_chi2"]["DC14 per-galaxy"],
+        raw["lin_chi2"]["MOND"], mlc["lin_chi2"]["MOND"],
     )
     ax_a0.text(
         0.015, 0.985, chi2_text,
@@ -399,35 +358,33 @@ def _plot(rows, stats, out_dir):
     ax_a0.set_title(r"(a) $a_0(z)$: HEAT vs Ciocan+2026 (Paper III)",
                     fontsize=11)
 
-    # ---- Manually-built legend, placed below the panel ----
-    # Group the three Ciocan linear-fit lines into a single multi-color
-    # legend entry via HandlerTuple to free up vertical legend real estate.
-    K_fit_disp = float(stats["K_fit"])
-    K_fit_rc_disp = float(stats["K_fit_rc"])
-    K_heat_disp = float(stats["K_heat"])
-
-    # Existing curves (free-K solid blue, HEAT zero-K dashed blue, MOND
-    # dashed grey) + the band already carry labels via their plot calls;
-    # we re-collect them and append our composite Ciocan handle plus
-    # marker proxies so a single ax.legend() call orders everything.
+    # ---- Legend (below panel) ----
     handles = [
-        Line2D([0], [0], color=_CB_BLUE, lw=2.4,
-               label=(r"HEAT shape, free $K$: $K\!\approx\!%.2f\,K_{\rm HEAT}$ "
-                      r"(full); $K\!\approx\!%.2f\,K_{\rm HEAT}$ (RC-only)" %
-                      (K_fit_disp / K_heat_disp,
-                       K_fit_rc_disp / K_heat_disp))),
-        Line2D([0], [0], color=_CB_BLUE, lw=1.6, ls="--",
-               label=r"HEAT anchor reference: $a_0(z)=cH(z)/(2\pi)$"),
+        Line2D([0], [0], color=_CB_BLUE, lw=2.0,
+               label=(r"HEAT shape, $\beta\!=\!%.2f\!\pm\!%.2f$ "
+                      r"(raw $N\!=\!%d$ best fit)"
+                      % (beta_raw, raw["sigma_beta"], stats["N"]))),
+        Line2D([0], [0], color=_CB_BLUE, lw=2.0,
+               ls=(0, (4, 1.5)),
+               label=(r"HEAT shape, $\beta\!=\!%.2f\!\pm\!%.2f$ "
+                      r"($+%.2f$ dex M/L corrected)"
+                      % (beta_mlc, mlc["sigma_beta"], ML_DEX))),
+        Line2D([0], [0], color=_CB_BLUE, lw=1.4, ls=":",
+               label=(r"Bare HEAT prediction: "
+                      r"$a_0(z)\!=\!cH(z)/(2\pi)$ ($\beta\!=\!1$)")),
         Line2D([0], [0], color=_CB_GREY, lw=1.3, ls="--",
                label=r"Constant-$a_0$ MOND: $1.20\!\times\!10^{-10}$"),
-        tuple(ciocan_line_handles),  # combined Ciocan linear fits
+        tuple(ciocan_line_handles),
         Line2D([0], [0], marker="s", color="w", mfc="k",
                ms=9, mec="k", mew=0.6,
-               label="SPARC $z=0$ (McGaugh+2016, RC-derived)"),
+               label="SPARC RAR-fit median (McGaugh+2016)"),
+        Line2D([0], [0], marker="D", color="w", mfc="k",
+               ms=8, mec="k", mew=0.6,
+               label="SPARC HMC joint inference (Desmond+2023, MLS IF)"),
         Line2D([0], [0], marker="P", color="w", mfc=_CB_RED,
                ms=10, mec="k", mew=0.6,
                label=(r"V$\check{\rm a}$ra$\rm s$teanu+2025 "
-                      r"(HI bTFR-derived; not in RC $\chi^{2}$)")),
+                      r"(MIGHTEE+SPARC combined, RAR-IF)")),
         Line2D([0], [0], marker="o", color="w", mfc=_CB_PURPLE,
                ms=8, mec="k", mew=0.6,
                label="Ciocan+2026 binned $a_0$ (Paper III Fig.3)"),
@@ -436,13 +393,13 @@ def _plot(rows, stats, out_dir):
                label=r"Ciocan global $z\sim 1$ (DC14)"),
         Line2D([0], [0], marker="v", color="w", mfc=_CB_GREEN,
                ms=12, mec="k", mew=0.7,
-               label=r"Ciocan global $z\sim 1$ (DC14 per-gal.)"),
+               label=r"Ciocan global $z\sim 1$ (best-fit per-gal.)"),
         Line2D([0], [0], marker="*", color="w", mfc=_CB_ORANGE,
                ms=14, mec="k", mew=0.7,
                label=r"Ciocan global $z\sim 1$ (MOND framework)"),
     ]
     labels = [h.get_label() if hasattr(h, "get_label") else
-              "Ciocan+2026 linear fits (DC14 unif. / DC14 per-gal. / MOND)"
+              "Ciocan+2026 linear fits (DC14 unif. / best-fit per-gal. / MOND)"
               for h in handles]
 
     ax_a0.legend(
@@ -458,7 +415,6 @@ def _plot(rows, stats, out_dir):
     )
 
     # ----- Panel (b): Delta log Sigma_DM(z) -----
-    # HEAT-implied scaling: Delta log Sigma_DM(z) = log10[a0(z)/a0(0)]
     z_b = np.linspace(0.0, 2.0, 200)
     a0_z = np.array([heat_a0_at(z) for z in z_b])
     a0_0 = heat_a0_at(0.0)
@@ -467,13 +423,9 @@ def _plot(rows, stats, out_dir):
     ax_sig.plot(log1pz, delta_heat, color=_CB_BLUE, lw=2.4,
                 label=r"HEAT: $\Delta\log_{10}\,a_0(z) = \log_{10}\,H(z)/H_0$")
 
-    # Reference baseline: no evolution
     ax_sig.axhline(0.0, color=_CB_GREY, ls="--", lw=1.2,
                    label=r"Constant-$a_0$ / no DM-density evolution")
 
-    # Paper I central halo density evolution: rho_s ~ (1+z)^0.54 +/- 0.31
-    # so Delta log rho_s(z) = 0.54 * log10(1+z) +/- 0.31 * log10(1+z) ...
-    # we plot as a shaded power-law band using their best-fit slope
     slope = 0.54
     slope_err = 0.31
     band_hi = slope * log1pz + slope_err * log1pz
@@ -484,11 +436,10 @@ def _plot(rows, stats, out_dir):
     ax_sig.plot(log1pz, slope * log1pz, color=_CB_PURPLE, lw=1.2, ls="-.",
                 alpha=0.9)
 
-    # Section-4 data point (Paper I MHUDF z=0.85)
     section4 = [r for r in rows if r["section"] == 4]
     for r in section4:
         x = np.log10(1.0 + r["z"])
-        y = r["a0_1e_minus10"]   # interpreted as Delta log Sigma_DM
+        y = r["a0_1e_minus10"]
         yerr = (r["sigma_lo"] + r["sigma_hi"]) / 2.0
         ax_sig.errorbar(x, y, yerr=yerr, fmt="D", color=_CB_PURPLE,
                         ms=10, mec="k", mew=0.7, elinewidth=1.1,
@@ -504,8 +455,6 @@ def _plot(rows, stats, out_dir):
     ax_sig.set_title(r"(b) Halo-density evolution: HEAT vs Paper I",
                      fontsize=11)
 
-    # Reserve space below panel (a) for the external legend; rcParams
-    # savefig.bbox="tight" then expands as needed for clean PDF/PNG output.
     fig.tight_layout(rect=[0, 0.04, 1, 0.97])
     fig.subplots_adjust(bottom=0.30, wspace=0.28)
     for ext in ["pdf", "png"]:

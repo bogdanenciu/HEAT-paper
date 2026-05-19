@@ -1,15 +1,20 @@
 # Ciocan et al. (2026) MUSE-DARK trilogy + Varasteanu et al. (2025) data
 #
 # Used by:
-#   publication/a0_evolution.py  -> Fig 9 (a0(z) and Sigma_DM(z) panels)
-#   publication/paper_heat_letter.tex Sec 4.5 (direct a0(z) test)
+#   publication/a0_evolution.py        -> Fig 9 (a0(z) and Sigma_DM(z) panels) [section 1, 2, 4]
+#   publication/k_phase1_analysis.py   -> Phase 1 K-coincidence test          [section 1]
+#   publication/a0_extended_cohort.py  -> Extended-cohort K-coincidence test  [section 1 + 5]
+#   publication/paper_heat_letter.tex  -> Sec 4.5 (direct a0(z) test)
 #
 # References:
 #   Ciocan+2026  Paper I    : arXiv:2506.19721  (MUSE-DARK-I: halo properties)
 #   Jeanneau+2026 Paper II  : arXiv:2603.28856  (MUSE-DARK-II: lensed bTFR)
 #   Ciocan+2026  Paper III  : arXiv:2604.22613  (MUSE-DARK-III: RAR evolution)
-#   Varasteanu+2025         : (MIGHTEE-HI low-z bTFR-derived a0)
-#   McGaugh+2016            : SPARC z=0 anchor (a0 = 1.20 +/- 0.26 e-10 m/s^2)
+#   Varasteanu+2025         : arXiv:2504.20857  (MIGHTEE-HI RAR; 19 galaxies, z<0.08)
+#   McGaugh+2016            : arXiv:1609.05917  (SPARC z=0; a0 = 1.20 +/- 0.26 e-10 m/s^2)
+#   Desmond+2023            : arXiv:2303.11314  ("underlying" SPARC RAR; full Hamiltonian
+#                              MC joint inference; a0 = 1.19 +/- 0.04(stat) +/- 0.09(sys),
+#                              same MOND-RAR interpolating function as Ciocan+2026 PaperIII)
 #
 # All a0 values are in units of 10^-10 m/s^2.
 #
@@ -17,7 +22,90 @@
 #   Ciocan+2026 Fig.3 binned values are read from the figure (visual extraction).
 #   The Ciocan team kindly tabulated their fit triplets in the appendix; we
 #   reproduce those triplets in section 3 below.
-#   "section" column distinguishes section-1 / section-2 / section-4 rows.
+#
+# Section 5: extended-cohort literature anchors (added 2026-05-12 by HEAT
+#   Letter authors as part of the Option-1 lever-arm extension).  These rows
+#   are NOT consumed by the existing publication/a0_evolution.py pipeline
+#   (which still reads only sections 1, 2, 4) so all baseline figures and
+#   chi^2 values remain reproducible.  The extended-cohort comparison is
+#   carried out in publication/a0_extended_cohort.py which combines section 1
+#   with selected section-5 rows.
+#
+#   Why these rows: the original CSV used the McGaugh+2016 z=0 anchor
+#   (sigma=0.26) which dominated the chi^2 budget at z<0.1 and inflated the
+#   cohort-to-cohort scatter in K_fit/K_HEAT (the so-called "SPARC<->Ciocan
+#   1.15 vs 1.32 normalisation tension").  Two genuinely useful upgrades
+#   exist in the post-2023 literature:
+#
+#     a) Desmond+2023 ("the underlying RAR") performs a full Hamiltonian
+#        Monte Carlo joint inference of (a0, sigma_int, all 6N galaxy
+#        nuisances) on SPARC under exactly the MOND interpolating function
+#        used by Ciocan+2026 PaperIII (the MLS / "RAR" IF).  This delivers
+#        a0(z=0) = 1.19 +/- 0.10 (stat+sys in quadrature) -- about 2.5x
+#        tighter than McGaugh+2016 -- and is the apples-to-apples low-z
+#        anchor for a Ciocan-framework analysis.
+#
+#     b) Varasteanu+2025 also reports a "combined" RAR fit using their
+#        MIGHTEE 19-galaxy sample plus the high-acceleration portion of
+#        SPARC, fit jointly under the MLS IF (Table 4, row "MIGHTEE +
+#        high-acceleration SPARC, varying Y_K").  This yields a0 =
+#        1.32 +/- 0.13 at the volume-weighted median z ~ 0.04, which is the
+#        value most directly comparable to Ciocan's RAR-IF extractions
+#        across the same dynamic range.
+#
+#   What we did NOT include and why:
+#     - Del Popolo & Chan 2024 (arXiv:2405.01841) extract per-galaxy a0 for
+#       17 RC100 (Nestor Shachar+2023) galaxies at z=0.5-2.5 using the
+#       deep-MOND approximation V_c^4 = G*M_b*a0 evaluated at R_e.  This
+#       method is methodologically inconsistent with the RAR-IF Bayesian
+#       inversion used by Ciocan+2026 PaperIII (which uses every RC point,
+#       not just R_e), and Nestor Shachar+2023 themselves report the RC100
+#       galaxies are predominantly maximal disks at z>1 -- i.e. they are
+#       NOT in the deep-MOND regime at R_e, so the V^4 = G*M_b*a0
+#       approximation is invalid for many of them.  Including these points
+#       would bias K_fit downward by mixing inconsistent extractions.
+#     - JWST NIRSpec IFU at z>4: no published a0 extractions exist as of
+#       2026-05.  Studies (Pizzati+2025; Roman-Oliveira+2024) report
+#       dynamical masses and sigma_gas but do not perform RAR fits.
+#     - KMOS3D / KROSS: report DM fractions, not a0.  See RC100 entry
+#       above for the closest published a0 derivation from this data.
+#
+# Section 7: galaxy-cluster RAR a0 measurements (added 2026-05-12 as part of
+#   the cluster-scale HEAT extension; see publication/a0_clusters.py).
+#
+#   The cluster RAR is methodologically distinct from galaxy RAR: it fits the
+#   acceleration scale on cluster-scale (~Mpc) gravitational potentials using
+#   gas+lensing+stellar baryon estimates and either X-ray-derived M_dyn (HSE)
+#   or velocity-dispersion-derived M_dyn (Jeans).  All published cluster
+#   acceleration scales are 8-17x the galactic value (~1.2e-10 m/s^2),
+#   meaning vanilla MOND fails in clusters.
+#
+#   Critically, the inter-sample spread among cluster a0 values (9.3 to 20.2)
+#   is ~2x larger than the typical per-sample uncertainty (~1-2), indicating
+#   that sample-selection systematics dominate.  This makes a0(z) at cluster
+#   scale a NOISY test of HEAT, not a precise one.  Nevertheless, two
+#   diagnostic questions can be asked of these data:
+#
+#     (i)  Is there a self-consistent K_cluster such that a0_cluster(z)
+#          = K_cluster * c*H(z)/(2pi) describes ALL cluster samples?
+#          (Tests the HEAT shape at cluster scale.)
+#
+#     (ii) Is K_cluster equal to K_galaxy?  HEAT in its simplest form
+#          predicts a single K, so K_cluster != K_galaxy would require
+#          a scale-dependent correction (EFE, mass-dependence, etc.).
+#
+#   Six published cluster a0 values from five independent samples:
+#     Tian+2021 HIFLUGCS    : 29 clusters, MVDR; a0 ~ 20 e-10 m/s^2 (~17x galactic)
+#     Chan+DelPopolo 2020   : 52 NCC clusters, RAR;  a0 = 9.3 +/- 1.7 e-10
+#     Pradyumna+2021a Chandra: 12 clusters, RAR;     a0 = 9.3 +/- ~1   e-10
+#     Pradyumna+2021a X-COP : 12 clusters, RAR;     a0 = 11.2 +/- ~1  e-10
+#     Pradyumna+2021b Giles : 10 clusters, RAR;     a0 = 15.9 +/- 1.4 e-10
+#     Tian+2020 CLASH       : 20 clusters, RAR;     a0 = 20.2 +/- 1.1 e-10
+#
+#   Redshifts assigned per published sample median; uncertainties on a0 use
+#   published values where given else estimated from sample scatter.
+#
+#   "section" column distinguishes section-1 / section-2 / section-4 / section-5 / section-7 rows.
 section,label,z,a0_1e_minus10,sigma_lo,sigma_hi,source
 1,SPARC z=0,0.00,1.20,0.26,0.26,McGaugh+2016 (N=171)
 1,Varasteanu z<0.08,0.04,1.69,0.13,0.13,Varasteanu+2025 (MIGHTEE-HI)
@@ -26,13 +114,34 @@ section,label,z,a0_1e_minus10,sigma_lo,sigma_hi,source
 1,Ciocan bin3,1.05,2.45,0.18,0.18,Ciocan+2026 PaperIII Fig.3 (bin3/4)
 1,Ciocan bin4,1.30,2.71,0.22,0.22,Ciocan+2026 PaperIII Fig.3 (bin4/4)
 2,Ciocan global DC14 uniform,1.00,2.38,0.10,0.12,Ciocan+2026 PaperIII Eq.2
-2,Ciocan global DC14 per-galaxy,1.00,2.61,0.09,0.13,Ciocan+2026 PaperIII Eq.D.1
+2,Ciocan global best-fit per-galaxy,1.00,2.61,0.09,0.13,Ciocan+2026 PaperIII Eq.D.1
 2,Ciocan global MOND,1.00,2.19,0.10,0.12,Ciocan+2026 PaperIII Eq.E.4
 4,Paper I MHUDF z~0.85,0.85,0.30,0.10,0.10,Ciocan+2026 PaperI Sect.7 (Delta log Sigma_DM ~0.30)
+5,Desmond2023 SPARC,0.00,1.19,0.10,0.10,Desmond+2023 arXiv:2303.11314 (a0=1.19+/-0.04(stat)+/-0.09(sys); MLS IF; full HMC joint inference; sigma_lo/hi = stat+sys in quadrature)
+5,Varasteanu2025 MIGHTEE+SPARC combined,0.04,1.32,0.13,0.13,Varasteanu+2025 arXiv:2504.20857 Table 3/4 (MIGHTEE 19-gal + high-acc SPARC, varying Y_K, MLS IF; same framework as Ciocan PaperIII)
+7,Tian2021 HIFLUGCS clusters,0.05,20.0,3.0,3.0,Tian+2021 arXiv:2010.00992 (29 HIFLUGCS clusters; MVDR fit; g_dagger ~ 20e-10 m/s^2 = ~17x galactic a0; sample z<0.15 median ~ 0.05; sigma estimated from sample scatter)
+7,Chan+DelPopolo2020 NCC,0.07,9.3,1.7,1.7,Chan+Del Popolo 2020 arXiv:2001.06141 (52 non-cool-core HIFLUGCS clusters; RAR fit; large scatter; sample z range 0.01-0.2 median ~0.07)
+7,Pradyumna2021a Chandra,0.10,9.3,1.0,1.0,Pradyumna+Desai 2021a arXiv:2011.06421 (12 Chandra clusters; RAR fit; sigma estimated)
+7,Pradyumna2021a XCOP,0.10,11.2,1.0,1.0,Pradyumna+Desai 2021a arXiv:2011.06421 (12 X-COP clusters; RAR fit; sigma estimated)
+7,Pradyumna2021b GilesXCOP,0.10,15.9,1.4,1.4,Pradyumna+Desai 2021b arXiv:2106.10845 (10 Giles relaxed/non-cool X-COP clusters; RAR fit)
+7,Tian2020 CLASH,0.377,20.2,1.1,1.1,Tian+2020 arXiv:2001.08340 ApJ 896 70 (20 CLASH clusters; RAR fit on BCG-cluster scale; z range 0.187-0.686, median 0.377; g_dagger = (2.02+/-0.11)e-9 m/s^2)
 #
 # Section 3: linear-fit triplets a0(z) = a0(0) + a1*z (Ciocan+2026 Paper III)
 #   These are NOT plotted as data points; they are reference curves.
 #   Ciocan DC14 uniform     : a0(0)=1.00(0.04)  a1=1.59(0.11)   [Eq.4]
-#   Ciocan DC14 per-galaxy  : a0(0)=1.05(0.05)  a1=1.63(0.12)   [Eq.D.2]
+#   Ciocan best-fit per-gal : a0(0)=1.05(0.05)  a1=1.63(0.12)   [Eq.D.2]
 #   Ciocan MOND             : a0(0)=1.03(0.05)  a1=1.20(0.10)   [Eq.E.5]
 # These triplets are consumed directly inside publication/a0_evolution.py.
+#
+# Section 6: cross-check linear-fit slopes (a0(z) = a0 + a1*z) from Varasteanu+2025
+#   These are diagnostic only; we do not use them in our K-fit pipelines.
+#   Varasteanu+2025 Eq.15 (combined MIGHTEE+SPARC RAR-IF):
+#     a0 (intercept)        = 1.32 +/- 0.13   (already in section 5 row above)
+#     a1 (slope on z)       = 4.47 +/- 1.88 e-10 m/s^2 per unit z
+#     a1/a0                 = 3.96 +/- 1.72  (their reported ratio)
+#     HEAT prediction       = (dH(z)/dz)/H_0 |_{z=0} = 3*Om_m/2 = 0.4725
+#     Tension central value = 8.4x higher than HEAT, 2.0sigma marginal tension
+#   This is consistent with the K_fit/K_HEAT ~ 1.32 +/- 0.04 we recover from
+#   the per-bin Ciocan+2026 a0(z) values; the Varasteanu+2025 slope error is
+#   too large to discriminate the linear-evolution model from a HEAT cH(z)/2pi
+#   shape at the data's current precision.
